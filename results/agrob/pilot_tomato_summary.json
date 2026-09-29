@@ -1,0 +1,74 @@
+{
+  "dataset": "AgRobTomato (Zenodo 5596799)",
+  "archive_md5": "890666716924415720f073b06a9a02a3",
+  "model": "MohamedKhayat/fruit-detector-detr-50",
+  "model_revision": "19d09855a284cf040460c1ac39fe994e400cdf47",
+  "split": "pilot",
+  "split_rule": "tomate_barroselas_* = pilot; tomates_* = held-out test",
+  "images_processed": 20,
+  "limited_run": true,
+  "stride": 15,
+  "threshold": 0.3,
+  "label_filter": "tomato",
+  "iou_match_threshold": 0.5,
+  "device": "cpu",
+  "torch_version": "2.14.0+cpu",
+  "transformers_version": "4.57.6",
+  "run_utc": "2026-09-29T21:15:59.818055+00:00",
+  "ground_truth_fruit": 252,
+  "predicted_fruit": 0,
+  "mean_absolute_count_error": 12.6,
+  "median_absolute_count_error": 11.0,
+  "mean_signed_count_error": -12.6,
+  "exact_count_images": 1,
+  "matched_fruit_iou_50": 0,
+  "missed_fruit_iou_50": 252,
+  "extra_boxes_iou_50": 0,
+  "box_recall_iou_50": 0.0,
+  "box_precision_iou_50": null,
+  "missed_by_ripeness": {
+    "breaking": {
+      "missed": 14,
+      "total": 14
+    },
+    "reddish": {
+      "missed": 8,
+      "total": 8
+    },
+    "riped": {
+      "missed": 1,
+      "total": 1
+    },
+    "unriped": {
+      "missed": 229,
+      "total": 229
+    }
+  },
+  "missed_by_attribute": {
+    "occluded": {
+      "missed": 119,
+      "total": 119
+    },
+    "truncated": {
+      "missed": 0,
+      "total": 0
+    },
+    "difficult": {
+      "missed": 0,
+      "total": 0
+    }
+  },
+  "worst_count_images": [
+    "tomate_barroselas_20200806_0030.jpg",
+    "tomate_barroselas_20200806_0060.jpg",
+    "tomate_barroselas_20200806_0075.jpg",
+    "tomate_barroselas_20200806_0015.jpg",
+    "tomate_barroselas_20200806_0045.jpg",
+    "tomate_barroselas_20200806_0135.jpg",
+    "tomate_barroselas_20200806_0090.jpg",
+    "tomate_barroselas_20200806_0105.jpg",
+    "tomate_barroselas_20200806_0120.jpg",
+    "tomate_barroselas_20200806_0165.jpg"
+  ],
+  "notes": "Counts are per image; overlapping video frames may show the same fruit. AgRob has no truss labels."
+}

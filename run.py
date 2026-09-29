@@ -38,7 +38,7 @@ def remove_duplicate_boxes(detections: list[dict], iou_threshold: float) -> list
     return kept
 
 
-def load_model(kind: str, device: str):
+def load_model(kind: str, device: str, revision: str | None = None):
     import torch
     from transformers import (
         AutoImageProcessor,
@@ -49,16 +49,16 @@ def load_model(kind: str, device: str):
 
     model_id = MODEL_IDS[kind]
     if kind == "grounding-dino":
-        processor = AutoProcessor.from_pretrained(model_id)
-        model = AutoModelForZeroShotObjectDetection.from_pretrained(model_id)
+        processor = AutoProcessor.from_pretrained(model_id, revision=revision)
+        model = AutoModelForZeroShotObjectDetection.from_pretrained(model_id, revision=revision)
     else:
-        processor = AutoImageProcessor.from_pretrained(model_id)
-        model = AutoModelForObjectDetection.from_pretrained(model_id)
+        processor = AutoImageProcessor.from_pretrained(model_id, revision=revision)
+        model = AutoModelForObjectDetection.from_pretrained(model_id, revision=revision)
     model = model.to(device).eval()
     return torch, processor, model
 
 
-def detect(kind, image, processor, model, torch, device, threshold, text_threshold, prompt):
+def detect(kind, image, processor, model, torch, device, threshold, text_threshold, prompt, tomato_only=True):
     if kind == "grounding-dino":
         inputs = processor(images=image, text=prompt, return_tensors="pt").to(device)
         with torch.no_grad():
@@ -87,7 +87,7 @@ def detect(kind, image, processor, model, torch, device, threshold, text_thresho
     detections = []
     for box, score, label_id in zip(result["boxes"], result["scores"], result["labels"]):
         label = str(model.config.id2label[int(label_id)])
-        if label.casefold() != "tomato":
+        if tomato_only and label.casefold() != "tomato":
             continue
         detections.append({
             "label": label,

@@ -1,0 +1,74 @@
+{
+  "dataset": "AgRobTomato (Zenodo 5596799)",
+  "archive_md5": "890666716924415720f073b06a9a02a3",
+  "model": "MohamedKhayat/fruit-detector-detr-50",
+  "model_revision": "19d09855a284cf040460c1ac39fe994e400cdf47",
+  "split": "test",
+  "split_rule": "tomate_barroselas_* = pilot; tomates_* = held-out test",
+  "images_processed": 152,
+  "limited_run": false,
+  "stride": 1,
+  "threshold": 0.3,
+  "label_filter": "any-fruit",
+  "iou_match_threshold": 0.5,
+  "device": "cpu",
+  "torch_version": "2.14.0+cpu",
+  "transformers_version": "4.57.6",
+  "run_utc": "2026-09-29T21:18:43.266613+00:00",
+  "ground_truth_fruit": 1842,
+  "predicted_fruit": 2740,
+  "mean_absolute_count_error": 9.289,
+  "median_absolute_count_error": 7.0,
+  "mean_signed_count_error": 5.908,
+  "exact_count_images": 8,
+  "matched_fruit_iou_50": 31,
+  "missed_fruit_iou_50": 1811,
+  "extra_boxes_iou_50": 2709,
+  "box_recall_iou_50": 0.017,
+  "box_precision_iou_50": 0.011,
+  "missed_by_ripeness": {
+    "breaking": {
+      "missed": 38,
+      "total": 38
+    },
+    "reddish": {
+      "missed": 26,
+      "total": 26
+    },
+    "riped": {
+      "missed": 6,
+      "total": 6
+    },
+    "unriped": {
+      "missed": 1741,
+      "total": 1772
+    }
+  },
+  "missed_by_attribute": {
+    "occluded": {
+      "missed": 18,
+      "total": 18
+    },
+    "truncated": {
+      "missed": 0,
+      "total": 0
+    },
+    "difficult": {
+      "missed": 0,
+      "total": 0
+    }
+  },
+  "worst_count_images": [
+    "tomates_2020-08-06-11-35-15_side_0101.jpg",
+    "tomates_2020-08-06-11-35-15_side_0247.jpg",
+    "tomates_2020-08-06-11-35-15_side_0069.jpg",
+    "tomates_2020-08-06-11-35-15_side_0246.jpg",
+    "tomates_2020-08-06-11-35-15_side_0228.jpg",
+    "tomates_2020-08-06-11-35-15_side_0194.jpg",
+    "tomates_2020-08-06-11-35-15_side_0218.jpg",
+    "tomates_2020-08-06-11-35-15_side_0243.jpg",
+    "tomates_2020-08-06-11-35-15_side_0080.jpg",
+    "tomates_2020-08-06-11-35-15_side_0094.jpg"
+  ],
+  "notes": "Counts are per image; overlapping video frames may show the same fruit. AgRob has no truss labels."
+}
