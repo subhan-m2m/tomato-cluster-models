@@ -1,0 +1,424 @@
+{
+  "source": "data\\laboro_tomato",
+  "seed": 42,
+  "excluded_seen_test": [
+    "IMG_0983.jpg",
+    "IMG_0986.jpg",
+    "IMG_0987.jpg",
+    "IMG_0988.jpg",
+    "IMG_0991.jpg",
+    "IMG_0992.jpg",
+    "IMG_0993.jpg",
+    "IMG_1005.jpg",
+    "IMG_1011.jpg",
+    "IMG_1013.jpg"
+  ],
+  "splits": {
+    "train": [
+      {
+        "source_image_id": 153,
+        "source_file_name": "IMG_1009.jpg",
+        "file_name": "IMG_1009.jpg"
+      },
+      {
+        "source_image_id": 257,
+        "source_file_name": "IMG_1017.jpg",
+        "file_name": "IMG_1017.jpg"
+      },
+      {
+        "source_image_id": 57,
+        "source_file_name": "IMG_1033.jpg",
+        "file_name": "IMG_1033.jpg"
+      },
+      {
+        "source_image_id": 134,
+        "source_file_name": "IMG_1071.jpg",
+        "file_name": "IMG_1071.jpg"
+      },
+      {
+        "source_image_id": 7,
+        "source_file_name": "IMG_1133.jpg",
+        "file_name": "IMG_1133.jpg"
+      },
+      {
+        "source_image_id": 310,
+        "source_file_name": "IMG_1136.jpg",
+        "file_name": "IMG_1136.jpg"
+      },
+      {
+        "source_image_id": 594,
+        "source_file_name": "IMG_1138.jpg",
+        "file_name": "IMG_1138.jpg"
+      },
+      {
+        "source_image_id": 15,
+        "source_file_name": "IMG_1140.jpg",
+        "file_name": "IMG_1140.jpg"
+      },
+      {
+        "source_image_id": 429,
+        "source_file_name": "IMG_1141.jpg",
+        "file_name": "IMG_1141.jpg"
+      },
+      {
+        "source_image_id": 251,
+        "source_file_name": "IMG_1164.jpg",
+        "file_name": "IMG_1164.jpg"
+      },
+      {
+        "source_image_id": 1,
+        "source_file_name": "IMG_1166.jpg",
+        "file_name": "IMG_1166.jpg"
+      },
+      {
+        "source_image_id": 215,
+        "source_file_name": "IMG_1167.jpg",
+        "file_name": "IMG_1167.jpg"
+      },
+      {
+        "source_image_id": 301,
+        "source_file_name": "IMG_1168.jpg",
+        "file_name": "IMG_1168.jpg"
+      },
+      {
+        "source_image_id": 263,
+        "source_file_name": "IMG_1191.jpg",
+        "file_name": "IMG_1191.jpg"
+      },
+      {
+        "source_image_id": 436,
+        "source_file_name": "IMG_1231.jpg",
+        "file_name": "IMG_1231.jpg"
+      },
+      {
+        "source_image_id": 512,
+        "source_file_name": "IMG_1232.jpg",
+        "file_name": "IMG_1232.jpg"
+      },
+      {
+        "source_image_id": 464,
+        "source_file_name": "IMG_1257.jpg",
+        "file_name": "IMG_1257.jpg"
+      },
+      {
+        "source_image_id": 173,
+        "source_file_name": "IMG_1274.jpg",
+        "file_name": "IMG_1274.jpg"
+      },
+      {
+        "source_image_id": 550,
+        "source_file_name": "IMG_1282.jpg",
+        "file_name": "IMG_1282.jpg"
+      },
+      {
+        "source_image_id": 289,
+        "source_file_name": "IMG_1298.jpg",
+        "file_name": "IMG_1298.jpg"
+      },
+      {
+        "source_image_id": 483,
+        "source_file_name": "IMG_20191215_110541.jpg",
+        "file_name": "IMG_20191215_110541.jpg"
+      },
+      {
+        "source_image_id": 626,
+        "source_file_name": "IMG_20191215_110545.jpg",
+        "file_name": "IMG_20191215_110545.jpg"
+      },
+      {
+        "source_image_id": 377,
+        "source_file_name": "IMG_20191215_110730.jpg",
+        "file_name": "IMG_20191215_110730.jpg"
+      },
+      {
+        "source_image_id": 482,
+        "source_file_name": "IMG_20191215_110736.jpg",
+        "file_name": "IMG_20191215_110736.jpg"
+      },
+      {
+        "source_image_id": 479,
+        "source_file_name": "IMG_20191215_110740.jpg",
+        "file_name": "IMG_20191215_110740.jpg"
+      },
+      {
+        "source_image_id": 20,
+        "source_file_name": "IMG_20191215_110743.jpg",
+        "file_name": "IMG_20191215_110743.jpg"
+      },
+      {
+        "source_image_id": 217,
+        "source_file_name": "IMG_20191215_111051.jpg",
+        "file_name": "IMG_20191215_111051.jpg"
+      },
+      {
+        "source_image_id": 570,
+        "source_file_name": "IMG_20191215_111055.jpg",
+        "file_name": "IMG_20191215_111055.jpg"
+      },
+      {
+        "source_image_id": 344,
+        "source_file_name": "IMG_20191215_111110.jpg",
+        "file_name": "IMG_20191215_111110.jpg"
+      },
+      {
+        "source_image_id": 325,
+        "source_file_name": "IMG_20191215_111137.jpg",
+        "file_name": "IMG_20191215_111137.jpg"
+      },
+      {
+        "source_image_id": 584,
+        "source_file_name": "IMG_20191215_111157.jpg",
+        "file_name": "IMG_20191215_111157.jpg"
+      },
+      {
+        "source_image_id": 571,
+        "source_file_name": "IMG_20191215_111216.jpg",
+        "file_name": "IMG_20191215_111216.jpg"
+      },
+      {
+        "source_image_id": 444,
+        "source_file_name": "IMG_20191215_111232.jpg",
+        "file_name": "IMG_20191215_111232.jpg"
+      },
+      {
+        "source_image_id": 146,
+        "source_file_name": "IMG_20191215_111236.jpg",
+        "file_name": "IMG_20191215_111236.jpg"
+      },
+      {
+        "source_image_id": 201,
+        "source_file_name": "IMG_20191215_111252.jpg",
+        "file_name": "IMG_20191215_111252.jpg"
+      },
+      {
+        "source_image_id": 119,
+        "source_file_name": "IMG_20191215_111301.jpg",
+        "file_name": "IMG_20191215_111301.jpg"
+      },
+      {
+        "source_image_id": 120,
+        "source_file_name": "IMG_20191215_111311.jpg",
+        "file_name": "IMG_20191215_111311.jpg"
+      },
+      {
+        "source_image_id": 621,
+        "source_file_name": "IMG_20191215_111410_1.jpg",
+        "file_name": "IMG_20191215_111410_1.jpg"
+      },
+      {
+        "source_image_id": 384,
+        "source_file_name": "IMG_20191215_111556.jpg",
+        "file_name": "IMG_20191215_111556.jpg"
+      },
+      {
+        "source_image_id": 187,
+        "source_file_name": "IMG_20191215_111951_1.jpg",
+        "file_name": "IMG_20191215_111951_1.jpg"
+      },
+      {
+        "source_image_id": 14,
+        "source_file_name": "IMG_20191215_112015.jpg",
+        "file_name": "IMG_20191215_112015.jpg"
+      },
+      {
+        "source_image_id": 616,
+        "source_file_name": "IMG_20191215_112028.jpg",
+        "file_name": "IMG_20191215_112028.jpg"
+      },
+      {
+        "source_image_id": 569,
+        "source_file_name": "IMG_20191215_112033.jpg",
+        "file_name": "IMG_20191215_112033.jpg"
+      },
+      {
+        "source_image_id": 198,
+        "source_file_name": "IMG_20191215_112310.jpg",
+        "file_name": "IMG_20191215_112310.jpg"
+      },
+      {
+        "source_image_id": 391,
+        "source_file_name": "IMG_20191215_112529.jpg",
+        "file_name": "IMG_20191215_112529.jpg"
+      },
+      {
+        "source_image_id": 534,
+        "source_file_name": "IMG_20191215_112542.jpg",
+        "file_name": "IMG_20191215_112542.jpg"
+      },
+      {
+        "source_image_id": 313,
+        "source_file_name": "IMG_20191215_112740.jpg",
+        "file_name": "IMG_20191215_112740.jpg"
+      },
+      {
+        "source_image_id": 209,
+        "source_file_name": "IMG_20191215_112805.jpg",
+        "file_name": "IMG_20191215_112805.jpg"
+      },
+      {
+        "source_image_id": 583,
+        "source_file_name": "IMG_20191215_112904.jpg",
+        "file_name": "IMG_20191215_112904.jpg"
+      },
+      {
+        "source_image_id": 557,
+        "source_file_name": "IMG_20191215_112907.jpg",
+        "file_name": "IMG_20191215_112907.jpg"
+      }
+    ],
+    "valid": [
+      {
+        "source_image_id": 336,
+        "source_file_name": "IMG_1051.jpg",
+        "file_name": "IMG_1051.jpg"
+      },
+      {
+        "source_image_id": 142,
+        "source_file_name": "IMG_1080.jpg",
+        "file_name": "IMG_1080.jpg"
+      },
+      {
+        "source_image_id": 547,
+        "source_file_name": "IMG_1101.jpg",
+        "file_name": "IMG_1101.jpg"
+      },
+      {
+        "source_image_id": 424,
+        "source_file_name": "IMG_1125.jpg",
+        "file_name": "IMG_1125.jpg"
+      },
+      {
+        "source_image_id": 267,
+        "source_file_name": "IMG_1199.jpg",
+        "file_name": "IMG_1199.jpg"
+      },
+      {
+        "source_image_id": 181,
+        "source_file_name": "IMG_20191215_110842.jpg",
+        "file_name": "IMG_20191215_110842.jpg"
+      },
+      {
+        "source_image_id": 558,
+        "source_file_name": "IMG_20191215_111419_1.jpg",
+        "file_name": "IMG_20191215_111419_1.jpg"
+      },
+      {
+        "source_image_id": 607,
+        "source_file_name": "IMG_20191215_111422.jpg",
+        "file_name": "IMG_20191215_111422.jpg"
+      },
+      {
+        "source_image_id": 249,
+        "source_file_name": "IMG_20191215_111517_1.jpg",
+        "file_name": "IMG_20191215_111517_1.jpg"
+      },
+      {
+        "source_image_id": 456,
+        "source_file_name": "IMG_20191215_112346.jpg",
+        "file_name": "IMG_20191215_112346.jpg"
+      }
+    ],
+    "test": [
+      {
+        "source_image_id": 11,
+        "source_file_name": "IMG_1024.jpg",
+        "file_name": "IMG_1024.jpg"
+      },
+      {
+        "source_image_id": 39,
+        "source_file_name": "IMG_1114.jpg",
+        "file_name": "IMG_1114.jpg"
+      },
+      {
+        "source_image_id": 79,
+        "source_file_name": "IMG_1149.jpg",
+        "file_name": "IMG_1149.jpg"
+      },
+      {
+        "source_image_id": 40,
+        "source_file_name": "IMG_1179.jpg",
+        "file_name": "IMG_1179.jpg"
+      },
+      {
+        "source_image_id": 132,
+        "source_file_name": "IMG_1222.jpg",
+        "file_name": "IMG_1222.jpg"
+      },
+      {
+        "source_image_id": 45,
+        "source_file_name": "IMG_1246.jpg",
+        "file_name": "IMG_1246.jpg"
+      },
+      {
+        "source_image_id": 128,
+        "source_file_name": "IMG_1264.jpg",
+        "file_name": "IMG_1264.jpg"
+      },
+      {
+        "source_image_id": 29,
+        "source_file_name": "IMG_20191215_110651.jpg",
+        "file_name": "IMG_20191215_110651.jpg"
+      },
+      {
+        "source_image_id": 25,
+        "source_file_name": "IMG_20191215_110941.jpg",
+        "file_name": "IMG_20191215_110941.jpg"
+      },
+      {
+        "source_image_id": 1,
+        "source_file_name": "IMG_20191215_111341.jpg",
+        "file_name": "IMG_20191215_111341.jpg"
+      },
+      {
+        "source_image_id": 80,
+        "source_file_name": "IMG_20191215_111454_1.jpg",
+        "file_name": "IMG_20191215_111454_1.jpg"
+      },
+      {
+        "source_image_id": 124,
+        "source_file_name": "IMG_20191215_111508.jpg",
+        "file_name": "IMG_20191215_111508.jpg"
+      },
+      {
+        "source_image_id": 16,
+        "source_file_name": "IMG_20191215_111631.jpg",
+        "file_name": "IMG_20191215_111631.jpg"
+      },
+      {
+        "source_image_id": 107,
+        "source_file_name": "IMG_20191215_111725.jpg",
+        "file_name": "IMG_20191215_111725.jpg"
+      },
+      {
+        "source_image_id": 68,
+        "source_file_name": "IMG_20191215_111813.jpg",
+        "file_name": "IMG_20191215_111813.jpg"
+      },
+      {
+        "source_image_id": 125,
+        "source_file_name": "IMG_20191215_111857.jpg",
+        "file_name": "IMG_20191215_111857.jpg"
+      },
+      {
+        "source_image_id": 121,
+        "source_file_name": "IMG_20191215_111934.jpg",
+        "file_name": "IMG_20191215_111934.jpg"
+      },
+      {
+        "source_image_id": 70,
+        "source_file_name": "IMG_20191215_112417.jpg",
+        "file_name": "IMG_20191215_112417.jpg"
+      },
+      {
+        "source_image_id": 30,
+        "source_file_name": "IMG_20191215_112457.jpg",
+        "file_name": "IMG_20191215_112457.jpg"
+      },
+      {
+        "source_image_id": 6,
+        "source_file_name": "IMG_20191215_112614.jpg",
+        "file_name": "IMG_20191215_112614.jpg"
+      }
+    ]
+  }
+}

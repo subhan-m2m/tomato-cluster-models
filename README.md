@@ -5,6 +5,10 @@ Laboro Tomato test images**. It saves the detected boxes, an image with boxes
 drawn on it, and a count table for each model. You can run it on Windows with
 PowerShell; no model training is required for this first trial.
 
+For the next truss-labeling and model-evaluation steps, follow
+[TRUSS_PILOT_GUIDE.md](TRUSS_PILOT_GUIDE.md). Source and usage terms are in
+[DATASET_RECORD.md](DATASET_RECORD.md).
+
 ## What each trial tells you
 
 | Trial | What the checkpoint predicts | What Laboro can verify |
@@ -125,20 +129,16 @@ count files and matching previews; use `--output` to preserve alternatives.
 
 ## Step 6 — Initialize Git and create experiment branches
 
-You said you will initialize Git and add the remote yourself. The folder is
-ready for that; no `.git` directory or remote has been created here. Once you
-have reviewed the files, run:
+The folder has been initialized as a Git repository on `main`. To check your
+current branch and remote, run:
 
 ```powershell
-git init -b main
-git add .
-git commit -m 'Set up tomato model trials'
-git remote add origin YOUR_REMOTE_URL
-git push -u origin main
+git status --short --branch
+git remote -v
 ```
 
-Replace `YOUR_REMOTE_URL` with the URL from your empty Git hosting repository.
-Then make one branch per experiment:
+You can keep the shared dataset-preparation scripts on `main` and make one
+branch per model experiment:
 
 ```powershell
 git switch -c experiment/grounding-dino
