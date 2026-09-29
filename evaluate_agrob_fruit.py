@@ -13,14 +13,55 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-from run import MODEL_IDS, box_iou, detect, load_model
-
-
 DATA_ROOT = Path("data/agrob/Dataset-Greenhouse_Tomato_AgRob")
 ARCHIVE = Path("data/agrob/Dataset-Greenhouse_Tomato_AgRob.zip")
 EXPECTED_ARCHIVE_MD5 = "890666716924415720f073b06a9a02a3"
+MODEL_ID = "MohamedKhayat/fruit-detector-detr-50"
 MODEL_REVISION = "19d09855a284cf040460c1ac39fe994e400cdf47"
 RIPENESS = {"unriped", "breaking", "reddish", "riped"}
+
+
+def box_iou(first: list[float], second: list[float]) -> float:
+    left = max(first[0], second[0])
+    top = max(first[1], second[1])
+    right = min(first[2], second[2])
+    bottom = min(first[3], second[3])
+    overlap = max(0.0, right - left) * max(0.0, bottom - top)
+    first_area = max(0.0, first[2] - first[0]) * max(0.0, first[3] - first[1])
+    second_area = max(0.0, second[2] - second[0]) * max(0.0, second[3] - second[1])
+    union = first_area + second_area - overlap
+    return overlap / union if union else 0.0
+
+
+def load_model(device: str):
+    import torch
+    from transformers import AutoImageProcessor, AutoModelForObjectDetection
+
+    processor = AutoImageProcessor.from_pretrained(MODEL_ID, revision=MODEL_REVISION)
+    model = AutoModelForObjectDetection.from_pretrained(MODEL_ID, revision=MODEL_REVISION)
+    return torch, processor, model.to(device).eval()
+
+
+def detect(image, processor, model, torch, device, threshold, tomato_only):
+    inputs = processor(images=image, return_tensors="pt").to(device)
+    with torch.no_grad():
+        outputs = model(**inputs)
+    result = processor.post_process_object_detection(
+        outputs,
+        threshold=threshold,
+        target_sizes=torch.tensor([[image.height, image.width]]),
+    )[0]
+    detections = []
+    for box, score, label_id in zip(result["boxes"], result["scores"], result["labels"]):
+        label = str(model.config.id2label[int(label_id)])
+        if tomato_only and label.casefold() != "tomato":
+            continue
+        detections.append({
+            "label": label,
+            "score": round(float(score), 4),
+            "box": [round(float(x), 2) for x in box.tolist()],
+        })
+    return detections
 
 
 def sequence(stem: str) -> str:
@@ -129,12 +170,12 @@ def main() -> None:
     device = "cuda" if args.device == "auto" and torch.cuda.is_available() else args.device
     if device == "auto":
         device = "cpu"
-    print(f"Loading {MODEL_IDS['fruit-detr']} on {device} for {len(items)} {args.split} images", flush=True)
+    print(f"Loading {MODEL_ID} on {device} for {len(items)} {args.split} images", flush=True)
     # timm's nested backbone initialization emits a no-op copy warning. The
     # checkpoint tensors were independently checked against the loaded model.
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", message="for .* copying from a non-meta parameter")
-        torch, processor, model = load_model("fruit-detr", device, revision=MODEL_REVISION)
+        torch, processor, model = load_model(device)
     args.output.mkdir(parents=True)
     preview_dir = args.output / "previews"
     preview_dir.mkdir()
@@ -150,7 +191,7 @@ def main() -> None:
                 image = source.convert("RGB")
             if image.size != item["size"]:
                 raise ValueError(f"Image dimensions disagree with annotation: {item['image']}")
-            predicted = detect("fruit-detr", image, processor, model, torch, device, args.threshold, 0.0, "",
+            predicted = detect(image, processor, model, torch, device, args.threshold,
                                tomato_only=args.label_filter == "tomato")
             truth = item["fruit"]
             matches, missed, extra = match_boxes(truth, predicted)
@@ -196,7 +237,7 @@ def main() -> None:
     summary = {
         "dataset": "AgRobTomato (Zenodo 5596799)",
         "archive_md5": archive_md5,
-        "model": MODEL_IDS["fruit-detr"],
+        "model": MODEL_ID,
         "model_revision": getattr(model.config, "_commit_hash", None),
         "split": args.split,
         "split_rule": "tomate_barroselas_* = pilot; tomates_* = held-out test",

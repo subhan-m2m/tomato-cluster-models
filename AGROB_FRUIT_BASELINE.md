@@ -59,4 +59,4 @@ Each output folder contains `summary.json`, `counts.csv`, `predictions.jsonl`, a
 
 This unadapted checkpoint is a measured baseline, but it is **not usable** for tomato counting on AgRob. The next fruit experiment should fine-tune a tomato detector on labeled greenhouse images, then score an untouched scene-separated test set. RT-DETR is a candidate architecture for that run; its public COCO weights do not provide a tomato-specific class without adaptation. A GPU runtime is preferable because this computer's PyTorch environment reports no CUDA device.
 
-Truss counting remains separate. AgRob's fruit boxes cannot establish same-stem truss membership or a truss count error; use the existing truss labeling pilot and its own held-out annotations for that result.
+Truss counting remains separate. AgRob's fruit boxes cannot establish same-stem truss membership or a truss count error; that task needs its own truss labels and held-out evaluation.

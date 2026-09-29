@@ -1,16 +1,7 @@
-# Laboro Tomato data
+# AgRobTomato data
 
-The extracted **tomato_mixed** dataset is stored here locally. On a fresh
-checkout, place it here so these paths exist:
+Download the archive from <https://zenodo.org/records/5596799> and keep it under `data/agrob/`. Its MD5 is `890666716924415720f073b06a9a02a3`. Extract it so `Annotations/` and `JPEGImages/` are directly inside `data/agrob/Dataset-Greenhouse_Tomato_AgRob/`.
 
-```
-data/laboro_tomato/annotations/test.json
-data/laboro_tomato/test/
-```
+The source archive contains 449 JPEG images and 449 Pascal VOC XML annotations. The four ripeness labels describe individual fruit. It has no truss labels. `evaluate_agrob_fruit.py` reads this layout directly; there is no conversion step for the current baseline.
 
-The `test` directory contains the images named in `test.json`. Keep the original
-`train` directory and `annotations/train.json` if you download the full dataset.
-Dataset files are ignored by Git. Do not commit or redistribute them from this repo.
-
-Source: https://github.com/laboroai/LaboroTomato
-Terms: CC BY-NC-SA 4.0; contact Laboro.AI for commercial use.
+Downloaded images and generated model output are ignored by Git. The tracked `results/agrob/` folder contains only small summaries and per-image count tables. Cite the Zenodo record when sharing results.
