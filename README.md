@@ -4,6 +4,9 @@ This repository evaluates the pretrained [Fruit Detector DETR-50](https://huggin
 
 The current checkpoint is **not accurate enough for tomato counting** on AgRob. Read [AGROB_FRUIT_BASELINE.md](AGROB_FRUIT_BASELINE.md) for the fixed experiment, test results, and representative misses. Small shareable summaries and per-image counts are in `results/agrob/`.
 
+The next experiment is prepared in [AGROB_FINETUNE_GUIDE.md](AGROB_FINETUNE_GUIDE.md). It covers label review, one-class tomato fine-tuning, validation threshold selection, a viewed development comparison, and a fresh final test. The full-data GPU run and human label review remain to be done. The ready-to-run GPU notebook is [AGROB_GPU_COLAB.ipynb](AGROB_GPU_COLAB.ipynb).
+For a short team handoff, use [AGROB_FINETUNE_STATUS.md](AGROB_FINETUNE_STATUS.md).
+
 ## Files used by this experiment
 
 | Path | Purpose |
@@ -13,6 +16,12 @@ The current checkpoint is **not accurate enough for tomato counting** on AgRob. 
 | `data/README.md` | Dataset placement and provenance. |
 | `AGROB_FRUIT_BASELINE.md` | Experiment settings, interpretation, and next steps. |
 | `results/agrob/` | Tracked summary JSON and per-image test CSV files. |
+| `prepare_agrob_finetune.py` | Converts source labels to one-class training data and makes a label-review pack. |
+| `finetune_agrob_fruit.py` | Trains and evaluates the one-class tomato detector. |
+| `convert_tomato_voc.py` | Converts a newly labeled Pascal VOC final set for scoring. |
+| `make_agrob_gpu_bundle.py` | Packs the prepared images and scripts for GPU transfer. |
+| `agrob_finetune_split.json` | Fixed image assignments for the next experiment. |
+| `AGROB_LABEL_POLICY.md` | Proposed human annotation rules. |
 
 Images, model caches, and full output folders are ignored by Git.
 
