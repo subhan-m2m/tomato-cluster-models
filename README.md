@@ -2,9 +2,9 @@
 
 This repository evaluates the pretrained [Fruit Detector DETR-50](https://huggingface.co/MohamedKhayat/fruit-detector-detr-50) checkpoint on the [AgRobTomato dataset](https://zenodo.org/records/5596799). It counts visible fruit boxes in each image and compares them with AgRob's annotations. The checkpoint is a standard DETR model, separate from the RT-DETR project.
 
-The current checkpoint is **not accurate enough for tomato counting** on AgRob. Read [AGROB_FRUIT_BASELINE.md](AGROB_FRUIT_BASELINE.md) for the fixed experiment, test results, and representative misses. Small shareable summaries and per-image counts are in `results/agrob/`.
+The **original pretrained checkpoint** is not accurate enough for tomato counting on AgRob. Read [AGROB_FRUIT_BASELINE.md](AGROB_FRUIT_BASELINE.md) for its fixed experiment, test results, and representative misses. Small shareable summaries and per-image counts are in `results/agrob/`.
 
-The next experiment is prepared in [AGROB_FINETUNE_GUIDE.md](AGROB_FINETUNE_GUIDE.md). It covers label review, one-class tomato fine-tuning, validation threshold selection, a viewed development comparison, and a fresh final test. The full-data GPU run and human label review remain to be done. The ready-to-run GPU notebook is [AGROB_GPU_COLAB.ipynb](AGROB_GPU_COLAB.ipynb).
+The RTX 3070 fine-tuning run and its measured results are in [AGROB_FINETUNE_RUN_2026-10-01.md](AGROB_FINETUNE_RUN_2026-10-01.md). The corrected checkpoint reduces annotation-based count MAE on the previously viewed development sequence to **4.375 fruit/image** at a validation-chosen threshold of **0.90**. It used original AgRob labels; a completed review record or corrected XMLs have not been added to this checkout. A fresh final set remains necessary. [AGROB_FINETUNE_GUIDE.md](AGROB_FINETUNE_GUIDE.md) covers label review, rerunning, and final testing. The GPU notebook is [AGROB_GPU_COLAB.ipynb](AGROB_GPU_COLAB.ipynb).
 For a short team handoff, use [AGROB_FINETUNE_STATUS.md](AGROB_FINETUNE_STATUS.md).
 
 ## Files used by this experiment
@@ -22,6 +22,10 @@ For a short team handoff, use [AGROB_FINETUNE_STATUS.md](AGROB_FINETUNE_STATUS.m
 | `make_agrob_gpu_bundle.py` | Packs the prepared images and scripts for GPU transfer. |
 | `agrob_finetune_split.json` | Fixed image assignments for the next experiment. |
 | `AGROB_LABEL_POLICY.md` | Proposed human annotation rules. |
+| `count_tomatoes.py` | Counts detections in a new image or folder and saves red-box previews. |
+| `summarize_agrob_errors.py` | Summarizes common misses from evaluation predictions. |
+| `package_agrob_checkpoint.py` | Packs the saved model and matching result files for sharing. |
+| `results/agrob_finetune_v1_480/` | Small tracked metrics from the RTX 3070 run. |
 
 Images, model caches, and full output folders are ignored by Git.
 

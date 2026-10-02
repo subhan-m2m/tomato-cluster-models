@@ -1,0 +1,35 @@
+{
+  "images": 40,
+  "images_overcounted": 12,
+  "images_undercounted": 21,
+  "images_exact_count": 7,
+  "missed_by_occlusion": {
+    "occluded": {
+      "missed": 179,
+      "total": 381
+    },
+    "not_occluded": {
+      "missed": 84,
+      "total": 264
+    }
+  },
+  "missed_by_source_ripeness": {
+    "breaking": {
+      "missed": 9,
+      "total": 28
+    },
+    "reddish": {
+      "missed": 5,
+      "total": 10
+    },
+    "riped": {
+      "missed": 4,
+      "total": 5
+    },
+    "unriped": {
+      "missed": 245,
+      "total": 602
+    }
+  },
+  "note": "Box misses use one-to-one IoU 0.50 matching against source labels; some visible fruit may lack source boxes."
+}

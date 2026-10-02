@@ -1,0 +1,62 @@
+{
+  "source_model": "MohamedKhayat/fruit-detector-detr-50",
+  "source_revision": "19d09855a284cf040460c1ac39fe994e400cdf47",
+  "prepared_summary": {
+    "source_archive_md5": "890666716924415720f073b06a9a02a3",
+    "split_manifest": "agrob_finetune_split.json",
+    "corrected_xml_files": 0,
+    "label_review_status": "provisional; team review pending",
+    "splits": {
+      "train": {
+        "images": 237,
+        "fruit": 3289,
+        "zero_fruit_images": 14,
+        "source_ripeness": {
+          "breaking": 187,
+          "reddish": 120,
+          "riped": 19,
+          "unriped": 2963
+        }
+      },
+      "valid": {
+        "images": 40,
+        "fruit": 645,
+        "zero_fruit_images": 0,
+        "source_ripeness": {
+          "breaking": 28,
+          "reddish": 10,
+          "riped": 5,
+          "unriped": 602
+        }
+      },
+      "development": {
+        "images": 152,
+        "fruit": 1842,
+        "zero_fruit_images": 0,
+        "source_ripeness": {
+          "breaking": 38,
+          "reddish": 26,
+          "riped": 6,
+          "unriped": 1772
+        }
+      },
+      "buffer": {
+        "images": 20
+      }
+    }
+  },
+  "device": "cuda",
+  "torch_version": "2.14.1+cu130",
+  "transformers_version": "4.57.6",
+  "seed": 42,
+  "epochs": 15,
+  "batch_size": 1,
+  "gradient_accumulation": 2,
+  "learning_rate": 5e-05,
+  "backbone_learning_rate": 1e-05,
+  "image_size": 480,
+  "train_images": 237,
+  "valid_images": 40,
+  "limited_run": false,
+  "started_utc": "2026-10-02T03:33:35.398656+00:00"
+}

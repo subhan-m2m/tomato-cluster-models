@@ -1,0 +1,42 @@
+{
+  "checkpoint": "C:\\Users\\subha\\Projects\\Work\\Internships\\M2M\\2026_Q2\\agritwin\\tomato-cluster-models\\outputs\\agrob-gpu-full-unpadded-v1-480\\best_model",
+  "split": "development",
+  "run_utc": "2026-10-02T03:38:12.586428+00:00",
+  "device": "cuda",
+  "limited_run": false,
+  "chosen_by": "fixed threshold supplied before scoring",
+  "chosen_metrics": {
+    "threshold": 0.9,
+    "images": 152,
+    "ground_truth_fruit": 1842,
+    "predicted_fruit": 2435,
+    "mean_absolute_count_error": 4.375,
+    "mean_signed_count_error": 3.901,
+    "exact_count_images": 9,
+    "matched_fruit_iou_50": 993,
+    "missed_fruit_iou_50": 849,
+    "extra_boxes_iou_50": 1442,
+    "box_precision_iou_50": 0.4078,
+    "box_recall_iou_50": 0.5391,
+    "box_f1_iou_50": 0.4643
+  },
+  "missed_by_ripeness": {
+    "breaking": {
+      "missed": 15,
+      "total": 38
+    },
+    "reddish": {
+      "missed": 6,
+      "total": 26
+    },
+    "riped": {
+      "missed": 1,
+      "total": 6
+    },
+    "unriped": {
+      "missed": 827,
+      "total": 1772
+    }
+  },
+  "note": "The development split was inspected during the original baseline and is not a fresh final test."
+}

@@ -15,6 +15,7 @@ IMAGES = DATA_ROOT / "JPEGImages"
 DEFAULT_OUTPUT = ROOT / "outputs/agrob-finetune-gpu-bundle.zip"
 INCLUDED_FILES = (
     "AGROB_FINETUNE_GUIDE.md",
+    "AGROB_FINETUNE_RUN_2026-10-01.md",
     "AGROB_FINETUNE_STATUS.md",
     "AGROB_GPU_COLAB.ipynb",
     "AGROB_LABEL_POLICY.md",
@@ -22,6 +23,8 @@ INCLUDED_FILES = (
     "agrob_finetune_split.json",
     "evaluate_agrob_fruit.py",
     "finetune_agrob_fruit.py",
+    "count_tomatoes.py",
+    "summarize_agrob_errors.py",
     "convert_tomato_voc.py",
     "prepare_agrob_finetune.py",
     "requirements.txt",

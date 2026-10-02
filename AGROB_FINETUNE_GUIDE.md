@@ -1,6 +1,6 @@
 # Improve the AgRob tomato detector: step-by-step handoff
 
-This is the follow-up to [the measured pretrained baseline](AGROB_FRUIT_BASELINE.md). The fruit-specific checkpoint is **DETR**, not RT-DETR. Its original tomato-only result found no boxes on the 152-image AgRob sequence (12.118 fruit/image mean absolute count error). The work here prepares a **single-class tomato fine-tune** and a way to compare visible fruit counts after training. There is no trained full-data model or improved accuracy claim yet.
+This is the follow-up to [the measured pretrained baseline](AGROB_FRUIT_BASELINE.md). The fruit-specific checkpoint is **DETR**, not RT-DETR. Its original tomato-only result found no boxes on the 152-image AgRob sequence (12.118 fruit/image mean absolute count error). A full single-class tomato GPU run is now recorded in [AGROB_FINETUNE_RUN_2026-10-01.md](AGROB_FINETUNE_RUN_2026-10-01.md): its count error on that viewed sequence is 4.375 fruit/image. A fresh final test is still needed.
 
 ## 1. Understand the three kinds of images
 
@@ -23,9 +23,9 @@ Every source box labeled `unriped`, `breaking`, `reddish`, or `riped` is one `to
 - Converted the source labels into one-class COCO-style `train.json`, `valid.json`, and `development.json` under `data/agrob_finetune_v1/annotations/`.
 - Made `data/agrob_finetune_v1/review/review_queue.csv` with 43 suggested examples and five numbered contact sheets. The queue includes crowded, partly hidden, ripening, zero-fruit, random, and old-error images.
 - Added a training/evaluation program, a Pascal VOC converter for a future final set, and a GPU transfer bundle.
-- Ran an eight-image, two-epoch **CPU rehearsal**. It completed model loading, one-class training, validation, checkpoint saving, and evaluation. The tiny run's losses and counts are a software check only; they are not an accuracy result.
+- Ran a full 15-epoch RTX 3070 fine-tune after verifying preprocessing geometry. The best checkpoint is in `outputs/agrob-gpu-full-unpadded-v1-480/best_model/`. The first GPU attempt used incorrect fixed square padding and its scores were discarded.
 
-The 43 suggested review images have **not** been manually certified. The prepared set is labeled `provisional; team review pending` in `summary.json`.
+The local review CSV still has blank reviewer and correction columns, and no corrected XML files were found in this checkout. The user may have reviewed the images separately, but that review is not represented in the prepared data. Version v1 therefore remains labeled `provisional; team review pending` in `summary.json`.
 
 ## 3. Review the labels with another person
 
@@ -45,12 +45,29 @@ The `--overrides` folder is optional. If the team accepts every original box, om
 
 ## 4. Run the full training on a GPU
 
-This Windows machine currently has CPU PyTorch and reports **no CUDA GPU**. A full DETR run needs access to a CUDA GPU computer or a Google Colab GPU runtime. The easiest handoff is the ready-made notebook [AGROB_GPU_COLAB.ipynb](AGROB_GPU_COLAB.ipynb):
+This Windows machine has an **RTX 3070**, and `.venv-gpu/` now contains CUDA-enabled PyTorch. The corrected full run used this local command:
+
+```powershell
+.\.venv-gpu\Scripts\python.exe finetune_agrob_fruit.py train --prepared data/agrob_finetune_v1 --epochs 15 --image-size 480 --batch-size 1 --grad-accum 2 --output outputs/agrob-gpu-full-unpadded-v1-480
+```
+
+To create the same GPU environment in a new checkout, install Python 3.12 and `uv`, then run:
+
+```powershell
+uv venv --python 3.12 .venv-gpu
+uv pip install --python .venv-gpu\Scripts\python.exe --index-url https://download.pytorch.org/whl/cu130 torch==2.14.1+cu130 torchvision==0.29.1+cu130
+uv pip install --python .venv-gpu\Scripts\python.exe -r requirements-train.txt
+.\.venv-gpu\Scripts\python.exe -c "import torch; print(torch.cuda.is_available())"
+```
+
+The final line should print `True`. When corrected v2 labels are available, replace `--prepared` with `data/agrob_finetune_v2` and choose a **new** output folder. The script will not overwrite a prior run. If GPU memory runs out, try `--image-size 320` in another new run and report the size used.
+
+Google Colab remains an alternative through [AGROB_GPU_COLAB.ipynb](AGROB_GPU_COLAB.ipynb):
 
 1. Make the transfer ZIP on this computer with the command below. It contains the scripts, prepared labels, review pack, and the 429 train/validation/development JPEGs. The 20 buffer frames and original Zenodo ZIP are omitted.
 2. Upload `outputs/agrob-finetune-gpu-bundle.zip` to your Google Drive. Open `AGROB_GPU_COLAB.ipynb` in Colab (upload the notebook if needed).
 3. In Colab, choose **Runtime → Change runtime type → GPU**, then run cells from top to bottom. The notebook mounts Drive, unpacks the ZIP, installs the training libraries, checks for CUDA, trains, and saves outputs under `MyDrive/agrob_finetune_runs/`.
-4. The default full run uses 15 epochs, 480-pixel images, batch size 1, and accumulation 2. If GPU memory runs out, choose a **new run folder** and lower `--image-size` to 320. Record that change when sharing results. If the session stops before completion, keep the saved checkpoint but do not call the run complete; rerun with a new folder because the script does not resume the optimizer.
+4. The default full run uses 15 epochs, 480-pixel images, batch size 1, and accumulation 2. If the session stops before completion, keep the saved checkpoint but do not call the run complete; rerun with a new folder because the script does not resume the optimizer.
 
 ```powershell
 .\.venv\Scripts\python.exe make_agrob_gpu_bundle.py --output outputs/agrob-finetune-gpu-bundle.zip
@@ -58,33 +75,35 @@ This Windows machine currently has CPU PyTorch and reports **no CUDA GPU**. A fu
 
 If you used corrected v2 labels, create `outputs/agrob-finetune-gpu-bundle-v2.zip` with `--prepared data/agrob_finetune_v2 --output outputs/agrob-finetune-gpu-bundle-v2.zip`. In the notebook's first code cell, change `bundle` to that filename; in its training cell, set `prepared_name = 'agrob_finetune_v2'`.
 
-From a GPU computer with this checkout and all dependencies installed, the equivalent training command is:
-
-```powershell
-.\.venv\Scripts\python.exe finetune_agrob_fruit.py train --prepared data/agrob_finetune_v1 --epochs 15 --image-size 480 --batch-size 1 --grad-accum 2 --output outputs/agrob-full-v1
-```
-
 The program saves the best checkpoint by lowest validation **loss** in `best_model/`, plus `training_history.csv`, `run_config.json`, and `best_epoch.json`. A lower loss alone is not the final decision; also inspect count error and box alignment.
 
 ## 5. Choose the confidence threshold on validation images
 
-After training, run validation scoring once. The program tries confidence thresholds 0.10, 0.20, 0.30, 0.40, and 0.50; it chooses the lowest mean absolute count error, then the higher box F1 if tied. It also writes the full `thresholds.csv` so the team can inspect the trade-off.
+After training, run validation scoring once. The program tries confidence thresholds from 0.10 through 0.99; it chooses the lowest mean absolute count error, then the higher box F1 if tied. It also writes the full `thresholds.csv` so the team can inspect the trade-off.
 
 ```powershell
-.\.venv\Scripts\python.exe finetune_agrob_fruit.py evaluate --prepared data/agrob_finetune_v1 --checkpoint outputs/agrob-full-v1/best_model --split valid --output outputs/agrob-full-v1-valid
+.\.venv-gpu\Scripts\python.exe finetune_agrob_fruit.py evaluate --prepared data/agrob_finetune_v1 --checkpoint outputs/agrob-gpu-full-unpadded-v1-480/best_model --split valid --output outputs/a-new-validation-folder
 ```
 
-Read `outputs/agrob-full-v1-valid/summary.json` and copy `chosen_metrics.threshold`. Look at `counts.csv`, especially the largest errors, and inspect `previews/` at full size. In these previews, **green = label** and **red = prediction**. Check whether exact counts come from correctly placed boxes; the original baseline had some exact counts with no aligned fruit boxes. If the validation result is poor, correct labels or change the training recipe, then retrain under a new run name. Do not tune on the development or final set.
+The completed run chose **0.90**, with 2.625 fruit/image mean absolute count error and 0.5973 box F1 on validation. Its results are in `outputs/agrob-gpu-full-unpadded-v1-480-valid/`. For another run, read its `summary.json` and copy `chosen_metrics.threshold`. Look at `counts.csv`, especially the largest errors, and inspect `previews/` at full size. In these previews, **green = label** and **red = prediction**. Check whether exact counts come from correctly placed boxes. Do not tune on the development or final set.
 
 ## 6. Compare once with the viewed development sequence
 
-After the checkpoint and threshold are frozen, score the 152-image development sequence. Replace `0.3` below with the chosen validation value:
+After the checkpoint and threshold are frozen, score the 152-image development sequence. The completed run used:
 
 ```powershell
-.\.venv\Scripts\python.exe finetune_agrob_fruit.py evaluate --prepared data/agrob_finetune_v1 --checkpoint outputs/agrob-full-v1/best_model --split development --thresholds 0.3 --output outputs/agrob-full-v1-development
+.\.venv-gpu\Scripts\python.exe finetune_agrob_fruit.py evaluate --prepared data/agrob_finetune_v1 --checkpoint outputs/agrob-gpu-full-unpadded-v1-480/best_model --split development --thresholds 0.9 --output outputs/agrob-gpu-full-unpadded-v1-480-development
 ```
 
-Report mean absolute count error in **fruit per image**, mean signed count error (positive = overcount), exact-count image count, box precision/recall/F1 at IoU 0.50, and common misses by ripeness, crowding, occlusion, or lighting. Compare with the original Tomato-class baseline **12.118 fruit/image MAE**, while saying that development images were previously viewed. Do not call it an untouched test score.
+The completed development result is **4.375 fruit/image count MAE** and **0.4643 box F1**. Report mean signed error (positive = overcount), exact-count image count, box precision/recall, and common misses as well. Compare with the original Tomato-class baseline **12.118 fruit/image MAE**, while saying that development images were previously viewed. Do not call it an untouched test score.
+
+To **try the saved model on one new photo or a folder**, run this with your own path:
+
+```powershell
+.\.venv-gpu\Scripts\python.exe count_tomatoes.py --images C:\path\to\your\photo.jpg --output outputs/my-new-photo-count
+```
+
+The command uses the saved corrected checkpoint and validation threshold `0.90`. It writes `counts.csv` and red-box images in `previews/`. Each count is a model detection count; check the overlay because a red box can be misplaced or duplicated. Use a new output folder for every run.
 
 ## 7. Make a fresh final test before claiming success
 
@@ -104,10 +123,10 @@ Each JPEG needs one Pascal VOC XML, including an empty-object XML for a confirme
 .\.venv\Scripts\python.exe convert_tomato_voc.py --source data/final_tomato_v1 --output data/agrob_finetune_v1/annotations/final.json
 ```
 
-Then score the fixed checkpoint at the fixed validation threshold; again replace `0.3` with the actual value:
+Then score the fixed checkpoint at the fixed validation threshold. The current run uses `0.9`; a future v2 run may choose a different threshold:
 
 ```powershell
-.\.venv\Scripts\python.exe finetune_agrob_fruit.py evaluate --prepared data/agrob_finetune_v1 --images-dir data/final_tomato_v1/JPEGImages --checkpoint outputs/agrob-full-v1/best_model --split final --thresholds 0.3 --output outputs/agrob-full-v1-final
+.\.venv-gpu\Scripts\python.exe finetune_agrob_fruit.py evaluate --prepared data/agrob_finetune_v1 --images-dir data/final_tomato_v1/JPEGImages --checkpoint outputs/agrob-gpu-full-unpadded-v1-480/best_model --split final --thresholds 0.9 --output outputs/agrob-gpu-full-unpadded-v1-480-final
 ```
 
 Keep the final images, their XMLs, `final.json`, and the output folder together for reproducibility. If the first fresh final score is weak, treat it as a finding and start a **new** training/validation cycle; do not retroactively change the threshold for that score. For truss counting, collect distinct truss labels and make a separate model/evaluation.
@@ -116,7 +135,7 @@ Keep the final images, their XMLs, `final.json`, and the output folder together 
 
 | When | Share with the team |
 | --- | --- |
-| Now | Baseline: 152 viewed images, Tomato-class MAE 12.118; original checkpoint fails to locate tomatoes. Prepared split: 237 train, 40 validation, 152 development, 20 buffer. Labels provisional. |
+| Now | Original pretrained baseline: 12.118 fruit/image count MAE on viewed development images. Corrected fine-tuned checkpoint: validation MAE 2.625; fixed-threshold viewed development MAE 4.375. Share the run report and note that reviewed label files are not yet in this checkout. |
 | After label review | Agreed box policy, number of reviewed/corrected images, examples of ambiguous cases, and the versioned prepared-data name. |
 | After GPU training | Run config, best epoch, validation loss trend, validation threshold table, count MAE, box F1, and five representative previews. |
 | After development comparison | Fixed-threshold development metrics versus baseline, with common misses and the note that these images were already viewed. |

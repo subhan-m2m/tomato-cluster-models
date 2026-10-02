@@ -74,7 +74,9 @@ def load_processor_and_model(checkpoint: str | Path | None, image_size: int | No
     processor = AutoImageProcessor.from_pretrained(source, use_fast=False, **options)
     if image_size is not None:
         processor.size = {"max_height": image_size, "max_width": image_size}
-        processor.pad_size = {"height": image_size, "width": image_size}
+        # Fixed square padding renormalizes y coordinates for wide images.
+        # With batch size 1, dynamic padding preserves the source box geometry.
+        processor.pad_size = None
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", message="for .* copying from a non-meta parameter")
         model = AutoModelForObjectDetection.from_pretrained(
@@ -118,6 +120,21 @@ def process_batch(items: list[dict], processor, device: str, with_labels: bool):
 def batches(items: list[dict], batch_size: int):
     for start in range(0, len(items), batch_size):
         yield items[start:start + batch_size]
+
+
+def assert_training_box_geometry(items: list[dict], processor, torch) -> None:
+    """Catch a processor pad/resize setting that changes normalized box geometry."""
+    reference = next((item for item in items if item["annotations"]), None)
+    if reference is None:
+        raise ValueError("Training data has no labeled tomato boxes")
+    _, _, _, labels = process_batch([reference], processor, "cpu", with_labels=True)
+    x, y, width, height = map(float, reference["annotations"][0]["bbox"])
+    image_width, image_height = reference["size"]
+    expected = torch.tensor([(x + width / 2) / image_width, (y + height / 2) / image_height,
+                             width / image_width, height / image_height])
+    actual = labels[0]["boxes"][0].cpu()
+    if not torch.allclose(actual, expected, atol=0.002):
+        raise ValueError(f"Image processor shifted tomato boxes: expected {expected.tolist()}, got {actual.tolist()}")
 
 
 def detections_from_result(result, model) -> list[dict]:
@@ -166,6 +183,7 @@ def train(args) -> None:
     if args.max_valid_images:
         valid_items = valid_items[:args.max_valid_images]
     torch, processor, model = load_processor_and_model(None, args.image_size)
+    assert_training_box_geometry(train_items, processor, torch)
     model = model.to(device)
     backbone = list(model.model.backbone.parameters())
     backbone_ids = {id(parameter) for parameter in backbone}
@@ -254,6 +272,8 @@ def evaluate(args) -> None:
     if args.limit:
         items = items[:args.limit]
     torch, processor, model = load_processor_and_model(args.checkpoint, None)
+    if processor.pad_size is not None:
+        raise ValueError("Checkpoint uses fixed image padding, which shifts box coordinates; retrain with dynamic padding")
     model = model.to(device).eval()
     raw = []
     with torch.no_grad():
@@ -358,8 +378,8 @@ def main() -> None:
     eval_parser.add_argument("--images-dir", type=Path, default=DEFAULT_IMAGES)
     eval_parser.add_argument("--checkpoint", type=Path, required=True)
     eval_parser.add_argument("--split", default="valid", help="Prepared split name; development is a viewed benchmark")
-    eval_parser.add_argument("--thresholds", default="0.1,0.2,0.3,0.4,0.5")
-    eval_parser.add_argument("--batch-size", type=int, default=2)
+    eval_parser.add_argument("--thresholds", default="0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.99")
+    eval_parser.add_argument("--batch-size", type=int, default=1)
     eval_parser.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto")
     eval_parser.add_argument("--limit", type=int, default=0)
     eval_parser.add_argument("--output", type=Path, required=True)
