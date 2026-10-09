@@ -1,9 +1,9 @@
 {
   "browser": "Chromium (headless)",
   "offline_viewing": "passed; no external requests",
-  "embedded_images": 6,
+  "embedded_images": 10,
   "presentation_sections": 7,
-  "metric_values": "passed against embedded source metrics",
+  "metric_values": "passed; V2 metrics and same-44-frame comparison checked",
   "notes_toggle": "passed",
   "section_navigation": "passed",
   "presentation_controls": "passed",

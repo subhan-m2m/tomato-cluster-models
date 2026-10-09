@@ -16,7 +16,7 @@ from finetune_agrob_fruit import detections_from_result, load_processor_and_mode
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--images", type=Path, required=True)
-    parser.add_argument("--checkpoint", type=Path, default=Path("outputs/agrob-cluster-detr-v1-480/best_model"))
+    parser.add_argument("--checkpoint", type=Path, default=Path("outputs/agrob-cluster-detr-v2-480/best_model"))
     parser.add_argument("--threshold", type=float, required=True, help="Frozen threshold selected on validation")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()

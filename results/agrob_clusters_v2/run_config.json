@@ -1,0 +1,44 @@
+{
+  "source_model": "MohamedKhayat/fruit-detector-detr-50",
+  "source_revision": "19d09855a284cf040460c1ac39fe994e400cdf47",
+  "class_name": "tomato_cluster",
+  "prepared_summary": {
+    "source_archive_sha256": "94da4e8c43fd494b7e4f7841508d8c6a9c43180e9e5905b7197456537f73cf19",
+    "class_name": "tomato_cluster",
+    "cluster_definition": "Visually grouped nearby tomatoes that appear to share one stem; stem membership is unverified.",
+    "split_manifest": "agrob_cluster_v2_manifest.json",
+    "nearby_frame_pairs_across_splits": 275,
+    "border_rounding_corrections": 1,
+    "splits": {
+      "train": {
+        "images": 360,
+        "clusters": 2294,
+        "zero_cluster_images": 15
+      },
+      "valid": {
+        "images": 44,
+        "clusters": 308,
+        "zero_cluster_images": 3
+      },
+      "test": {
+        "images": 45,
+        "clusters": 383,
+        "zero_cluster_images": 1
+      }
+    }
+  },
+  "device": "cuda",
+  "torch_version": "2.14.1+cu130",
+  "transformers_version": "4.57.6",
+  "seed": 42,
+  "epochs": 15,
+  "batch_size": 1,
+  "gradient_accumulation": 2,
+  "learning_rate": 5e-05,
+  "backbone_learning_rate": 1e-05,
+  "image_size": 480,
+  "train_images": 360,
+  "valid_images": 44,
+  "limited_run": false,
+  "started_utc": "2026-10-09T10:24:47.467719+00:00"
+}

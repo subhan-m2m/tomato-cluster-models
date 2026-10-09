@@ -15,6 +15,26 @@ from PIL import Image, ImageDraw
 
 CLASS_NAME = "tomato_cluster"
 CLUSTER_DEFINITION = "Visually grouped nearby tomatoes that appear to share one stem; stem membership is unverified."
+MAX_BORDER_ROUNDING = 0.02
+
+
+def normalize_box(values, image_width, image_height):
+    """Clip only subpixel export-rounding overshoots; reject substantive errors."""
+    box = list(map(float, values))
+    if len(box) != 4 or not all(math.isfinite(v) for v in box):
+        raise ValueError(f"Invalid box: {box}")
+    x, y, width, height = box
+    if width <= 0 or height <= 0:
+        raise ValueError(f"Non-positive box size: {box}")
+    right, bottom = x + width, y + height
+    if max(-x, -y, right - image_width, bottom - image_height) > MAX_BORDER_ROUNDING:
+        raise ValueError(f"Box outside image beyond rounding tolerance: {box}")
+    clipped = [max(0.0, x), max(0.0, y), min(float(image_width), right), min(float(image_height), bottom)]
+    if not (clipped[0] < clipped[2] and clipped[1] < clipped[3]):
+        raise ValueError(f"Box has no area inside image: {box}")
+    if not (0 <= x < right <= image_width and 0 <= y < bottom <= image_height):
+        return [clipped[0], clipped[1], clipped[2] - clipped[0], clipped[3] - clipped[1]], True
+    return box, False
 
 
 def prepare(archive: Path, output: Path, manifest_path: Path) -> dict:
@@ -25,7 +45,8 @@ def prepare(archive: Path, output: Path, manifest_path: Path) -> dict:
     manifest = {"source_archive": archive.name, "source_sha256": archive_hash,
                 "source_label": "tomato cluster", "model_class": CLASS_NAME,
                 "cluster_definition": CLUSTER_DEFINITION,
-                "split_policy": "preserve supplied train/valid/test assignments", "splits": {}}
+                "split_policy": "preserve supplied train/valid/test assignments", "splits": {},
+                "border_rounding_corrections": []}
     originals = {}
     content_hashes = {}
     frames = []
@@ -59,9 +80,10 @@ def prepare(archive: Path, output: Path, manifest_path: Path) -> dict:
                 if annotation.get("iscrowd", 0):
                     raise ValueError("Cluster counting requires individual boxes, not crowd regions")
                 image = image_lookup[annotation["image_id"]]
-                box = list(map(float, annotation["bbox"]))
-                if len(box) != 4 or not all(math.isfinite(v) for v in box):
-                    raise ValueError(f"Invalid box: {split} {annotation['id']}")
+                box, corrected = normalize_box(annotation["bbox"], image["width"], image["height"])
+                if corrected:
+                    manifest["border_rounding_corrections"].append({"split": split, "annotation_id": annotation["id"],
+                        "file_name": image["file_name"], "original_bbox": annotation["bbox"], "prepared_bbox": box})
                 x, y, width, height = box
                 if not (0 <= x < x + width <= image["width"] and 0 <= y < y + height <= image["height"]):
                     raise ValueError(f"Box outside image: {split} {annotation['id']} {box}")
@@ -105,8 +127,7 @@ def prepare(archive: Path, output: Path, manifest_path: Path) -> dict:
                 nearby.append({"first": first[3], "first_split": first[2], "second": second[3],
                                "second_split": second[2], "frame_gap": abs(first[1] - second[1])})
     manifest["nearby_frames_across_splits"] = nearby
-    manifest["limitations"] = ["No confirmed zero-cluster images in this export",
-        "AgRob video frames may overlap; nearby frames cross supplied splits",
+    manifest["limitations"] = ["AgRob video frames may overlap; nearby frames cross supplied splits",
         "Clusters are visual groups that appear to share a stem; botanical membership is unverified"]
     output.mkdir(parents=True)
     (output / "images").mkdir()
@@ -114,7 +135,7 @@ def prepare(archive: Path, output: Path, manifest_path: Path) -> dict:
     summary = {"source_archive_sha256": archive_hash, "class_name": CLASS_NAME,
                "cluster_definition": CLUSTER_DEFINITION,
                "split_manifest": str(manifest_path), "nearby_frame_pairs_across_splits": len(nearby),
-               "splits": {}}
+               "border_rounding_corrections": len(manifest["border_rounding_corrections"]), "splits": {}}
     for name, content in payloads.items():
         target = output / name if name.startswith("annotations/") else output / "images" / name
         target.write_bytes(content)
@@ -123,6 +144,10 @@ def prepare(archive: Path, output: Path, manifest_path: Path) -> dict:
         counts = Counter(a["image_id"] for a in data["annotations"])
         summary["splits"][split] = {"images": len(data["images"]), "clusters": len(data["annotations"]),
                                     "zero_cluster_images": sum(counts[i["id"]] == 0 for i in data["images"])}
+    if not any(s["zero_cluster_images"] for s in summary["splits"].values()):
+        manifest["limitations"].append("No zero-cluster images in this export")
+    else:
+        manifest["limitations"].append("Zero-cluster image counts follow the export; empty scenes were not independently audited")
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8", newline="\n")
     # View training and validation labels before any model/test review.

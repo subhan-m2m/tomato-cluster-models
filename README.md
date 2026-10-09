@@ -9,6 +9,11 @@ For a short team handoff, use [AGROB_FINETUNE_STATUS.md](AGROB_FINETUNE_STATUS.m
 
 ## Relabeled visual cluster experiment
 
+**Current run: V2 full annotations.** The completed Roboflow export has **449 images / 2,985 cluster boxes**: 360 train, 44 validation, and 45 supplied test images. At validation-selected confidence **0.90**, V2 test count MAE is **1.933 clusters/image**, signed error **−1.356**, box precision **79.19%**, and recall **66.58%**. Read [AGROB_CLUSTER_V2_RUN_2026-10-09.md](AGROB_CLUSTER_V2_RUN_2026-10-09.md) and `results/agrob_clusters_v2/` for the run and examples. The current local checkpoint is `outputs/agrob-cluster-detr-v2-480/best_model/`.
+
+On the same 44 previously viewed frames with unchanged labels, V2 count MAE is **1.977**, versus V1 **2.341**. V2 adds one empty test frame. The supplied V2 splits have **275 nearby-frame pairs across splits**; this remains a development benchmark and needs a fresh scene-separated final set.
+
+**Earlier V1 subset run:**
 The supplied COCO subset has now been tested on branch `experiment/agrob-cluster-count`.
 Read [AGROB_CLUSTER_RUN_2026-10-09.md](AGROB_CLUSTER_RUN_2026-10-09.md) for the full run, reproduction commands, inspected failures, and next steps.
 The cluster model was trained on 54 images, validated on 18, and tested on 44. At the validation-selected confidence threshold of 0.90, test count MAE is **2.341 clusters/image** and mean signed error is **−1.523**. Box precision is **49.68%** and recall is **40.99%** at IoU 0.50.
@@ -41,7 +46,7 @@ Images, model caches, and full output folders are ignored by Git.
 
 ## Present the findings to the team
 
-Open [the standalone HTML dashboard](presentation/tomato_findings_dashboard.html) in Chrome or Edge. It compares the original pretrained checkpoint, the fine-tuned individual-fruit model, and the visual-cluster model. Six example images and recorded metrics are embedded, so you can share just the HTML file and view it offline. Click **Present** for sequential sections and **Speaker notes** for prompts.
+Open [the standalone HTML dashboard](presentation/tomato_findings_dashboard.html) in Chrome or Edge. It covers the original pretrained checkpoint, the fine-tuned individual-fruit model, and V1/V2 visual-cluster runs. Ten example images and recorded metrics are embedded, so you can share just the HTML file and view it offline. V2 full-data metrics are current. Click **Present** for sequential sections and **Speaker notes** for prompts.
 
 Use [the presentation walkthrough](presentation/PRESENTATION_WALKTHROUGH.md) for an 8–10 minute sequence. `build_team_dashboard.py` rebuilds the file from the tracked metrics and original local evaluation previews. The browser verification is recorded in `presentation/dashboard_verification.json`.
 

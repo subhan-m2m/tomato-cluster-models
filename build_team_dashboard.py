@@ -19,8 +19,9 @@ def main():
     original = read_json("results/agrob/test_tomato_summary.json")
     fruit_valid = read_json("results/agrob_finetune_v1_480/validation_summary.json")
     fruit_development = read_json("results/agrob_finetune_v1_480/development_summary.json")
-    cluster_valid = read_json("results/agrob_clusters_v1/validation_summary.json")
-    cluster_test = read_json("results/agrob_clusters_v1/test_summary.json")
+    cluster_v1 = read_json("results/agrob_clusters_v1/test_summary.json")
+    cluster_valid = read_json("results/agrob_clusters_v2/validation_summary.json")
+    cluster_test = read_json("results/agrob_clusters_v2/test_summary.json")
     source_paths = [
         "results/agrob/test_tomato_summary.json",
         "results/agrob_finetune_v1_480/validation_summary.json",
@@ -31,6 +32,14 @@ def main():
         "results/agrob_clusters_v1/run_config.json",
         "results/agrob_clusters_v1/dataset_summary.json",
         "results/agrob_clusters_v1/selected_settings.json",
+        "results/agrob_clusters_v2/validation_summary.json",
+        "results/agrob_clusters_v2/test_summary.json",
+        "results/agrob_clusters_v2/run_config.json",
+        "results/agrob_clusters_v2/dataset_summary.json",
+        "results/agrob_clusters_v2/selected_settings.json",
+        "results/agrob_clusters_v2/version_audit.json",
+        "results/agrob_clusters_v2/common_test_comparison.json",
+        "results/agrob_clusters_v2/error_review.csv",
     ]
     def count_rows(path):
         source_paths.append(path)
@@ -39,7 +48,7 @@ def main():
     fruit_rows = count_rows("results/agrob_finetune_v1_480/development_counts.csv")
     cluster_rows = count_rows("results/agrob_clusters_v1/test_counts.csv")
     samples = []
-    def add_sample(sample_id, title, filename, preview_path, unit, rows, issue, note, threshold):
+    def add_sample(sample_id, title, filename, preview_path, unit, rows, issue, note, threshold, version="fruit"):
         row = rows[filename]
         content = (ROOT / preview_path).read_bytes()
         source_paths.append(preview_path)
@@ -47,7 +56,7 @@ def main():
                         "labeled": int(row[f"ground_truth_{unit}_count"]),
                         "predicted": int(row[f"predicted_{unit}_count"]),
                         "matched": int(row[f"matched_{unit}_iou_50"]),
-                        "issue": issue, "note": note, "threshold": threshold,
+                        "issue": issue, "note": note, "threshold": threshold, "version": version,
                         "image": "data:image/jpeg;base64," + base64.b64encode(content).decode("ascii")})
     fruit_name = "tomates_2020-08-06-11-35-15_side_0068.jpg"
     before_row = {fruit_name: {"ground_truth_fruit_count": fruit_rows[fruit_name]["ground_truth_fruit_count"],
@@ -80,18 +89,32 @@ def main():
          "Partial group boundaries",
          "Large and occluded groups are missed. The two predictions cover only parts of labeled clusters and do not meet the box overlap criterion."),
     ):
-        add_sample(sample_id, title, filename, "results/agrob_clusters_v1/reviewed_previews/" + preview,
-                   "cluster", cluster_rows, issue, note, 0.9)
+        add_sample(sample_id, "V1 subset · " + title, filename, "results/agrob_clusters_v1/reviewed_previews/" + preview,
+                   "cluster", cluster_rows, issue, note, 0.9, "v1")
+    cluster_v2_rows = count_rows("results/agrob_clusters_v2/test_counts.csv")
+    with (ROOT / "results/agrob_clusters_v2/error_review.csv").open(encoding="utf-8") as stream:
+        for review in csv.DictReader(stream):
+            add_sample(review["sample_id"], "V2 full · " + review["title"], review["file_name"],
+                       "results/agrob_clusters_v2/" + review["preview"], "cluster", cluster_v2_rows,
+                       review["issue"], review["observation"], cluster_test["chosen_metrics"]["threshold"], "v2")
     assert set(fruit_rows) == {Path(path).name for path in (ROOT / "outputs/agrob-fruit-detr-test-tomato-t030/previews").glob("*.jpg")}
     assert sum(int(row["ground_truth_fruit_count"]) for row in fruit_rows.values()) == original["ground_truth_fruit"] == 1842
-    assert len(cluster_rows) == cluster_test["chosen_metrics"]["images"] == 44
+    assert len(cluster_rows) == cluster_v1["chosen_metrics"]["images"] == 44
+    assert len(cluster_v2_rows) == cluster_test["chosen_metrics"]["images"] == 45
+    cluster_data = read_json("results/agrob_clusters_v2/dataset_summary.json")
     data = {"original": original, "fruitValid": fruit_valid["chosen_metrics"],
             "fruitDevelopment": fruit_development["chosen_metrics"],
             "clusterValid": cluster_valid["chosen_metrics"], "clusterTest": cluster_test["chosen_metrics"],
             "fruitRun": read_json("results/agrob_finetune_v1_480/run_config.json"),
-            "clusterRun": read_json("results/agrob_clusters_v1/run_config.json"),
-            "clusterData": read_json("results/agrob_clusters_v1/dataset_summary.json"),
-            "samples": samples}
+            "clusterRun": read_json("results/agrob_clusters_v2/run_config.json"),
+            "clusterData": cluster_data,
+            "clusterTotals": {"images": sum(s["images"] for s in cluster_data["splits"].values()),
+                              "clusters": sum(s["clusters"] for s in cluster_data["splits"].values()),
+                              "zero_images": sum(s["zero_cluster_images"] for s in cluster_data["splits"].values())},
+            "clusterV1": cluster_v1["chosen_metrics"],
+            "clusterComparison": read_json("results/agrob_clusters_v2/common_test_comparison.json"),
+            "clusterAudit": read_json("results/agrob_clusters_v2/version_audit.json"),
+            "sampleCount": len(samples), "samples": samples}
     template = (DESTINATION / "dashboard_template.html").read_text(encoding="utf-8")
     assert template.count("@@DATA@@") == 1
     content = template.replace("@@DATA@@", json.dumps(data, separators=(",", ":")).replace("<", "\\u003c"))

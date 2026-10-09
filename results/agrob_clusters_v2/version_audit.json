@@ -1,0 +1,19 @@
+{
+  "v1_images_present_in_v2": 116,
+  "v1_images_missing_in_v2": [],
+  "shared_images_with_changed_label_counts": 0,
+  "shared_images_with_changed_box_values": 0,
+  "v1_to_v2_split_assignments": {
+    "test->test": 44,
+    "train->train": 54,
+    "valid->valid": 18
+  },
+  "nearby_frame_pairs_across_v2_splits": 275,
+  "nearby_pair_split_combinations": {
+    "test-train": 136,
+    "train-valid": 119,
+    "test-valid": 20
+  },
+  "additional_v2_images": 333,
+  "note": "All 116 V1 images retain the same box labels and split assignments in V2. V2 adds 333 images, including one empty test image. The same 44 previously inspected test frames support a development comparison, not a fresh final accuracy claim."
+}

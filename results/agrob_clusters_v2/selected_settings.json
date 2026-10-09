@@ -1,0 +1,10 @@
+{
+  "class_name": "tomato_cluster",
+  "dataset_version": "v2-full",
+  "threshold": 0.9,
+  "selection_basis": "lowest validation count MAE, tie-break box F1; frozen before test scoring",
+  "selected_utc": "2026-10-09T10:31:57.569495+00:00",
+  "best_epoch": 14,
+  "dataset_sha256": "94da4e8c43fd494b7e4f7841508d8c6a9c43180e9e5905b7197456537f73cf19",
+  "checkpoint_sha256": "e919e0256988359b0a50a79ba7430b2618ec073adef181507d034b91d7eb53fb"
+}

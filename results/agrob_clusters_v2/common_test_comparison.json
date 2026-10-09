@@ -1,0 +1,34 @@
+{
+  "images": 44,
+  "v1": {
+    "threshold": 0.9,
+    "images": 44,
+    "ground_truth_cluster": 383,
+    "predicted_cluster": 316,
+    "mean_absolute_count_error": 2.341,
+    "mean_signed_count_error": -1.523,
+    "exact_count_images": 8,
+    "matched_cluster_iou_50": 157,
+    "missed_cluster_iou_50": 226,
+    "extra_boxes_iou_50": 159,
+    "box_precision_iou_50": 0.4968,
+    "box_recall_iou_50": 0.4099,
+    "box_f1_iou_50": 0.4492
+  },
+  "v2": {
+    "images": 44,
+    "threshold": 0.9,
+    "ground_truth_cluster": 383,
+    "predicted_cluster": 322,
+    "mean_absolute_count_error": 1.977,
+    "mean_signed_count_error": -1.386,
+    "exact_count_images": 7,
+    "matched_cluster_iou_50": 255,
+    "missed_cluster_iou_50": 128,
+    "extra_boxes_iou_50": 67,
+    "box_precision_iou_50": 0.7919,
+    "box_recall_iou_50": 0.6658,
+    "box_f1_iou_50": 0.7234
+  },
+  "note": "Same 44 image identities and unchanged labels. V1 and V2 use their validation-selected thresholds; evaluation frames have been previously viewed. One additional empty V2 test frame excluded."
+}

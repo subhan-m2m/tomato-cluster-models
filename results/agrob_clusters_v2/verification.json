@@ -1,0 +1,11 @@
+{
+  "dataset_import": "passed: 449 images, 2985 boxes",
+  "recorded_border_correction": "one 0.01-pixel right-edge overshoot clipped; larger errors rejected",
+  "all_v1_boxes_and_assignments_preserved": "passed (116 images)",
+  "training": "15 epochs completed with finite losses; box geometry check passed",
+  "threshold_frozen_before_test": "passed: 0.90",
+  "per_image_count_and_matching_metrics": "passed",
+  "checkpoint_hash": "passed",
+  "standalone_inference": "19 detections, matching evaluation",
+  "dashboard": "Chromium verification passed; see presentation/dashboard_verification.json"
+}

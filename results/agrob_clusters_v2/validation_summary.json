@@ -1,0 +1,31 @@
+{
+  "checkpoint": "C:\\Users\\subha\\Projects\\Work\\Internships\\M2M\\2026_Q2\\agritwin\\tomato-cluster-models\\outputs\\agrob-cluster-detr-v2-480\\best_model",
+  "split": "valid",
+  "class_name": "tomato_cluster",
+  "run_utc": "2026-10-09T10:31:41.812155+00:00",
+  "device": "cuda",
+  "limited_run": false,
+  "chosen_by": "lowest validation count MAE, then highest box F1",
+  "chosen_metrics": {
+    "threshold": 0.9,
+    "images": 44,
+    "ground_truth_cluster": 308,
+    "predicted_cluster": 335,
+    "mean_absolute_count_error": 1.523,
+    "mean_signed_count_error": 0.614,
+    "exact_count_images": 17,
+    "matched_cluster_iou_50": 221,
+    "missed_cluster_iou_50": 87,
+    "extra_boxes_iou_50": 114,
+    "box_precision_iou_50": 0.6597,
+    "box_recall_iou_50": 0.7175,
+    "box_f1_iou_50": 0.6874
+  },
+  "missed_by_source_label": {
+    "tomato cluster": {
+      "missed": 87,
+      "total": 308
+    }
+  },
+  "note": "Supplied cluster splits may share overlapping AgRob scenes; counts refer to annotated visual clusters."
+}
