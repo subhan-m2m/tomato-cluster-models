@@ -1,4 +1,4 @@
-"""Build a standalone, offline team dashboard from recorded metrics and previews."""
+"""Build an offline, photo-led team update from saved evaluation results."""
 
 import base64
 import csv
@@ -6,126 +6,128 @@ import hashlib
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parent
 DESTINATION = ROOT / "presentation"
 
 
-def read_json(name):
-    return json.loads((ROOT / name).read_text(encoding="utf-8"))
-
-
 def main():
-    original = read_json("results/agrob/test_tomato_summary.json")
-    fruit_valid = read_json("results/agrob_finetune_v1_480/validation_summary.json")
-    fruit_development = read_json("results/agrob_finetune_v1_480/development_summary.json")
-    cluster_v1 = read_json("results/agrob_clusters_v1/test_summary.json")
-    cluster_valid = read_json("results/agrob_clusters_v2/validation_summary.json")
-    cluster_test = read_json("results/agrob_clusters_v2/test_summary.json")
-    source_paths = [
-        "results/agrob/test_tomato_summary.json",
-        "results/agrob_finetune_v1_480/validation_summary.json",
-        "results/agrob_finetune_v1_480/development_summary.json",
-        "results/agrob_finetune_v1_480/run_config.json",
-        "results/agrob_clusters_v1/validation_summary.json",
-        "results/agrob_clusters_v1/test_summary.json",
-        "results/agrob_clusters_v1/run_config.json",
-        "results/agrob_clusters_v1/dataset_summary.json",
-        "results/agrob_clusters_v1/selected_settings.json",
-        "results/agrob_clusters_v2/validation_summary.json",
-        "results/agrob_clusters_v2/test_summary.json",
-        "results/agrob_clusters_v2/run_config.json",
-        "results/agrob_clusters_v2/dataset_summary.json",
-        "results/agrob_clusters_v2/selected_settings.json",
-        "results/agrob_clusters_v2/version_audit.json",
-        "results/agrob_clusters_v2/common_test_comparison.json",
-        "results/agrob_clusters_v2/error_review.csv",
-    ]
-    def count_rows(path):
-        source_paths.append(path)
-        with (ROOT / path).open(encoding="utf-8") as stream:
+    sources = []
+
+    def read_json(name):
+        sources.append(name)
+        return json.loads((ROOT / name).read_text(encoding="utf-8"))
+
+    def count_rows(name):
+        sources.append(name)
+        with (ROOT / name).open(encoding="utf-8") as stream:
             return {row["file_name"]: row for row in csv.DictReader(stream)}
-    fruit_rows = count_rows("results/agrob_finetune_v1_480/development_counts.csv")
-    cluster_rows = count_rows("results/agrob_clusters_v1/test_counts.csv")
-    samples = []
-    def add_sample(sample_id, title, filename, preview_path, unit, rows, issue, note, threshold, version="fruit"):
-        row = rows[filename]
-        content = (ROOT / preview_path).read_bytes()
-        source_paths.append(preview_path)
-        samples.append({"id": sample_id, "title": title, "filename": filename, "unit": unit,
-                        "labeled": int(row[f"ground_truth_{unit}_count"]),
-                        "predicted": int(row[f"predicted_{unit}_count"]),
-                        "matched": int(row[f"matched_{unit}_iou_50"]),
-                        "issue": issue, "note": note, "threshold": threshold, "version": version,
-                        "image": "data:image/jpeg;base64," + base64.b64encode(content).decode("ascii")})
-    fruit_name = "tomates_2020-08-06-11-35-15_side_0068.jpg"
-    before_row = {fruit_name: {"ground_truth_fruit_count": fruit_rows[fruit_name]["ground_truth_fruit_count"],
-                              "predicted_fruit_count": 0, "matched_fruit_iou_50": 0}}
-    assert original["predicted_fruit"] == 0
-    add_sample("original", "Original detector · side 0068", fruit_name,
-               "outputs/agrob-fruit-detr-test-tomato-t030/previews/" + fruit_name,
-               "fruit", before_row, "No Tomato-class detections",
-               "The green boxes show five source-labeled fruit. The original Tomato class produced no detections on this frame or across the 152-image sequence.", 0.3)
-    add_sample("fruit-clear", "Fine-tuned detector · side 0068", fruit_name,
-               "outputs/agrob-gpu-full-unpadded-v1-480-development/previews/" + fruit_name,
-               "fruit", fruit_rows, "Clear fruit recovered",
-               "The fine-tuned model matches all five labeled fruit and adds one extra box. This is a selected example of improvement, not the average result.", 0.9)
-    fruit_name = "tomates_2020-08-06-11-35-15_side_0080.jpg"
-    add_sample("fruit-dense", "Fine-tuned detector · side 0080", fruit_name,
-               "outputs/agrob-gpu-full-unpadded-v1-480-development/previews/" + fruit_name,
-               "fruit", fruit_rows, "Dense groups and possible missing labels",
-               "Repeated boxes appear around dense fruit at the top left. Other red boxes appear on visible fruit without source labels. A human review must distinguish duplicate predictions from missing annotations.", 0.9)
-    for sample_id, title, filename, preview, issue, note in (
-        ("cluster-hidden", "Cluster detector · Barroselas 0083",
-         "tomate_barroselas_20200806_0083_jpg.rf.BadabIsj60q7DhRt6fkr.jpg", "barroselas_0083.jpg",
-         "Shaded and partly hidden groups missed",
-         "Larger clear groups are recovered; several small, shaded, occluded, and edge groups are missed. The model undercounts this image by nine clusters."),
-        ("cluster-split", "Cluster detector · side 0137",
-         "tomates_2020-08-06-11-35-15_side_0137_jpg.rf.7oDn4TeUQ9TtGjY5Bbqa.jpg", "side_0137.jpg",
-         "One group becomes several predictions",
-         "Several red boxes split a large green-labeled cluster into smaller detections. Other predicted groups lie outside the supplied boxes and need a label-completeness check."),
-        ("cluster-partial", "Cluster detector · Barroselas 0177",
-         "tomate_barroselas_20200806_0177_jpg.rf.8YXLxP68VuATn0xuqQ7u.jpg", "barroselas_0177.jpg",
-         "Partial group boundaries",
-         "Large and occluded groups are missed. The two predictions cover only parts of labeled clusters and do not meet the box overlap criterion."),
-    ):
-        add_sample(sample_id, "V1 subset · " + title, filename, "results/agrob_clusters_v1/reviewed_previews/" + preview,
-                   "cluster", cluster_rows, issue, note, 0.9, "v1")
-    cluster_v2_rows = count_rows("results/agrob_clusters_v2/test_counts.csv")
-    with (ROOT / "results/agrob_clusters_v2/error_review.csv").open(encoding="utf-8") as stream:
-        for review in csv.DictReader(stream):
-            add_sample(review["sample_id"], "V2 full · " + review["title"], review["file_name"],
-                       "results/agrob_clusters_v2/" + review["preview"], "cluster", cluster_v2_rows,
-                       review["issue"], review["observation"], cluster_test["chosen_metrics"]["threshold"], "v2")
-    assert set(fruit_rows) == {Path(path).name for path in (ROOT / "outputs/agrob-fruit-detr-test-tomato-t030/previews").glob("*.jpg")}
-    assert sum(int(row["ground_truth_fruit_count"]) for row in fruit_rows.values()) == original["ground_truth_fruit"] == 1842
-    assert len(cluster_rows) == cluster_v1["chosen_metrics"]["images"] == 44
-    assert len(cluster_v2_rows) == cluster_test["chosen_metrics"]["images"] == 45
+
+    original = read_json("results/agrob/test_tomato_summary.json")
+    fruit = read_json("results/agrob_finetune_v1_480/development_summary.json")["chosen_metrics"]
+    v1 = read_json("results/agrob_clusters_v1/test_summary.json")["chosen_metrics"]
+    v2 = read_json("results/agrob_clusters_v2/test_summary.json")["chosen_metrics"]
+    comparison = read_json("results/agrob_clusters_v2/common_test_comparison.json")
     cluster_data = read_json("results/agrob_clusters_v2/dataset_summary.json")
-    data = {"original": original, "fruitValid": fruit_valid["chosen_metrics"],
-            "fruitDevelopment": fruit_development["chosen_metrics"],
-            "clusterValid": cluster_valid["chosen_metrics"], "clusterTest": cluster_test["chosen_metrics"],
-            "fruitRun": read_json("results/agrob_finetune_v1_480/run_config.json"),
-            "clusterRun": read_json("results/agrob_clusters_v2/run_config.json"),
-            "clusterData": cluster_data,
-            "clusterTotals": {"images": sum(s["images"] for s in cluster_data["splits"].values()),
-                              "clusters": sum(s["clusters"] for s in cluster_data["splits"].values()),
-                              "zero_images": sum(s["zero_cluster_images"] for s in cluster_data["splits"].values())},
-            "clusterV1": cluster_v1["chosen_metrics"],
-            "clusterComparison": read_json("results/agrob_clusters_v2/common_test_comparison.json"),
-            "clusterAudit": read_json("results/agrob_clusters_v2/version_audit.json"),
-            "sampleCount": len(samples), "samples": samples}
+    rows = {
+        "original": count_rows("results/agrob/test_tomato_counts.csv"),
+        "fruit": count_rows("results/agrob_finetune_v1_480/development_counts.csv"),
+        "v1": count_rows("results/agrob_clusters_v1/test_counts.csv"),
+        "v2": count_rows("results/agrob_clusters_v2/test_counts.csv"),
+    }
+    previews = {
+        "original": "outputs/agrob-fruit-detr-test-tomato-t030/previews",
+        "fruit": "outputs/agrob-gpu-full-unpadded-v1-480-development/previews",
+        "v1": "outputs/agrob-cluster-detr-v1-480-test/previews",
+        "v2": "outputs/agrob-cluster-detr-v2-480-test/previews",
+    }
+    manifests = {
+        "v1": read_json("agrob_cluster_manifest.json"),
+        "v2": read_json("agrob_cluster_v2_manifest.json"),
+    }
+    names = {version: {item["original_name"]: item["file_name"] for item in manifest["splits"]["test"]}
+             for version, manifest in manifests.items()}
+    samples = []
+
+    def add_sample(version, case, original_name, title, note):
+        filename = names[version][original_name] if version in names else original_name
+        row = rows[version][filename]
+        unit = "cluster" if version in names else "fruit"
+        preview = f"{previews[version]}/{filename}"
+        sources.append(preview)
+        samples.append({
+            "id": f"{version}-{case}", "case": case, "version": version,
+            "title": title, "note": note, "filename": filename, "original_name": original_name,
+            "unit": unit, "labeled": int(row[f"ground_truth_{unit}_count"]),
+            "predicted": int(row[f"predicted_{unit}_count"]),
+            "matched": int(row[f"matched_{unit}_iou_50"]),
+            "image": "data:image/jpeg;base64," + base64.b64encode((ROOT / preview).read_bytes()).decode("ascii"),
+        })
+
+    # The same four fruit photos make the change easy to see.
+    for case, title, note in (
+        ("0068", "A smaller group of tomatoes", "Most marked tomatoes are found; one extra box remains."),
+        ("0201", "Tomatoes among leaves", "The total is right here, although one miss and one extra box cancel out."),
+        ("0084", "A wider greenhouse view", "The count is closer, but some tomatoes are still missed or counted extra."),
+        ("0080", "A crowded view", "Too many boxes remain. Some fruit labels may also be missing and need review."),
+    ):
+        filename = f"tomates_2020-08-06-11-35-15_side_{case}.jpg"
+        add_sample("original", case, filename, title, "Tomatoes are marked in green; this starting model found none.")
+        add_sample("fruit", case, filename, title, note)
+
+    # Identical images and labels for both cluster versions.
+    group_cases = [
+        ("0083", "A busy row", "tomate_barroselas_20200806_0083.jpg",
+         "The newer model finds more of the marked groups. Some mistakes remain even when the total is close."),
+        ("0137", "One group or several?", "tomates_2020-08-06-11-35-15_side_0137.jpg",
+         "The newer count is closer. Group boundaries still need checking."),
+        ("0177", "Partly hidden groups", "tomate_barroselas_20200806_0177.jpg",
+         "More groups are found after the full annotations, but two are still missed."),
+        ("0033", "A crowded row", "tomate_barroselas_20200806_0033.jpg",
+         "The newer total matches the marked count; misses and extra boxes still cancel out."),
+    ]
+    for case, title, original_name, note in group_cases:
+        for version in ("v1", "v2"):
+            add_sample(version, case, original_name, title, note)
+        first, second = samples[-2:]
+        assert first["labeled"] == second["labeled"]
+
+    for case, title, note in (
+        ("0191", "A clear success", "All three marked groups are found in this selected example."),
+        ("0044", "Groups still missed", "The model counts fewer groups than were marked."),
+        ("0119", "Too many groups counted", "Extra group boxes make the count too high."),
+        ("0150", "No groups in the photo", "The count correctly stays at zero here. More empty scenes need testing."),
+    ):
+        add_sample("v2", case, f"tomate_barroselas_20200806_{case}.jpg", title, note)
+
+    assert set(rows["original"]) == set(rows["fruit"])
+    assert original["predicted_fruit"] == 0
+    assert len(rows["fruit"]) == 152 and len(rows["v1"]) == 44 and len(rows["v2"]) == 45
+    assert len(samples) == 20
+    data = {
+        "original": original, "fruitDevelopment": fruit, "clusterV1": v1, "clusterTest": v2,
+        "clusterComparison": comparison, "clusterData": cluster_data,
+        "clusterTotals": {
+            "images": sum(split["images"] for split in cluster_data["splits"].values()),
+            "clusters": sum(split["clusters"] for split in cluster_data["splits"].values()),
+        },
+        "groupCases": [{"case": case, "title": title} for case, title, _, _ in group_cases],
+        "sampleCount": len(samples), "samples": samples,
+    }
+    sources.extend(["presentation/dashboard_template.html", "presentation/PROJECT_CONTEXT.md"])
     template = (DESTINATION / "dashboard_template.html").read_text(encoding="utf-8")
     assert template.count("@@DATA@@") == 1
-    content = template.replace("@@DATA@@", json.dumps(data, separators=(",", ":")).replace("<", "\\u003c"))
     output = DESTINATION / "tomato_findings_dashboard.html"
-    output.write_text(content, encoding="utf-8", newline="\n")
-    provenance = {"description": "Saved metrics and selected source previews embedded in the standalone dashboard",
-                  "generated_file": output.name, "sample_images": len(samples), "sources": []}
-    for name in sorted(set(source_paths)):
-        provenance["sources"].append({"path": name, "sha256": hashlib.sha256((ROOT / name).read_bytes()).hexdigest()})
+    output.write_text(template.replace("@@DATA@@", json.dumps(data, separators=(",", ":")).replace("<", "\\u003c")),
+                      encoding="utf-8", newline="\n")
+    provenance = {
+        "description": "Saved counts and unmodified evaluation previews in a standalone team presentation",
+        "generated_file": output.name, "sample_images": len(samples),
+        "versions": {version: sum(sample["version"] == version for sample in samples) for version in rows},
+        "sources": [{"path": name, "sha256": hashlib.sha256((ROOT / name).read_bytes()).hexdigest()}
+                    for name in sorted(set(sources))],
+    }
     (DESTINATION / "dashboard_sources.json").write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8", newline="\n")
-    print(f"Built {output} ({output.stat().st_size / 1024**2:.2f} MiB); embedded {len(samples)} images")
+    print(f"Built {output} ({output.stat().st_size / 1024**2:.2f} MiB); embedded {len(samples)} photos")
 
 
 if __name__ == "__main__":

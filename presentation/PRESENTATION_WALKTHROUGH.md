@@ -1,70 +1,61 @@
-# Team presentation: tomato counting findings
+# Five-minute team walkthrough
 
-Open `tomato_findings_dashboard.html` in Chrome or Edge. It is a standalone file with ten embedded sample images and metrics; you can share just that HTML file. Click **Present** for seven sequential sections and **Speaker notes** for prompts. Use Previous/Next, arrow keys, or the section buttons. Click an image to enlarge it. Source-report links require internet. V2 full-data results are current; V1 subset examples are explicitly marked as history.
+Open `tomato_findings_dashboard.html` in Chrome or Edge and click **Present**. Use **Next** or the arrow keys. **Speaker notes** gives short prompts; click any photo to enlarge it. The file works offline and includes 20 photos: 4 original, 4 trained fruit, 4 first-version groups, and 8 full-label groups.
 
-## Suggested 8–10 minute walkthrough
+## Walk through these six points
 
-1. **Start with the goal — Summary (45 seconds).**
-   - “We want visible counts from an image, and a repeatable way to record errors.”
-   - “We now have separate runs for individual tomatoes and visual clusters.”
-   - State that these are pilots, with remaining accuracy and data limitations.
+1. **Why this matters to AgriTwin — 40 seconds**
+   - “The goal is to help a supervisor decide which greenhouse rows to pick next.”
+   - “Counting tells us how much crop is visible. The separate ripeness model tells us how ready it is.”
+   - “Later, we will attach those observations to rows so the team can review picking priorities.”
 
-2. **Define what is being counted — Data & method (1 minute).**
-   - Fruit means one box per visible tomato; clusters mean one box per labeled group.
-   - The group appears to share a stem, but botanical membership is unverified.
-   - Fruit training used 237 images and 40 validation images.
-   - The completed cluster export has **449 images and 2,985 boxes**: 360 training, 44 validation, and 45 supplied test images.
-   - All 116 earlier cluster images keep the same boxes and split assignments. V2 adds 333 images, including 19 zero-cluster images across the full dataset (15 train, 3 validation, 1 test).
-   - Explain validation as practice data for choosing settings, then evaluation as scoring fixed settings.
-   - Both fine-tuning runs used standard DETR, 15 epochs, 480-pixel resizing, and the local RTX 3070.
+2. **The first try — 30 seconds**
+   - “We tried an existing fruit model. It missed the tomatoes in our tested images.”
+   - Point to the green manual boxes and the absence of red model boxes in the four photos.
+   - “That told us we needed tomato-specific training.”
 
-3. **Show the starting point — Original baseline (1 minute).**
-   - “At confidence 0.30, the original Tomato class produced zero detections on 152 images.”
-   - “Count error was 12.118 fruit per image; greenhouse adaptation was necessary.”
-   - Show the frame with five green labels and no predictions.
+3. **Teaching it tomatoes — 50 seconds**
+   - “Here are the same four photos after training. It now finds tomatoes.”
+   - “The average count error dropped from about 12 to about 4 tomatoes per photo.”
+   - Show a closer count and the crowded example. “It still misses some tomatoes and adds extra boxes.”
 
-4. **Show individual-fruit progress — Fruit results (1–2 minutes).**
-   - “On that same development sequence, count error fell to 4.375 fruit per image.”
-   - Show the same frame after training: five labels, six predictions, five matched boxes.
-   - “Validation error was 2.625. Development precision was 40.8%, recall 53.9%.”
-   - “It still overcounts by 3.901 fruit/image on average. These development images were already viewed, and fruit label completeness needs review.”
+4. **Counting groups — 70 seconds**
+   - “We also trained it to count groups, using the labels I created.”
+   - “The first group dataset had 116 photos. The completed version has 449.”
+   - Switch through the four comparison buttons: left = first group model; right = full-label group model.
+   - “The newer version improved on the same review photos, but still makes mistakes.”
+   - “These are visual groups that appear to share a stem; we have not confirmed true trusses.”
 
-5. **Show full-data cluster results — Cluster results (1–2 minutes).**
-   - “We trained a new cluster model on the completed annotations and froze confidence 0.90 on validation before testing.”
-   - “On 45 supplied test images, count error is **1.933 clusters/image**, with average undercount **1.356**.”
-   - “Box precision is **79.2%**, recall **66.6%**, and eight images have exact counts.”
-   - “On the same 44 earlier test frames with unchanged labels, error improved from **2.341 to 1.977** clusters/image. Precision improved from 49.7% to 79.2%, and recall from 41.0% to 66.6%.”
-   - The 45th test image is an added empty scene with zero detections. It slightly lowers the full-test average, which is why the dashboard also compares the same 44 frames.
-   - These frames were already inspected. The result is a development comparison, not an independent final accuracy claim.
-   - Explain that fruit and cluster MAEs have different units and datasets, so they cannot rank these models.
+5. **What works and what still misses — 50 seconds**
+   - “With the full labels, it is off by about 2 groups per photo on the supplied test set.”
+   - Show the four examples: correct groups, missed groups, extra groups, and an empty scene.
+   - “These photos show progress. We need new scenes to check how well it carries over.”
 
-6. **Make the errors visible — Image review (2 minutes).**
-   - Select **fine-tuned side 0080**: identify overlapping red boxes and possible unlabeled fruit.
-   - Select **V2 full · Barroselas 0083**: compare with its V1 example. V2 recovers 15 labeled groups versus 11, but a near-correct total still hides misses and extra boxes.
-   - Select **V2 full · Barroselas 0044**: point to missed small/hidden groups and partial boundaries.
-   - Select **V2 full · Barroselas 0119**: show overlapping partial-group boxes and the remaining overcount.
-   - Select **V2 full · Empty-scene frame 0150**: zero labels and zero predictions. One empty test image is not enough to measure false alarms broadly.
-   - Explain green = supplied labels, red = predictions. A “matched” box overlaps sufficiently with one supplied label.
-   - Say that these selected examples show failure types; their frequency has not been manually measured.
+6. **The next project step — 60 seconds**
+   - “Agree on the group-label rules and review the remaining mistakes.”
+   - “Test new greenhouse photos, then save counts and ripeness with the row and date.”
+   - “Connect that to the row map and let a supervisor review the picking priorities.”
+   - Close: “We now have the counting baseline and its known weaknesses. The next step is making those observations useful in AgriTwin.”
 
-7. **Close with decisions — Next decisions (1–2 minutes).**
-   - Agree on singleton, occlusion, image-edge, and unclear-stem labeling rules.
-   - Review the completed labels around remaining failures; record any corrections in a new version.
-   - Keep nearby frames/identical plants together when splitting data. V2 has **275 nearby-frame pairs across splits**, including 136 train/test pairs.
-   - Reserve a fresh fully labeled final set, including empty scenes. The inspected set becomes development material.
-   - Keep this V2 480-pixel result as the recorded baseline, then try 640-pixel input as one controlled change. Select settings on validation.
-   - Agree on an acceptable count-error target before claiming task completion.
+## If someone asks for more detail
 
-## Short closing statement
+- **What does count error mean?** How far the model’s count is from the manually marked count, averaged across photos. Smaller is better.
+- **Does a correct count mean everything was detected correctly?** No. A missed object and an extra box can cancel out. The photos let us check this.
+- **Is this ready for use in a greenhouse?** It is a development baseline. Some supplied test photos resemble training photos; an independent new-scene check is still needed.
+- **Can we compare fruit and group error directly?** They count different things and use different data. Compare each version with its own earlier version.
+- **Is this a yield forecast?** It counts what is visible in each photo. Whole-row totals need to avoid duplicates; harvest-weight forecasting needs harvest records.
+- **Is it already connected to the product?** The count-to-row connection is the next integration step, alongside the separate ripeness work.
 
-“The completed cluster annotations are incorporated. V2 improves both count error and box matching on the same development frames, but small hidden groups and extra detections remain. I propose we review these failures and reserve independent scenes before claiming final accuracy.”
+Exact results and report links are under **Optional: supporting reports and exact results** in the final section. You do not need to show them during the main walkthrough.
 
-## Rebuild the dashboard
+## Share and rebuild
 
-From the repository, with the original fruit preview folders and the tracked V1/V2 cluster reviewed previews present:
+Share just **`tomato_findings_dashboard.html`**. All sample photos and counts are embedded; supporting repository links need internet and access.
+
+Rebuild from the repository with the saved local evaluation preview folders available:
 
 ```powershell
 .\.venv-gpu\Scripts\python.exe build_team_dashboard.py
 ```
 
-The template is `presentation/dashboard_template.html`. The generated dashboard contains all required content; the template alone is not the shareable presentation. `dashboard_sources.json` records source file hashes. Only the corrected dynamic-padding fruit results are used.
+Edit `dashboard_template.html` for presentation wording or layout; `build_team_dashboard.py` selects the photos and loads their actual recorded counts. `dashboard_sources.json` records source hashes, and `dashboard_verification.json` records browser checks. `PROJECT_CONTEXT.md` explains the connection to earlier AgriTwin planning.

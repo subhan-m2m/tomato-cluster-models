@@ -46,9 +46,9 @@ Images, model caches, and full output folders are ignored by Git.
 
 ## Present the findings to the team
 
-Open [the standalone HTML dashboard](presentation/tomato_findings_dashboard.html) in Chrome or Edge. It covers the original pretrained checkpoint, the fine-tuned individual-fruit model, and V1/V2 visual-cluster runs. Ten example images and recorded metrics are embedded, so you can share just the HTML file and view it offline. V2 full-data metrics are current. Click **Present** for sequential sections and **Speaker notes** for prompts.
+Open [the standalone HTML dashboard](presentation/tomato_findings_dashboard.html) in Chrome or Edge. It gives a plain-language team update: why counting helps AgriTwin’s row-level harvest planning, what changed from the original fruit model through the full-label group model, and what comes next. Twenty sample photos are embedded (4 original, 4 trained fruit, 4 V1 groups, 8 V2 groups), including comparisons of the same photos. Share just the HTML file to view it offline. Click **Present** for six sequential sections and **Speaker notes** for short prompts. Detailed results are optional in the last section.
 
-Use [the presentation walkthrough](presentation/PRESENTATION_WALKTHROUGH.md) for an 8–10 minute sequence. `build_team_dashboard.py` rebuilds the file from the tracked metrics and original local evaluation previews. The browser verification is recorded in `presentation/dashboard_verification.json`.
+Use [the five-minute presentation walkthrough](presentation/PRESENTATION_WALKTHROUGH.md) for simple speaking bullets. [Project context](presentation/PROJECT_CONTEXT.md) connects the update to the earlier approved tomato greenhouse milestones. `build_team_dashboard.py` rebuilds the file from the saved results and local evaluation previews. The browser verification is recorded in `presentation/dashboard_verification.json`.
 
 ## Set up on Windows
 

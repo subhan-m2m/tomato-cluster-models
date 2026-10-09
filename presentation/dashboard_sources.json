@@ -1,11 +1,85 @@
 {
-  "description": "Saved metrics and selected source previews embedded in the standalone dashboard",
+  "description": "Saved counts and unmodified evaluation previews in a standalone team presentation",
   "generated_file": "tomato_findings_dashboard.html",
-  "sample_images": 10,
+  "sample_images": 20,
+  "versions": {
+    "original": 4,
+    "fruit": 4,
+    "v1": 4,
+    "v2": 8
+  },
   "sources": [
+    {
+      "path": "agrob_cluster_manifest.json",
+      "sha256": "445f9f08d8f0fd0b74e48406e2e099033f97770f814526bc9aaee8b0f661ba07"
+    },
+    {
+      "path": "agrob_cluster_v2_manifest.json",
+      "sha256": "071d5b508da7eee8313c098ce9c26ce04e9669488cabce4e756c695e56787bd9"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v1-480-test/previews/tomate_barroselas_20200806_0033_jpg.rf.7V6nxWDYPZOMJSbLIZQj.jpg",
+      "sha256": "7fd93337c13e2e9f5d8153d1000b3ffbb198d29613a8b2058a2b0b522c8aef09"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v1-480-test/previews/tomate_barroselas_20200806_0083_jpg.rf.BadabIsj60q7DhRt6fkr.jpg",
+      "sha256": "c2656b0e314cfc35c9ddb93746cb0ac5f161a1753361d6b9dd7c26a35c40d773"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v1-480-test/previews/tomate_barroselas_20200806_0177_jpg.rf.8YXLxP68VuATn0xuqQ7u.jpg",
+      "sha256": "f15113017b3ddd766eb4a21054b6c94328d9c1f633722f3c020e79f6aec755db"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v1-480-test/previews/tomates_2020-08-06-11-35-15_side_0137_jpg.rf.7oDn4TeUQ9TtGjY5Bbqa.jpg",
+      "sha256": "05897389c27aec7760c8ce3170316b4e47f2e4d0d5df3eb173694093793cae0b"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480-test/previews/tomate_barroselas_20200806_0033_jpg.rf.52c1037835ae55759933883b9745ef2a.jpg",
+      "sha256": "84ffac2e118b659e64a530b5c28abf3985872203435a9c6409db4b380ec0057d"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480-test/previews/tomate_barroselas_20200806_0044_jpg.rf.21d6b8f819488df041db2ed441eaabd1.jpg",
+      "sha256": "1705ad3f6081e3cc63e8f8261e5cb85e28f87603511bc60600c89ce7ec06417a"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480-test/previews/tomate_barroselas_20200806_0083_jpg.rf.ef04815fda754d8b1988ee5206b08b5c.jpg",
+      "sha256": "88b6fbdf438e85753207553b791e3bc2f1c40407512be4d6f63c89255cd6a899"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480-test/previews/tomate_barroselas_20200806_0119_jpg.rf.bd0bb10ef501101eb1568193df7629e4.jpg",
+      "sha256": "8427e25562b0978fa0ce894a6c79b5b3f768a641718125d6e69ea5a2e14a9b32"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480-test/previews/tomate_barroselas_20200806_0150_jpg.rf.55c6f99ca7bb26362369f00fd5a7ce72.jpg",
+      "sha256": "0ab478c0e76c9091ebc0b7d1f9e52df0d2bf5598618ff15439815f3053462240"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480-test/previews/tomate_barroselas_20200806_0177_jpg.rf.a3feb52ec3b6f377df4cb0865238493b.jpg",
+      "sha256": "1f0c62e230635b1f519cfbc13ed2377fd7418935897a6252e1e0993d4665283c"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480-test/previews/tomate_barroselas_20200806_0191_jpg.rf.741ac2d974f4243bbd14bd5c5d80e8ba.jpg",
+      "sha256": "db685e67a14fd717bf699a69b90a1973ed45b5a7274eeb0c61e89f26ba7ec212"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480-test/previews/tomates_2020-08-06-11-35-15_side_0137_jpg.rf.4b97bc12449710dd37b838013668a658.jpg",
+      "sha256": "3400f1b826814dad4fe669b2e8902b85303bb738dee2a4123527a87bc4df3f11"
+    },
     {
       "path": "outputs/agrob-fruit-detr-test-tomato-t030/previews/tomates_2020-08-06-11-35-15_side_0068.jpg",
       "sha256": "4a7f5cc913016767004a745f7bc88cf26c4bc6623acbdee054b39c470b6ba1e6"
+    },
+    {
+      "path": "outputs/agrob-fruit-detr-test-tomato-t030/previews/tomates_2020-08-06-11-35-15_side_0080.jpg",
+      "sha256": "1179d9c230b3685201f2dba1c558dfb159e99892ae8d7fb849e5e4244657471d"
+    },
+    {
+      "path": "outputs/agrob-fruit-detr-test-tomato-t030/previews/tomates_2020-08-06-11-35-15_side_0084.jpg",
+      "sha256": "6038fa939eeba31a1e181ed2207d860337c26779230526da6479ef232bd028d3"
+    },
+    {
+      "path": "outputs/agrob-fruit-detr-test-tomato-t030/previews/tomates_2020-08-06-11-35-15_side_0201.jpg",
+      "sha256": "67a1708f28f84b38b38a7f86f05a0a79eed5443121e0b597c2b23d450a8f6a67"
     },
     {
       "path": "outputs/agrob-gpu-full-unpadded-v1-480-development/previews/tomates_2020-08-06-11-35-15_side_0068.jpg",
@@ -16,32 +90,28 @@
       "sha256": "68c19d1562a32b66fb4ec923aad0274db8d10804c87ae43a8d97f91771eecf76"
     },
     {
+      "path": "outputs/agrob-gpu-full-unpadded-v1-480-development/previews/tomates_2020-08-06-11-35-15_side_0084.jpg",
+      "sha256": "f85ae84347ad4aba89c53ea976c0b8eaa9054e8aeb9f68ec02170149fd7c2549"
+    },
+    {
+      "path": "outputs/agrob-gpu-full-unpadded-v1-480-development/previews/tomates_2020-08-06-11-35-15_side_0201.jpg",
+      "sha256": "0d03b75d00363d776b2739dcd6517680e3e6b5d8ba90059ca2af26b843ee1e91"
+    },
+    {
+      "path": "presentation/PROJECT_CONTEXT.md",
+      "sha256": "addf7ae251daa9a519ee35a74070472894a96c1a1ad11b1bded502e399366f1b"
+    },
+    {
+      "path": "presentation/dashboard_template.html",
+      "sha256": "ac14b6c1ec07f445c7966765b1430485a7c48c76379400334144507260b015bd"
+    },
+    {
+      "path": "results/agrob/test_tomato_counts.csv",
+      "sha256": "ab9f0fdb4857d953eaad4a8edd4ccd74174dad2c69313415dd6c2fa583602ec5"
+    },
+    {
       "path": "results/agrob/test_tomato_summary.json",
       "sha256": "ec5fa15d9a0ed69ed13617168d002370b4687f4e0a05ced8239d9dd6b1fb4296"
-    },
-    {
-      "path": "results/agrob_clusters_v1/dataset_summary.json",
-      "sha256": "e5f038162899cbaca59d8ef6a96426a4fb2cd0642e9447ca020430e0ed694bba"
-    },
-    {
-      "path": "results/agrob_clusters_v1/reviewed_previews/barroselas_0083.jpg",
-      "sha256": "c2656b0e314cfc35c9ddb93746cb0ac5f161a1753361d6b9dd7c26a35c40d773"
-    },
-    {
-      "path": "results/agrob_clusters_v1/reviewed_previews/barroselas_0177.jpg",
-      "sha256": "f15113017b3ddd766eb4a21054b6c94328d9c1f633722f3c020e79f6aec755db"
-    },
-    {
-      "path": "results/agrob_clusters_v1/reviewed_previews/side_0137.jpg",
-      "sha256": "05897389c27aec7760c8ce3170316b4e47f2e4d0d5df3eb173694093793cae0b"
-    },
-    {
-      "path": "results/agrob_clusters_v1/run_config.json",
-      "sha256": "7e821b2e4c95cc1c7fdd7e2c1ff9a2dc19084945acc3aa6b9a4f4bfb85d56fb0"
-    },
-    {
-      "path": "results/agrob_clusters_v1/selected_settings.json",
-      "sha256": "b82da90f68dad95df16bebb39068ec272413f4c600c684c457dafb2ee0580058"
     },
     {
       "path": "results/agrob_clusters_v1/test_counts.csv",
@@ -52,44 +122,12 @@
       "sha256": "94bfe918b77d7e2b0930da894cfdb51108dc61429b813100bdc1017d2bd2e057"
     },
     {
-      "path": "results/agrob_clusters_v1/validation_summary.json",
-      "sha256": "7e63e1fd30b1ef7eca82b8834cf9c4f57f61263d418a6d87a95a95a02f8f2fc1"
-    },
-    {
       "path": "results/agrob_clusters_v2/common_test_comparison.json",
       "sha256": "0fad7542e01b108abcf8569979ad47161492c765c1b6c60c8d0a165495fb4490"
     },
     {
       "path": "results/agrob_clusters_v2/dataset_summary.json",
       "sha256": "05cbf406d2808c1403875c5c2cca6b44b9027865f34397b2a9a87321dbdf4da8"
-    },
-    {
-      "path": "results/agrob_clusters_v2/error_review.csv",
-      "sha256": "8fc4c3d6e6a79c14dc1665d3ab6c91966c730e6405ac27a2abd88c01eafc714a"
-    },
-    {
-      "path": "results/agrob_clusters_v2/reviewed_previews/barroselas_0044.jpg",
-      "sha256": "1705ad3f6081e3cc63e8f8261e5cb85e28f87603511bc60600c89ce7ec06417a"
-    },
-    {
-      "path": "results/agrob_clusters_v2/reviewed_previews/barroselas_0083.jpg",
-      "sha256": "88b6fbdf438e85753207553b791e3bc2f1c40407512be4d6f63c89255cd6a899"
-    },
-    {
-      "path": "results/agrob_clusters_v2/reviewed_previews/barroselas_0119.jpg",
-      "sha256": "8427e25562b0978fa0ce894a6c79b5b3f768a641718125d6e69ea5a2e14a9b32"
-    },
-    {
-      "path": "results/agrob_clusters_v2/reviewed_previews/empty_0150.jpg",
-      "sha256": "0ab478c0e76c9091ebc0b7d1f9e52df0d2bf5598618ff15439815f3053462240"
-    },
-    {
-      "path": "results/agrob_clusters_v2/run_config.json",
-      "sha256": "c145e695c066fb3109adc1801c7807c39b606be2b01a76d781a8e78677481152"
-    },
-    {
-      "path": "results/agrob_clusters_v2/selected_settings.json",
-      "sha256": "a706ddd64fc417de1d36bf4bac1d162e0488af61488ba5e3a0847b07940cd7c6"
     },
     {
       "path": "results/agrob_clusters_v2/test_counts.csv",
@@ -100,28 +138,12 @@
       "sha256": "2be07d911f5e2f19db4d9cbd9f4e0b887eb3ecefa6b862099b14222ab75aeebf"
     },
     {
-      "path": "results/agrob_clusters_v2/validation_summary.json",
-      "sha256": "1c916de9f0095985243847983691f82093da2400004c57295966ed5a8519985d"
-    },
-    {
-      "path": "results/agrob_clusters_v2/version_audit.json",
-      "sha256": "dc36884b8bc0478eda906c8326a886958ef84125634af31933cb8e2bd0bd3655"
-    },
-    {
       "path": "results/agrob_finetune_v1_480/development_counts.csv",
       "sha256": "fb6cd1b7e7fef4f660458cab16e2576f3cb9cf480b7cf0a7ad2c315d58801c50"
     },
     {
       "path": "results/agrob_finetune_v1_480/development_summary.json",
       "sha256": "63f8a1e0651ba460c5953b38175e518d2bff2c357aeaf8498c170b575dbb5d46"
-    },
-    {
-      "path": "results/agrob_finetune_v1_480/run_config.json",
-      "sha256": "5162cc9ba4fa8a8e2a2e67ac1affb8f063e7da66ed1b28ff65e686aa7e406398"
-    },
-    {
-      "path": "results/agrob_finetune_v1_480/validation_summary.json",
-      "sha256": "dbe6841be7be4a9d6b99966f407b7e3e0ae2cb82d2c8f6c9982694ddf0241b81"
     }
   ]
 }

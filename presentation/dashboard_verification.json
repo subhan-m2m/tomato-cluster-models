@@ -1,15 +1,20 @@
 {
   "browser": "Chromium (headless)",
   "offline_viewing": "passed; no external requests",
-  "embedded_images": 10,
-  "presentation_sections": 7,
-  "metric_values": "passed; V2 metrics and same-44-frame comparison checked",
-  "notes_toggle": "passed",
-  "section_navigation": "passed",
-  "presentation_controls": "passed",
-  "image_selection_and_enlargement": "passed",
-  "arrow_keys_and_escape": "passed",
-  "desktop_and_mobile_width": "passed; no horizontal page overflow at 1440 and 390 pixels",
-  "print_sections": "passed",
+  "embedded_images": 20,
+  "images_per_version": {
+    "original": 4,
+    "trained_fruit": 4,
+    "groups_v1": 4,
+    "groups_v2": 8
+  },
+  "presentation_sections": 6,
+  "all_embedded_images": "decoded; 1280 × 720",
+  "recorded_counts": "passed; all 20 photo captions checked against embedded saved counts",
+  "comparison_cases": "passed; all four V1/V2 pairs and enlargement",
+  "report_metrics": "passed; exact saved results retained in optional details",
+  "notes_and_navigation": "passed; section controls, arrow keys, Escape, modal close",
+  "desktop_and_mobile_width": "passed; no page overflow at 1440 and 390 pixels",
+  "print_sections": "passed; all six sections visible",
   "javascript_errors": []
 }
