@@ -1,0 +1,15 @@
+{
+  "browser": "Chromium (headless)",
+  "offline_viewing": "passed; no external requests",
+  "embedded_images": 6,
+  "presentation_sections": 7,
+  "metric_values": "passed against embedded source metrics",
+  "notes_toggle": "passed",
+  "section_navigation": "passed",
+  "presentation_controls": "passed",
+  "image_selection_and_enlargement": "passed",
+  "arrow_keys_and_escape": "passed",
+  "desktop_and_mobile_width": "passed; no horizontal page overflow at 1440 and 390 pixels",
+  "print_sections": "passed",
+  "javascript_errors": []
+}

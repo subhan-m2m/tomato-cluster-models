@@ -1,0 +1,75 @@
+{
+  "description": "Saved metrics and selected source previews embedded in the standalone dashboard",
+  "generated_file": "tomato_findings_dashboard.html",
+  "sample_images": 6,
+  "sources": [
+    {
+      "path": "outputs/agrob-fruit-detr-test-tomato-t030/previews/tomates_2020-08-06-11-35-15_side_0068.jpg",
+      "sha256": "4a7f5cc913016767004a745f7bc88cf26c4bc6623acbdee054b39c470b6ba1e6"
+    },
+    {
+      "path": "outputs/agrob-gpu-full-unpadded-v1-480-development/previews/tomates_2020-08-06-11-35-15_side_0068.jpg",
+      "sha256": "02a08351512df69b11dac0578908981ba13694ec13c88af7efede453a597fe16"
+    },
+    {
+      "path": "outputs/agrob-gpu-full-unpadded-v1-480-development/previews/tomates_2020-08-06-11-35-15_side_0080.jpg",
+      "sha256": "68c19d1562a32b66fb4ec923aad0274db8d10804c87ae43a8d97f91771eecf76"
+    },
+    {
+      "path": "results/agrob/test_tomato_summary.json",
+      "sha256": "ec5fa15d9a0ed69ed13617168d002370b4687f4e0a05ced8239d9dd6b1fb4296"
+    },
+    {
+      "path": "results/agrob_clusters_v1/dataset_summary.json",
+      "sha256": "e5f038162899cbaca59d8ef6a96426a4fb2cd0642e9447ca020430e0ed694bba"
+    },
+    {
+      "path": "results/agrob_clusters_v1/reviewed_previews/barroselas_0083.jpg",
+      "sha256": "c2656b0e314cfc35c9ddb93746cb0ac5f161a1753361d6b9dd7c26a35c40d773"
+    },
+    {
+      "path": "results/agrob_clusters_v1/reviewed_previews/barroselas_0177.jpg",
+      "sha256": "f15113017b3ddd766eb4a21054b6c94328d9c1f633722f3c020e79f6aec755db"
+    },
+    {
+      "path": "results/agrob_clusters_v1/reviewed_previews/side_0137.jpg",
+      "sha256": "05897389c27aec7760c8ce3170316b4e47f2e4d0d5df3eb173694093793cae0b"
+    },
+    {
+      "path": "results/agrob_clusters_v1/run_config.json",
+      "sha256": "7e821b2e4c95cc1c7fdd7e2c1ff9a2dc19084945acc3aa6b9a4f4bfb85d56fb0"
+    },
+    {
+      "path": "results/agrob_clusters_v1/selected_settings.json",
+      "sha256": "b82da90f68dad95df16bebb39068ec272413f4c600c684c457dafb2ee0580058"
+    },
+    {
+      "path": "results/agrob_clusters_v1/test_counts.csv",
+      "sha256": "31dfcf9e36f647d58e8dc6017cf6dd09a50d23ad4833253a08a5cb95740d99d7"
+    },
+    {
+      "path": "results/agrob_clusters_v1/test_summary.json",
+      "sha256": "94bfe918b77d7e2b0930da894cfdb51108dc61429b813100bdc1017d2bd2e057"
+    },
+    {
+      "path": "results/agrob_clusters_v1/validation_summary.json",
+      "sha256": "7e63e1fd30b1ef7eca82b8834cf9c4f57f61263d418a6d87a95a95a02f8f2fc1"
+    },
+    {
+      "path": "results/agrob_finetune_v1_480/development_counts.csv",
+      "sha256": "fb6cd1b7e7fef4f660458cab16e2576f3cb9cf480b7cf0a7ad2c315d58801c50"
+    },
+    {
+      "path": "results/agrob_finetune_v1_480/development_summary.json",
+      "sha256": "63f8a1e0651ba460c5953b38175e518d2bff2c357aeaf8498c170b575dbb5d46"
+    },
+    {
+      "path": "results/agrob_finetune_v1_480/run_config.json",
+      "sha256": "5162cc9ba4fa8a8e2a2e67ac1affb8f063e7da66ed1b28ff65e686aa7e406398"
+    },
+    {
+      "path": "results/agrob_finetune_v1_480/validation_summary.json",
+      "sha256": "dbe6841be7be4a9d6b99966f407b7e3e0ae2cb82d2c8f6c9982694ddf0241b81"
+    }
+  ]
+}

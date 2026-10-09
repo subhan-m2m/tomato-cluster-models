@@ -39,6 +39,12 @@ These are visually grouped tomatoes that appear to share a stem. Botanical truss
 
 Images, model caches, and full output folders are ignored by Git.
 
+## Present the findings to the team
+
+Open [the standalone HTML dashboard](presentation/tomato_findings_dashboard.html) in Chrome or Edge. It compares the original pretrained checkpoint, the fine-tuned individual-fruit model, and the visual-cluster model. Six example images and recorded metrics are embedded, so you can share just the HTML file and view it offline. Click **Present** for sequential sections and **Speaker notes** for prompts.
+
+Use [the presentation walkthrough](presentation/PRESENTATION_WALKTHROUGH.md) for an 8–10 minute sequence. `build_team_dashboard.py` rebuilds the file from the tracked metrics and original local evaluation previews. The browser verification is recorded in `presentation/dashboard_verification.json`.
+
 ## Set up on Windows
 
 Open PowerShell in this repository. The existing `.venv` can be reused. For a new checkout, install Python 3.12 and [`uv`](https://docs.astral.sh/uv/getting-started/installation/), then run:
