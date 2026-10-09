@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AgriTwin · From photos to harvest planning</title>
+<title>AgriTwin · Trusses or clusters for pruning?</title>
 <style>
 :root{--ink:#183b30;--muted:#5b6c63;--paper:#f2f4ee;--green:#247453;--line:#dae2d8;--soft:#e8f1e7;--orange:#ac4c2c}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:17px/1.5 "Segoe UI",Arial,sans-serif;background:var(--paper);color:var(--ink)}button{font:inherit;cursor:pointer;border:1px solid var(--line);border-radius:9px;padding:8px 14px;background:white;color:var(--ink)}button:hover{background:var(--soft)}button:disabled{opacity:.4;cursor:default}a{color:var(--green)}:focus-visible{outline:3px solid #df922c;outline-offset:3px}.primary{background:var(--green);color:white}.primary:hover{background:var(--ink)}
@@ -22,18 +22,19 @@ header{position:sticky;top:0;z-index:4;background:#f2f4eef5;backdrop-filter:blur
 </header>
 <main>
 <section id="why" class="section hero" data-title="Why this matters">
-<p class="eyebrow">1 · The project connection</p>
-<h1>From greenhouse photos<br>to better harvest planning.</h1>
-<p class="lead">AgriTwin aims to help a supervisor decide which greenhouse rows to pick next. This work provides one input: <strong>how many tomatoes or groups are visible in a photo.</strong></p>
+<p class="eyebrow">1 · The decision this experiment supports</p>
+<h1>Trusses or visual clusters?<br>Choose what helps pruning.</h1>
+<p class="lead">We want to compare two ways of describing tomato groups: <strong>which can the model identify reliably, and which helps a grower review fruit/flower thinning within a truss?</strong></p>
+<p class="lead"><strong>Visual cluster:</strong> nearby tomatoes grouped by appearance. <strong>Truss:</strong> a fruit or flower group with a confirmed shared fruiting stem. These are our proposed experiment definitions; growers may use the names interchangeably.</p>
 <div class="route">
-<article><span class="status">Working baseline</span><h3>Read a photo</h3><p>Find and count visible tomatoes or groups.</p></article>
-<article><span class="status">Next connection</span><h3>Add row + date</h3><p>Combine counts with the separate ripeness results.</p></article>
-<article><span class="status">Planned</span><h3>Show the row</h3><p>Let a supervisor inspect the counts and photo evidence.</p></article>
-<article><span class="status">Planned</span><h3>Review priorities</h3><p>Use ripeness and visible crop load to support shift planning.</p></article>
+<article><span class="status">Tested baseline</span><h3>Visual clusters</h3><p>Recognize the groups in your completed annotations.</p></article>
+<article><span class="status">Comparison pending</span><h3>Verified trusses</h3><p>Label confirmed stem connections and test that alternative.</p></article>
+<article><span class="status">Next experiment</span><h3>Compare both</h3><p>Check missed, split, and merged groups on the same new photos.</p></article>
+<article><span class="status">Future use</span><h3>Support thinning</h3><p>Show which fruit or flowers belong to the target truss.</p></article>
 </div>
-<p class="lead">Today’s story: the first model missed the tomatoes, training helped, and completing the group labels improved the next version.</p>
-<p class="small">These are experiments on public greenhouse images. Counts describe each photo; they do not yet measure a whole row or forecast harvest weight.</p>
-<aside class="notes"><strong>Say:</strong> “We are building the camera-reading part of AgriTwin. The eventual decision is where to pick next. Counting and ripeness are separate inputs to that decision; the row map connection comes next.”</aside>
+<p class="lead">Today’s results establish the fruit and visual-cluster baselines. <strong>We have not yet chosen a winner between clusters and verified trusses.</strong></p>
+<p class="small">Current labels cover visible fruit groups. Verified truss membership and flower labels are still needed to evaluate the thinning use case.</p>
+<aside class="notes"><strong>Say:</strong> “For thinning, the grower needs to know which fruit or flowers belong together. We want to choose the representation the camera can recognize reliably while preserving that relationship. The cluster results are one side of the comparison.”</aside>
 </section>
 
 <section id="original" class="section" data-title="The first try">
@@ -53,7 +54,7 @@ header{position:sticky;top:0;z-index:4;background:#f2f4eef5;backdrop-filter:blur
 <div class="statement">On the same 152 images, the average count error fell from <strong><span data-value="original.mean_absolute_count_error" data-digits="1"></span> to <span data-value="fruitDevelopment.mean_absolute_count_error" data-digits="1"></span> tomatoes per photo.</strong></div>
 <div class="legend"><span>Green = manually marked</span><span>Red = model found</span></div>
 <div class="photos" id="fruit-photos"></div>
-<p class="small" style="margin-top:16px">A correct total can still hide a missed tomato and an extra box. These already reviewed photos show progress; new greenhouse scenes are needed for a final accuracy check.</p>
+<p class="small" style="margin-top:16px">Individual-fruit detection could later help count fruit within each confirmed group. We have not made that connection yet. A correct total can still hide a miss and an extra box.</p>
 <aside class="notes"><strong>Say:</strong> “Average count error means how far the model’s number is from the marked number. Smaller is better. This is a useful starting point, with visible remaining errors.” Show the crowded example so the team sees both progress and limitations.</aside>
 </section>
 
@@ -67,8 +68,8 @@ header{position:sticky;top:0;z-index:4;background:#f2f4eef5;backdrop-filter:blur
 <div class="legend"><span>Green = manually marked</span><span>Red = model found</span></div>
 <div class="photos pair" id="group-pair"></div>
 <p id="pair-note" class="small" style="margin-top:16px"></p>
-<p class="small">Here, “group” means nearby tomatoes that appear to share a stem. We have not verified that each group is a true truss. Group counts and individual tomato counts answer different questions.</p>
-<aside class="notes"><strong>Say:</strong> “On the left is the first group version. On the right is the version trained after completing the labels. Switch through all four examples. It usually finds the groups more reliably, though matching the total does not guarantee every box is right.”</aside>
+<p class="small">Both V1 and V2 use visual-cluster labels. These groups appear to share a stem, but that connection is unverified. This compares cluster-model versions; the truss-versus-cluster test is still pending.</p>
+<aside class="notes"><strong>Say:</strong> “These are two cluster versions, not two different definitions. Completing the labels improved the cluster baseline. Next we compare this approach with verified trusses.” Switch through the four examples; a correct total can hide errors.</aside>
 </section>
 
 <section id="latest" class="section" data-title="What works and misses">
@@ -82,23 +83,24 @@ header{position:sticky;top:0;z-index:4;background:#f2f4eef5;backdrop-filter:blur
 </section>
 
 <section id="next" class="section" data-title="The next step">
-<p class="eyebrow">6 · Move toward the AgriTwin workflow</p>
-<h2>Now make the counts useful by row.</h2>
-<p class="lead">We have a repeatable counting baseline, saved results, and examples of common mistakes. The next goal is a reviewable photo-to-row demonstration.</p>
+<p class="eyebrow">6 · Choose the useful unit for AgriTwin</p>
+<h2>Compare recognition and usefulness for thinning.</h2>
+<p class="lead">The winner must identify the correct fruiting unit and help a grower review fruit/flower thinning. Count accuracy is only one part of that choice.</p>
 <ol class="steps">
-<li><div><h3>Agree what a group means</h3><p>Set simple rules for hidden fruit, edge groups, and unclear stems. Check whether the project needs verified trusses.</p></div></li>
-<li><div><h3>Check new greenhouse photos</h3><p>Review missed and extra boxes, fix unclear labels, and measure errors on scenes the model has not seen.</p></div></li>
-<li><div><h3>Connect counts + ripeness</h3><p>Save each result with its photo, greenhouse row, and capture date so the dashboard can show the right row.</p></div></li>
-<li><div><h3>Let a supervisor review it</h3><p>Show the row map, photo evidence, and picking priority together. Confirm whether the result helps plan a shift.</p></div></li>
+<li><div><h3>Use photos from the thinning stage</h3><p>Include flowers and young fruit. Agree with a grower what information is needed to review thinning within a truss.</p></div></li>
+<li><div><h3>Label both on the same photos</h3><p>Keep visual groups and verified trusses as separate label versions. Record fruit/flower membership; mark unclear connections as uncertain.</p></div></li>
+<li><div><h3>Make a fair comparison</h3><p>Train each approach with comparable settings. Test on the same new scenes; check missed groups, wrong merges, splits, and counts.</p></div></li>
+<li><div><h3>Review usefulness with a grower</h3><p>Does the group contain fruit/flowers from one truss? Can its members be counted and reviewed without mixing neighboring trusses?</p></div></li>
 </ol>
-<div class="statement"><strong>Team takeaway:</strong> we can now turn photos into visible counts. Completing the labels improved the group model. Next, we test new scenes and connect the results to AgriTwin’s row view.</div>
-<p class="small">Repeated photos can show the same tomatoes. Whole-row totals need a way to avoid counting them twice; harvest-weight forecasting also needs real harvest data.</p>
+<div class="statement"><strong>Team takeaway:</strong> the cluster baseline improved with the full annotations. Next we compare it with verified trusses and choose the representation that preserves the grouping needed for fruit/flower thinning.</div>
+<p class="small">An easier box to detect is useful only if it represents the intended truss. Current counts do not identify which fruit/flowers to remove; those decisions also need their condition and a grower’s thinning rules.</p>
 <details><summary>Optional: supporting reports and exact results</summary>
 <p>The main presentation rounds count errors for readability. Exact recorded results: original fruit <span data-value="original.mean_absolute_count_error" data-digits="3"></span>; trained fruit <span data-value="fruitDevelopment.mean_absolute_count_error" data-digits="3"></span>; group V1 → V2 on the same 44 photos <span data-value="clusterComparison.v1.mean_absolute_count_error" data-digits="3"></span> → <span data-value="clusterComparison.v2.mean_absolute_count_error" data-digits="3"></span>; V2 across all 45 supplied test photos <span data-value="clusterTest.mean_absolute_count_error" data-digits="3"></span>. Units are tomatoes or groups per photo, respectively.</p>
 <div class="report-links"><a href="https://github.com/subhan-m2m/tomato-cluster-models/blob/experiment/agrob-cluster-count/AGROB_CLUSTER_V2_RUN_2026-10-09.md">Full group-model report</a><a href="https://github.com/subhan-m2m/tomato-cluster-models/tree/experiment/agrob-cluster-count/results/agrob_finetune_v1_480">Individual-fruit results</a><a href="https://github.com/subhan-m2m/tomato-cluster-models/blob/experiment/agrob-cluster-count/presentation/PROJECT_CONTEXT.md">Project context</a></div>
 <p>Report links require internet and repository access. Photos and recorded counts are embedded and work offline.</p>
+<p>Background: <a href="https://ask.ifas.ufl.edu/publication/CV266">UF/IFAS greenhouse tomato handbook</a> discusses the overlapping truss/cluster terminology and fruit thinning. This supports the use-case distinction; it is not evidence of model performance. <a href="https://github.com/subhan-m2m/tomato-cluster-models/blob/experiment/agrob-cluster-count/presentation/TRUSS_CLUSTER_COMPARISON.md">Read the proposed comparison plan.</a></p>
 </details>
-<aside class="notes"><strong>Close:</strong> “Counting supports the visible crop-load part of picking priorities. Ripeness tells us how ready it is. Linking those results to rows and reviewing them with a supervisor is the next project step.”</aside>
+<aside class="notes"><strong>Close:</strong> “We want reliable recognition of the correct group for fruit/flower thinning. Clusters are a tested baseline; verified trusses are the next comparison. We will choose using both recognition errors and a grower’s review of the grouping.”</aside>
 </section>
 <p class="footer">20 embedded sample photos · Public AgRobTomato images · Click a photo to enlarge · Share this HTML file for offline viewing</p>
 </main>

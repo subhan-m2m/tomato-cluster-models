@@ -99,11 +99,15 @@
     },
     {
       "path": "presentation/PROJECT_CONTEXT.md",
-      "sha256": "addf7ae251daa9a519ee35a74070472894a96c1a1ad11b1bded502e399366f1b"
+      "sha256": "67ad188ada6a8b547650bb860434784b112bb74aa159b8087c267d0133d5fc90"
+    },
+    {
+      "path": "presentation/TRUSS_CLUSTER_COMPARISON.md",
+      "sha256": "96d13f69ca133beb7211f8350e3e35909d58e129114e0ac7f2d197cf190caf07"
     },
     {
       "path": "presentation/dashboard_template.html",
-      "sha256": "ac14b6c1ec07f445c7966765b1430485a7c48c76379400334144507260b015bd"
+      "sha256": "bb58efad09085bde2594bd8e5a29240a471a0e327e95f38250f3e70cb04e1b47"
     },
     {
       "path": "results/agrob/test_tomato_counts.csv",

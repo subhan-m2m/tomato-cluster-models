@@ -113,7 +113,8 @@ def main():
         "groupCases": [{"case": case, "title": title} for case, title, _, _ in group_cases],
         "sampleCount": len(samples), "samples": samples,
     }
-    sources.extend(["presentation/dashboard_template.html", "presentation/PROJECT_CONTEXT.md"])
+    sources.extend(["presentation/dashboard_template.html", "presentation/PROJECT_CONTEXT.md",
+                    "presentation/TRUSS_CLUSTER_COMPARISON.md"])
     template = (DESTINATION / "dashboard_template.html").read_text(encoding="utf-8")
     assert template.count("@@DATA@@") == 1
     output = DESTINATION / "tomato_findings_dashboard.html"

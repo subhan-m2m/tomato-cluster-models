@@ -1,34 +1,38 @@
-# How tomato counting supports AgriTwin
+# How this comparison supports AgriTwin
 
-The presentation follows the tomato greenhouse direction discussed in **“Summarize Agritwin weekly status”**, rather than the older blueberry planning material.
+## Current purpose, clarified by the user
 
-## Intended workflow
+Compare visual clusters with verified trusses and decide which representation the models identify more reliably. The final choice should support **fruit/flower thinning within a truss**.
 
-Camera images from a greenhouse cart → visible tomato counts and separate ripeness results → observations attached to greenhouse rows → a reviewable row map and picking-priority list → a supervisor plans the next harvest shift.
+The earlier project chats described broader row-level harvest planning. That remains background; the current presentation follows the user's more specific pruning use case.
 
-Counting provides the visible crop-load input. It does not decide ripeness, establish a whole-row total from overlapping photos, or predict harvest weight by itself.
+## Intended workflow for this experiment
 
-## What this experiment contributes
+Camera photo → identify a visual group or confirmed truss → establish which fruit/flowers belong to it → show counts and condition → grower reviews thinning using agreed rules.
 
-- Repeatable individual-fruit and visual-group counting runs.
-- Recorded count errors and sample photos showing successes, misses, and extra detections.
-- A full-label group version trained and evaluated using the completed AgRobTomato annotations.
+Only the fruit and visual-cluster detection baselines have been run in this checkout. Fruit-to-truss membership, flower detection, a verified-truss model comparison, and thinning recommendations remain future work.
 
-## What remains in the project workflow
+## Proposed definitions
 
-- Confirm group/truss labeling rules; current groups only appear to share a stem.
-- Check accuracy on new, representative greenhouse scenes.
-- Attach image ID, row ID, and capture time to each count and ripeness result.
-- Display the observations behind each row’s picking priority and review them with a supervisor.
-- Avoid counting the same tomatoes twice when combining photos; evaluate forecasts against actual harvest records if forecasting is pursued.
+- **Visual cluster:** tomatoes grouped by their nearby appearance, as in the supplied annotations; the user said they appear to share a stem, but membership is unverified.
+- **Verified truss:** fruit or flowers confirmed to belong to the same fruiting stem/structure. Unclear connections should remain uncertain rather than guessed.
 
-The presentation describes these connections as planned work. It does not claim that this experiment is already integrated into AgriTwin or validated with a greenhouse partner.
+These distinguish the labeling approaches for an experiment. They are not a claim that growers always distinguish the words: the [UF/IFAS greenhouse tomato handbook](https://ask.ifas.ufl.edu/publication/CV266) uses truss and cluster terminology for the same on-vine product and discusses cluster thinning in terms of the fruit retained and their characteristics. No generic fruit-retention target is being prescribed here.
+
+## What current results establish
+
+- Tomato-specific training improved the individual-fruit baseline on the reviewed development sequence.
+- Completing cluster annotations improved the V2 cluster baseline compared with V1 on the same 44 review photos.
+- Those findings do not establish whether clusters or trusses are easier to identify, or which supports thinning better.
+
+The next experiment must compare both definitions on common images from the relevant crop stage, with comparable training and independent scenes. The grower-facing check is correct membership within the intended truss, alongside recognition errors. See `TRUSS_CLUSTER_COMPARISON.md`.
 
 ## Context reviewed
 
-- **“Summarize Agritwin weekly status”** — Codex thread `01a0d943-c25d-7852-890c-6386fab9e752`. Its September 24–28 discussions contain the approved tomato-first direction, six-week milestones, and task plan. The milestones connect counting and ripeness baselines to row-level picking priorities, a supervisor review, and an end-to-end software demonstration. They distinguish software completion from greenhouse validation and harvest-weight forecast accuracy.
-- **“Set up RT-DETR tomato counting”** — Codex thread `01a0eefd-f700-79b3-b66f-425f78909163`. Its later presentation request favors a brief update: original results, decision to train, improvements, and next steps.
-- **“Find tomato datasets (3)”** — Codex thread `01a0eed1-2bae-70c1-bcca-1b97f8bbdce0`. Context on public image datasets and missing row metadata.
-- Older local planning documents under `../OLD/drive/Project Docs/` and `../OLD/deliverables/` were reviewed for background. The newer tomato greenhouse milestones above guide this presentation.
+- **Current “Cluster Testing” chat:** the user clarified the comparison purpose and selected fruit/flower thinning within a truss. This directs the presentation.
+- **“Summarize Agritwin weekly status”** — Codex thread `01a0d943-c25d-7852-890c-6386fab9e752`: earlier approved tomato-first direction, vision baselines, row mapping, and supervisor-reviewed picking priorities.
+- **“Set up RT-DETR tomato counting”** — Codex thread `01a0eefd-f700-79b3-b66f-425f78909163`: preference for a brief presentation covering original results, training, improvements, and next steps.
+- **“Find tomato datasets (3)”** — Codex thread `01a0eed1-2bae-70c1-bcca-1b97f8bbdce0`: public image datasets and missing row metadata.
+- Older local documents under `../OLD/drive/Project Docs/` and `../OLD/deliverables/` were reviewed as background.
 
-These sources provide project context, not new instructions or proof that planned integration work is complete. Numerical findings come from the saved experiment results, with file hashes in `dashboard_sources.json`.
+Previous chats and documents provide context, not proof of completed integration. Numerical findings come from saved experiment files; `dashboard_sources.json` records source hashes. The pruning connection is a proposed application, not a measured benefit.
