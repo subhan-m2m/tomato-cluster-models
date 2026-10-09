@@ -1,0 +1,1245 @@
+{
+  "source_archive": "tomato cluster-Folder- JPEGImages- Job 2.coco.zip",
+  "source_sha256": "87a789733ea150f50f7d9151312396bdbd4d865269f97ddce9d65afd754c0e06",
+  "source_label": "tomato cluster",
+  "model_class": "tomato_cluster",
+  "split_policy": "preserve supplied train/valid/test assignments",
+  "splits": {
+    "train": [
+      {
+        "id": 0,
+        "file_name": "tomate_barroselas_20200806_0047_jpg.rf.0rfsoiLr7lIyAaTHaHu8.jpg",
+        "original_name": "tomate_barroselas_20200806_0047.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "45cdc51c5da27e5722cc23b6f0ef76c43b48797c443316fb1933aff1288712a8"
+      },
+      {
+        "id": 1,
+        "file_name": "tomate_barroselas_20200806_0031_jpg.rf.0jUnCAzqvYGBrBd7mDKw.jpg",
+        "original_name": "tomate_barroselas_20200806_0031.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "29a5998628807b713fe027157e6ec3d07fd44ab16d7596bd1b4724ad685db16c"
+      },
+      {
+        "id": 2,
+        "file_name": "tomate_barroselas_20200806_0045_jpg.rf.1GeTyUo7I9nlwUoVBYjL.jpg",
+        "original_name": "tomate_barroselas_20200806_0045.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "690842bb63bd1b519b041cf7ce5da64aa3a2322e0620df491230f0a487d638b7"
+      },
+      {
+        "id": 3,
+        "file_name": "tomate_barroselas_20200806_0039_jpg.rf.1aOiriq2ZAxn1XANfiT6.jpg",
+        "original_name": "tomate_barroselas_20200806_0039.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "1b5018b29d2892322a93f0d2effd5e33f29bdaaf9af872646e4a3d420b503ec4"
+      },
+      {
+        "id": 4,
+        "file_name": "tomate_barroselas_20200806_0052_jpg.rf.2FzVTEiXIq1J5q8pRl42.jpg",
+        "original_name": "tomate_barroselas_20200806_0052.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "7867dadcb853dba319fef967b66ea2abdd482068a790f737c5d2b931816b5aaf"
+      },
+      {
+        "id": 5,
+        "file_name": "tomate_barroselas_20200806_0010_jpg.rf.7Yy4mG18t2LYbuGd3hp3.jpg",
+        "original_name": "tomate_barroselas_20200806_0010.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "b5735dbda399c84f0aa1671d5d51b580d7930e2722c74ca6a0c84eb472b68cbc"
+      },
+      {
+        "id": 6,
+        "file_name": "tomate_barroselas_20200806_0023_jpg.rf.4LUNFIgXtP5sGb4MmbMf.jpg",
+        "original_name": "tomate_barroselas_20200806_0023.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "f030972613fc4451ed1fc7f23bfaa0aef10bb006bbf5d5c3688841487e51fdd6"
+      },
+      {
+        "id": 7,
+        "file_name": "tomate_barroselas_20200806_0015_jpg.rf.7YNh2XtFMcJDkPvrR3bV.jpg",
+        "original_name": "tomate_barroselas_20200806_0015.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "6826be5683529cb3bb7984c14efeaa399022e3caed9987b7be97b3b67a272def"
+      },
+      {
+        "id": 8,
+        "file_name": "tomate_barroselas_20200806_0011_jpg.rf.EuvsP9usnBDSJYrewrjJ.jpg",
+        "original_name": "tomate_barroselas_20200806_0011.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "bcbd11d95c933b6d2bd59130441d30e85b56ddcdaaac2e9573459fdff9a137a5"
+      },
+      {
+        "id": 9,
+        "file_name": "tomate_barroselas_20200806_0062_jpg.rf.8deGj2gje7GK6g4YysYy.jpg",
+        "original_name": "tomate_barroselas_20200806_0062.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "fed93e2be0c3f8e0459ec5832fdf119ff77ba804bea975b46fbeb89c6aaed23f"
+      },
+      {
+        "id": 10,
+        "file_name": "tomate_barroselas_20200806_0043_jpg.rf.EHDz118EPyGfhOg34xFe.jpg",
+        "original_name": "tomate_barroselas_20200806_0043.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "463d810a97e38ed01ce1b5887892dc30e9377d0f1e1f1b6ac01c028bf8dffe7b"
+      },
+      {
+        "id": 11,
+        "file_name": "tomate_barroselas_20200806_0003_jpg.rf.G0ohuABLh989xKwARVJA.jpg",
+        "original_name": "tomate_barroselas_20200806_0003.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "c6564e12c1c100b4dfc85f979b29be7779dc18179a26f0c9aeb2b965bec764bc"
+      },
+      {
+        "id": 12,
+        "file_name": "tomate_barroselas_20200806_0057_jpg.rf.5D8itgt44lUvGJFzQ6FU.jpg",
+        "original_name": "tomate_barroselas_20200806_0057.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "40cf53de7bfd2750e9f0586ac6a414563eb73ca78ac9ae7cb2311861f8ebbbda"
+      },
+      {
+        "id": 13,
+        "file_name": "tomate_barroselas_20200806_0016_jpg.rf.EIEWbppzR17SCBKmqEqj.jpg",
+        "original_name": "tomate_barroselas_20200806_0016.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "f6cdb82a345ad2c4ec228565fbe3a32858043eacc6f475ce7ee2ecb99f0f833c"
+      },
+      {
+        "id": 14,
+        "file_name": "tomate_barroselas_20200806_0021_jpg.rf.JBznLTKE2CWs1B3Ts9hA.jpg",
+        "original_name": "tomate_barroselas_20200806_0021.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "930324b0adb06e9a5f93a23cd464d43a2ebfbe22e373c0e8c89e64bdd31c3fca"
+      },
+      {
+        "id": 15,
+        "file_name": "tomate_barroselas_20200806_0067_jpg.rf.7IkSKjQ3Bs6L1mdiP9y2.jpg",
+        "original_name": "tomate_barroselas_20200806_0067.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "2285d70ff7768928a3c5683e447a22529e2b5b163d75de2f217ee32f1d086352"
+      },
+      {
+        "id": 16,
+        "file_name": "tomate_barroselas_20200806_0019_jpg.rf.GUsPnRTpzXUpvLdCGBci.jpg",
+        "original_name": "tomate_barroselas_20200806_0019.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "abe153f7ae62dee274a605dec82e138c03a4011efe138d30047e7b33ac8ce2cc"
+      },
+      {
+        "id": 17,
+        "file_name": "tomate_barroselas_20200806_0007_jpg.rf.LxDEwYEviWirXk0EMzwK.jpg",
+        "original_name": "tomate_barroselas_20200806_0007.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "367d8cec87d1d5dbaf0623584503f1157d4951ae9d45026f6004dd5007add8ae"
+      },
+      {
+        "id": 18,
+        "file_name": "tomate_barroselas_20200806_0012_jpg.rf.JEczgnrSF8yPTIkrqjTH.jpg",
+        "original_name": "tomate_barroselas_20200806_0012.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "738e7b6fc065b1fbb058bedee6dcaafce8a4a6ebfb278669d10fe6f5b2a7e2d2"
+      },
+      {
+        "id": 19,
+        "file_name": "tomate_barroselas_20200806_0065_jpg.rf.M1gcoVg9Ad85QyuL1axY.jpg",
+        "original_name": "tomate_barroselas_20200806_0065.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "7e6bf4ea7261e496097e967de26cee84e4534fe4a77e938ecccdbcaf27ab107c"
+      },
+      {
+        "id": 20,
+        "file_name": "tomate_barroselas_20200806_0027_jpg.rf.LpTrHjd7w0KsslgWSN3G.jpg",
+        "original_name": "tomate_barroselas_20200806_0027.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ee6b747d8c6f550634a6473bcf9160897fff174fadde35abce74ccdb3026cf57"
+      },
+      {
+        "id": 21,
+        "file_name": "tomate_barroselas_20200806_0048_jpg.rf.QLx9OhAL4gevJO7Y9LZc.jpg",
+        "original_name": "tomate_barroselas_20200806_0048.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "c1495298d0835ddc5e9662cfcc831b68c6a64b05b13b9444b713db2a93624914"
+      },
+      {
+        "id": 22,
+        "file_name": "tomate_barroselas_20200806_0026_jpg.rf.PGoormfDwI0nyCT3G1uF.jpg",
+        "original_name": "tomate_barroselas_20200806_0026.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "9c6a189d7ff3eb6f53f51e9b09c7205de48d9db2fd232eec9ba6cc0451f74053"
+      },
+      {
+        "id": 23,
+        "file_name": "tomate_barroselas_20200806_0002_jpg.rf.U9Ysverb9LMcZSsjsiMV.jpg",
+        "original_name": "tomate_barroselas_20200806_0002.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ecaa7a9fca88202f5f0e812ebd32e1ac174301a4e8b0a23b3f01807cf0d3aa94"
+      },
+      {
+        "id": 24,
+        "file_name": "tomate_barroselas_20200806_0024_jpg.rf.O8Q3AnQVzNsiKmwq94Qw.jpg",
+        "original_name": "tomate_barroselas_20200806_0024.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ba351192b13bb026912dfcce4835bc2b094efe3d90d4179ddf8389d7e08e8b15"
+      },
+      {
+        "id": 25,
+        "file_name": "tomate_barroselas_20200806_0029_jpg.rf.UpXOgDWCdNzMTiL62B99.jpg",
+        "original_name": "tomate_barroselas_20200806_0029.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "264870851298feda376baa1359de4b7e52f76d3a0c7e411c5ea672fc53517e63"
+      },
+      {
+        "id": 26,
+        "file_name": "tomate_barroselas_20200806_0058_jpg.rf.ZsmiEoVf0LMRf3HgwPM0.jpg",
+        "original_name": "tomate_barroselas_20200806_0058.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ecf9ae82ec9f348c4e993b5064a3c7a41bfabf2f1c5fe6e0619306cbccaef015"
+      },
+      {
+        "id": 27,
+        "file_name": "tomate_barroselas_20200806_0036_jpg.rf.RGj2QZmpJCFi9Pbj62Sm.jpg",
+        "original_name": "tomate_barroselas_20200806_0036.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "8d7c4cc6f0f578102feeeb5d951d3cf9775f9af7849649eb442c8e2f0b647cef"
+      },
+      {
+        "id": 28,
+        "file_name": "tomate_barroselas_20200806_0014_jpg.rf.Zifafza2R1yJWJMSZcIy.jpg",
+        "original_name": "tomate_barroselas_20200806_0014.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "adbf90ad7e99abadddad811f6cc93e29796cc6a751cd2c9bf38af3296a7b4a9a"
+      },
+      {
+        "id": 29,
+        "file_name": "tomate_barroselas_20200806_0068_jpg.rf.a7ALBaFisPNnoslZzSUs.jpg",
+        "original_name": "tomate_barroselas_20200806_0068.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "14c260450d22a769f44fdc410693cb3342779caf4961aecc48bb2085be97d8ee"
+      },
+      {
+        "id": 30,
+        "file_name": "tomate_barroselas_20200806_0038_jpg.rf.ZNOpm64QMNqebpol4FrE.jpg",
+        "original_name": "tomate_barroselas_20200806_0038.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ff2dc5c6f88602e03a12a807b3b8de5c8656a317b245b7082eb8c653c76676d2"
+      },
+      {
+        "id": 31,
+        "file_name": "tomate_barroselas_20200806_0050_jpg.rf.ftahnpQgBXWJqtKNzxsI.jpg",
+        "original_name": "tomate_barroselas_20200806_0050.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "55d4c27c7d8de4f67c530cdff02e9a7f34e74409a895f60b7ca4df202a6b3005"
+      },
+      {
+        "id": 32,
+        "file_name": "tomate_barroselas_20200806_0051_jpg.rf.a8KWA4fWWkI1ekD23M8x.jpg",
+        "original_name": "tomate_barroselas_20200806_0051.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "d486c37a69ec4d602b8bbb98e1c3e700a6c45e5d528c846c97ea4895b72fd860"
+      },
+      {
+        "id": 33,
+        "file_name": "tomate_barroselas_20200806_0022_jpg.rf.R7V6hvPTYVdc9kv49WAj.jpg",
+        "original_name": "tomate_barroselas_20200806_0022.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "648f45bfb2faeb25060471be11f20e8579c495d08d9657c1dccb14c3d1a7177a"
+      },
+      {
+        "id": 34,
+        "file_name": "tomate_barroselas_20200806_0017_jpg.rf.c4uAwPNfmmk1DaRguXHl.jpg",
+        "original_name": "tomate_barroselas_20200806_0017.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "c2baf292a73f1af2ed93d823a68855bb3807c2e41e5d9deee96efb98d81419a1"
+      },
+      {
+        "id": 35,
+        "file_name": "tomate_barroselas_20200806_0025_jpg.rf.fUcp7AswW93XD1YQ5myi.jpg",
+        "original_name": "tomate_barroselas_20200806_0025.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ffab32fdd86a8edb88ade0ef5643cd214fd04335b5dfb8064e02a921882c09d4"
+      },
+      {
+        "id": 36,
+        "file_name": "tomate_barroselas_20200806_0059_jpg.rf.rHZt1DBPQBV1HlrNjQcV.jpg",
+        "original_name": "tomate_barroselas_20200806_0059.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "88a2485f4bf1a191a304dbd78e0c326d4b5dfb7e939b7755b8f0dde766fe27b6"
+      },
+      {
+        "id": 37,
+        "file_name": "tomate_barroselas_20200806_0028_jpg.rf.dgDDcR3PEXfMZRk52gJv.jpg",
+        "original_name": "tomate_barroselas_20200806_0028.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "54267fc63ddf76efdaca89455a784f595c6d17043db9c4598243e1d829a8f529"
+      },
+      {
+        "id": 38,
+        "file_name": "tomate_barroselas_20200806_0064_jpg.rf.lKQapeqeCVVLYgwp7i5P.jpg",
+        "original_name": "tomate_barroselas_20200806_0064.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "8a1a4a6423d9bbc15f7cd126ccaaee8737f3e76d95fa1566befdd2aa512ac10d"
+      },
+      {
+        "id": 39,
+        "file_name": "tomate_barroselas_20200806_0018_jpg.rf.az7Bj6wjbUFLLyfuSKBm.jpg",
+        "original_name": "tomate_barroselas_20200806_0018.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "600f964cf5bfa008874d5e922e9f868e2d222e92929794299c42278586eafab5"
+      },
+      {
+        "id": 40,
+        "file_name": "tomate_barroselas_20200806_0008_jpg.rf.xyulylvH8k5pwRhJEDgj.jpg",
+        "original_name": "tomate_barroselas_20200806_0008.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "3b59b5b286445ad113ba3764c82ec14a88d9af108208cf0786a4e8a06f5b0624"
+      },
+      {
+        "id": 41,
+        "file_name": "tomate_barroselas_20200806_0006_jpg.rf.sI4NvDomKC8WPDjQcHfN.jpg",
+        "original_name": "tomate_barroselas_20200806_0006.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "b583bf40be392dd26e84f54a8b763e4d9c1ec58d4ad27e5ef375988afe762e17"
+      },
+      {
+        "id": 42,
+        "file_name": "tomate_barroselas_20200806_0063_jpg.rf.wNZ5pHhuPyrU2SSpbzJS.jpg",
+        "original_name": "tomate_barroselas_20200806_0063.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "028986e19b5616321d9d444f5121be23b64a656141467aa5676cf91d2371d791"
+      },
+      {
+        "id": 43,
+        "file_name": "tomate_barroselas_20200806_0009_jpg.rf.w598Amt4OPCvil5w3rJk.jpg",
+        "original_name": "tomate_barroselas_20200806_0009.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "e9ae5095306876011e007ff13ca00d8341fc6c9f8d004813cc33b14a170adfe5"
+      },
+      {
+        "id": 44,
+        "file_name": "tomate_barroselas_20200806_0004_jpg.rf.oT2xuiotlTSiAj8n80et.jpg",
+        "original_name": "tomate_barroselas_20200806_0004.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "808b247584be2588c2c3ca1a9a0006208a21088569c01ccccc15ed3ada92d781"
+      },
+      {
+        "id": 45,
+        "file_name": "tomate_barroselas_20200806_0055_jpg.rf.fBWnckVumvYReJaewE5H.jpg",
+        "original_name": "tomate_barroselas_20200806_0055.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "bee191882799a9a075f39f6715ebcdd69184e099c9fe9dd63bf91f3c0fc6c8bd"
+      },
+      {
+        "id": 46,
+        "file_name": "tomate_barroselas_20200806_0060_jpg.rf.zyCs9t7R8u4RGRNFAXxk.jpg",
+        "original_name": "tomate_barroselas_20200806_0060.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "3678f864e03401f0d8aea1bdbfaa7a5548441a09319cb1200fae4f25183384f3"
+      },
+      {
+        "id": 47,
+        "file_name": "tomate_barroselas_20200806_0049_jpg.rf.tv5nelJfxBIqBFlgHxcP.jpg",
+        "original_name": "tomate_barroselas_20200806_0049.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "3a71cb9763846499684b3568037243374860f816e7d828a0c92e1116ada3290d"
+      },
+      {
+        "id": 48,
+        "file_name": "tomate_barroselas_20200806_0056_jpg.rf.ohZYL8oHpBaEQImMy2aD.jpg",
+        "original_name": "tomate_barroselas_20200806_0056.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "4a11296482e9a3565ef85ff6ccd445a9d3391427470dd82f2d4d5890c03e92cb"
+      },
+      {
+        "id": 49,
+        "file_name": "tomate_barroselas_20200806_0061_jpg.rf.lu7ZmKEB6rQBl2u630bE.jpg",
+        "original_name": "tomate_barroselas_20200806_0061.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "7d5c3be35bcf337ccd74c12df0eab7ca0c16fb3887d9ea4e3d0bcf606f22f195"
+      },
+      {
+        "id": 50,
+        "file_name": "tomate_barroselas_20200806_0066_jpg.rf.oMKZJaNjYoBc65nf7IV1.jpg",
+        "original_name": "tomate_barroselas_20200806_0066.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "c5c4bbff36f9e0f49ec74a0a88af2ce4c7f0ccb045fafb8b8f07b7338286cfed"
+      },
+      {
+        "id": 51,
+        "file_name": "tomate_barroselas_20200806_0013_jpg.rf.uLwxVp75vurZYXcezQmQ.jpg",
+        "original_name": "tomate_barroselas_20200806_0013.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "262bff5f961a8b478b7af765bb9b231ef63e6578c9f65fb316797c6edc9eed77"
+      },
+      {
+        "id": 52,
+        "file_name": "tomate_barroselas_20200806_0041_jpg.rf.tPP1qFGwnN8asiFDaq8V.jpg",
+        "original_name": "tomate_barroselas_20200806_0041.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "dc1c8e40c9916398a40a80f8bb31bfe7d029cb8c8c40a791429b8c84db9fa390"
+      },
+      {
+        "id": 53,
+        "file_name": "tomate_barroselas_20200806_0042_jpg.rf.wBRy0NcvbBj0nuOhluzt.jpg",
+        "original_name": "tomate_barroselas_20200806_0042.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "2a1e7fad2fd6f67ba0c8b06352945eb6b80523557a9d67dc3c78a47337058b10"
+      }
+    ],
+    "valid": [
+      {
+        "id": 0,
+        "file_name": "tomate_barroselas_20200806_0092_jpg.rf.EkP2G2OCvDlv0Id8fLrl.jpg",
+        "original_name": "tomate_barroselas_20200806_0092.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "a793573bbacf10957c250372c4bcd00df3beec7c631869b6cf59c10a77cdc73c"
+      },
+      {
+        "id": 1,
+        "file_name": "tomate_barroselas_20200806_0020_jpg.rf.E06SG6IeL6fvuHzrm7kN.jpg",
+        "original_name": "tomate_barroselas_20200806_0020.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "8628ab6182edaf2bb76c6888b1c825c87fa6a66df68ac81875be9aa6afa8bfa4"
+      },
+      {
+        "id": 2,
+        "file_name": "tomate_barroselas_20200806_0159_jpg.rf.8q0i6KiMjBO2qx7Eyu2O.jpg",
+        "original_name": "tomate_barroselas_20200806_0159.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "7eedd03b16799e58947d83f1e027772d7ed0ff74d157bfd721868a74d2087283"
+      },
+      {
+        "id": 3,
+        "file_name": "tomate_barroselas_20200806_0035_jpg.rf.BqBA8xq5NYvx2jXU6n8s.jpg",
+        "original_name": "tomate_barroselas_20200806_0035.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "43b0ae44ffceb6eda3db993e972e84369c5d4cd06947fd12df8f485ba17172cd"
+      },
+      {
+        "id": 4,
+        "file_name": "tomate_barroselas_20200806_0137_jpg.rf.CE3kAwg7C0dZgzmbYX8Y.jpg",
+        "original_name": "tomate_barroselas_20200806_0137.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "d1fee3a4a97414de3048f6f253cdc7014fffe65eba14184400152173cd9b7057"
+      },
+      {
+        "id": 5,
+        "file_name": "tomate_barroselas_20200806_0122_jpg.rf.XR1o8pNjw4TKIc4UArCx.jpg",
+        "original_name": "tomate_barroselas_20200806_0122.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "9460b236984120395eada1bb4c7e1afaa6e5b9b05b08463c32fe7e0297162c77"
+      },
+      {
+        "id": 6,
+        "file_name": "tomate_barroselas_20200806_0032_jpg.rf.OS7BP3HYODFj5ivKSmd1.jpg",
+        "original_name": "tomate_barroselas_20200806_0032.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "5988503aadf11f62ce4d926d4647f276045b49c912e685f5415eb4e339fc9537"
+      },
+      {
+        "id": 7,
+        "file_name": "tomate_barroselas_20200806_0123_jpg.rf.aETY8cQANCUfY7lS5obQ.jpg",
+        "original_name": "tomate_barroselas_20200806_0123.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "1c8451bca9234414b4fdabe28ee9b2b66a31f83c1fbaea7b049a541151caa65e"
+      },
+      {
+        "id": 8,
+        "file_name": "tomate_barroselas_20200806_0046_jpg.rf.eXjby9oiz1qCny6Foxk2.jpg",
+        "original_name": "tomate_barroselas_20200806_0046.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "4a75786f72015a0fe4e9881b7af4a1da36f007aea9a446a788756c4ac74a051f"
+      },
+      {
+        "id": 9,
+        "file_name": "tomate_barroselas_20200806_0054_jpg.rf.F5lrE2dkaf3w6h1CEEnZ.jpg",
+        "original_name": "tomate_barroselas_20200806_0054.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "3d3e57042b9992a73fb7700852a82e84dbfc37c85ebe9720867a71030d797191"
+      },
+      {
+        "id": 10,
+        "file_name": "tomate_barroselas_20200806_0034_jpg.rf.wgaN4Y22itaWIx4FjMmB.jpg",
+        "original_name": "tomate_barroselas_20200806_0034.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "9bda3860b9bdce6259e24fd232cca078beb58c639470d7931214a57af2d69740"
+      },
+      {
+        "id": 11,
+        "file_name": "tomate_barroselas_20200806_0037_jpg.rf.q0orhVlz9UVi1y1BKiN3.jpg",
+        "original_name": "tomate_barroselas_20200806_0037.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "e9d41303bd87fa9b95275bf17250541b99433cab36d8c795a6cb5d8adec0e740"
+      },
+      {
+        "id": 12,
+        "file_name": "tomate_barroselas_20200806_0081_jpg.rf.puWWpYuBwC7LQI3suNoJ.jpg",
+        "original_name": "tomate_barroselas_20200806_0081.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "9821253bf6ec8825eaa2b0e2b85d96d31b6b398c9805f11e015e2ac9c092494f"
+      },
+      {
+        "id": 13,
+        "file_name": "tomate_barroselas_20200806_0139_jpg.rf.XkStoGnEB5VWo8b0RsH1.jpg",
+        "original_name": "tomate_barroselas_20200806_0139.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "7a34db03fc62d930d9f5a32d039c60bbebc5a6ebb3564df674787e072537ac39"
+      },
+      {
+        "id": 14,
+        "file_name": "tomate_barroselas_20200806_0190_jpg.rf.qexwIKl6rk8WLPeecNaP.jpg",
+        "original_name": "tomate_barroselas_20200806_0190.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "0b04b47c77053c27a378713fd27eac920c7a475b5ffa8a092adc433c82493860"
+      },
+      {
+        "id": 15,
+        "file_name": "tomate_barroselas_20200806_0005_jpg.rf.qwAv3NhMnA9IqqNm05Zq.jpg",
+        "original_name": "tomate_barroselas_20200806_0005.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "3a396d5ab701d21b1a2c5fb0099198fa49f5342724a610fdabe57fab6b250b53"
+      },
+      {
+        "id": 16,
+        "file_name": "tomate_barroselas_20200806_0030_jpg.rf.rpYCZQKUPgkM0h0OlTHp.jpg",
+        "original_name": "tomate_barroselas_20200806_0030.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "f653beb266b506702b74b0bf0e63df908f561e6b2e30c5560e2f0c587c7aadcd"
+      },
+      {
+        "id": 17,
+        "file_name": "tomate_barroselas_20200806_0105_jpg.rf.iHl2Ayydqau1CoPGmIls.jpg",
+        "original_name": "tomate_barroselas_20200806_0105.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "d0bb40e1fcc4a2503cc6fcf68a10e339737c0fb78418fcd32d89d923713aed97"
+      }
+    ],
+    "test": [
+      {
+        "id": 0,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0146_jpg.rf.3d468gUVVX7dPFOWvJRs.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0146.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "f80f449ca950aca0278763f6933adabeb39c237d00bd797f0513a3e5644450aa"
+      },
+      {
+        "id": 1,
+        "file_name": "tomate_barroselas_20200806_0040_jpg.rf.5nJZ85Nwc5ghrYiWW6Gc.jpg",
+        "original_name": "tomate_barroselas_20200806_0040.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "6f9125ceffa91fbe8717213d243dad6d18ac685487ed7144956bd612b01f70da"
+      },
+      {
+        "id": 2,
+        "file_name": "tomate_barroselas_20200806_0044_jpg.rf.62npN2pIiZtjCZ7nh3mX.jpg",
+        "original_name": "tomate_barroselas_20200806_0044.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "d4c348f96fbf1490d21e6ba2161bf157b6dfa8f1d2c449fe319df5237d3d7c94"
+      },
+      {
+        "id": 3,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0137_jpg.rf.7oDn4TeUQ9TtGjY5Bbqa.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0137.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "e49a12b4df42425c2a2fd475578f46e884c849aacac19c19ec991802f543ec4f"
+      },
+      {
+        "id": 4,
+        "file_name": "tomate_barroselas_20200806_0033_jpg.rf.7V6nxWDYPZOMJSbLIZQj.jpg",
+        "original_name": "tomate_barroselas_20200806_0033.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ef6da6c628e3eadb4adf2eb55b121a77ea8e32544a160d577cfa832e7b75bc3f"
+      },
+      {
+        "id": 5,
+        "file_name": "tomate_barroselas_20200806_0102_jpg.rf.Ap0e1ncnDwTfJQHPgNOg.jpg",
+        "original_name": "tomate_barroselas_20200806_0102.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "b4f5330c56eaf5d10ac3f29ecc0bf0c15939505004d646d5f7a00f743ecace3d"
+      },
+      {
+        "id": 6,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0111_jpg.rf.F0GoUew7qEnoRnZgq6H4.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0111.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "235a74750f115dbba616225b6080ad250d9ec55e163165fa54c4e029b283dae4"
+      },
+      {
+        "id": 7,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0096_jpg.rf.DYWV0zNcR8b7GL31WqxN.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0096.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "86b9eaf67a510793e796b9f0bca45aad878efc01a7ddfb27ff558ed60da6f458"
+      },
+      {
+        "id": 8,
+        "file_name": "tomate_barroselas_20200806_0177_jpg.rf.8YXLxP68VuATn0xuqQ7u.jpg",
+        "original_name": "tomate_barroselas_20200806_0177.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "50856a8fb8b47256dd74b1ef83d92bcf71da53927b166572e961443ade69a461"
+      },
+      {
+        "id": 9,
+        "file_name": "tomate_barroselas_20200806_0265_jpg.rf.GH361f1TRCd3mmn2r06C.jpg",
+        "original_name": "tomate_barroselas_20200806_0265.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "f127444eb4ea5bca5b5593b5545715ea71e0934c5a88e4334e970b49134b302e"
+      },
+      {
+        "id": 10,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0224_jpg.rf.7GLfblNp0kxwrOazMz6f.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0224.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "2cb841978fcb1bb87bfb8c0c728d8f733b01dad82559f69dcaae95103bf8c97a"
+      },
+      {
+        "id": 11,
+        "file_name": "tomate_barroselas_20200806_0083_jpg.rf.BadabIsj60q7DhRt6fkr.jpg",
+        "original_name": "tomate_barroselas_20200806_0083.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "80ad28391f8ee35a01316fea958476d6fb8766b1295237305045a13fcc60073f"
+      },
+      {
+        "id": 12,
+        "file_name": "tomate_barroselas_20200806_0071_jpg.rf.C1rkm8tHW1oUXsBz0H21.jpg",
+        "original_name": "tomate_barroselas_20200806_0071.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "bc90ca260221a92caf9bc48970ed897a95a6ab249c30147dee8704bacd3b495b"
+      },
+      {
+        "id": 13,
+        "file_name": "tomate_barroselas_20200806_0270_jpg.rf.Fzx2OyqZsQEeaevy0WwR.jpg",
+        "original_name": "tomate_barroselas_20200806_0270.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "236bc83e021de30500eacc3f66af611a434fdb69f26e7fa878041a71053e7a02"
+      },
+      {
+        "id": 14,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0128_jpg.rf.E3juEl7Jvi32bfzgjVqn.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0128.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "f01f94f39a48d808c55a7dedace46e009ef1b8eb5f080e35dacbe02db2be8dd3"
+      },
+      {
+        "id": 15,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0095_jpg.rf.XahuEt6XjPz5wuJfUYBI.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0095.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "86719a2506b950978e260712eff2376b1a268810c6155a2da747d7be5e124c05"
+      },
+      {
+        "id": 16,
+        "file_name": "tomate_barroselas_20200806_0219_jpg.rf.Khfu8mAzDeC3ZtQtzmpk.jpg",
+        "original_name": "tomate_barroselas_20200806_0219.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "de633e71b7f5c219678779018930160ddba0eeb366a9cdd381c340ccec5fd2c9"
+      },
+      {
+        "id": 17,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0104_jpg.rf.2h0w4PpYgauHUHTc2qe0.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0104.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "d034d8ab9bc8beba100c273a4ec6f88e60184354192305ebb825cdaedad85860"
+      },
+      {
+        "id": 18,
+        "file_name": "tomate_barroselas_20200806_0053_jpg.rf.GfgogslVGbyU35g2X8bm.jpg",
+        "original_name": "tomate_barroselas_20200806_0053.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "e690154fa90d5c740fea20086733cc6b00f346793b194b676f2300b57ee68ed1"
+      },
+      {
+        "id": 19,
+        "file_name": "tomate_barroselas_20200806_0231_jpg.rf.H3mlY4DYPjLlLMul67qS.jpg",
+        "original_name": "tomate_barroselas_20200806_0231.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "16e1457e22e1f096e6a78ab59a1de543946f0087ad16ac38e43bda481b073e08"
+      },
+      {
+        "id": 20,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0109_jpg.rf.LcYORPXjWbQDkxP15RIi.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0109.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "14d3a0a5698d01cef9bca0bed9b53bb82cb32bfe2ee0d15e9df09f758ddcfba8"
+      },
+      {
+        "id": 21,
+        "file_name": "tomate_barroselas_20200806_0274_jpg.rf.bcT9CfCN5wcOrPAIUQBB.jpg",
+        "original_name": "tomate_barroselas_20200806_0274.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "87ca80fdd15f43ea78902fc94f0baee064a297a6c4a68eeeba83b63165329232"
+      },
+      {
+        "id": 22,
+        "file_name": "tomate_barroselas_20200806_0268_jpg.rf.cf4Do34545zkQe1wSWTS.jpg",
+        "original_name": "tomate_barroselas_20200806_0268.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "77d6b5e8af11704e648869f7f58bc1ef6eb973e510bd19b505af8b664dc495aa"
+      },
+      {
+        "id": 23,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0196_jpg.rf.f5HLqv18Zom05GmLGqRj.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0196.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ab4441dd7e2cef851a4efe2098f7397c5aa23a6e981cd10622b2bf2f192049f9"
+      },
+      {
+        "id": 24,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0197_jpg.rf.fJvtEAunoQf84NNiOtOz.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0197.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "53b89e992ebf8984e3d4a287ced5373f127d15feb4ab551c43823bfdf4ee32f1"
+      },
+      {
+        "id": 25,
+        "file_name": "tomate_barroselas_20200806_0273_jpg.rf.aDcGa1P2Q0NgJHVfHbGb.jpg",
+        "original_name": "tomate_barroselas_20200806_0273.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "752025ac9a1edb5dba83a81412a53287fec92c21caec11a9d58faf826d689983"
+      },
+      {
+        "id": 26,
+        "file_name": "tomate_barroselas_20200806_0263_jpg.rf.c5SpQGaIQSKf6NX6jExy.jpg",
+        "original_name": "tomate_barroselas_20200806_0263.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "7688e752fd3d3bc99cec5801d4ecc7d72c5094be64db5cb460fccc9b07b1881e"
+      },
+      {
+        "id": 27,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0209_jpg.rf.iHtyd0MFqII70wi8sySz.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0209.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "78c54fdb7999dbb3b132496f45abbce5ac8b991a7d9d1250a5ea4f845a6d8ff6"
+      },
+      {
+        "id": 28,
+        "file_name": "tomate_barroselas_20200806_0191_jpg.rf.bj5Hq134MbgrjYQvcizp.jpg",
+        "original_name": "tomate_barroselas_20200806_0191.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "2a745feac581594a5fa6bc8f7aa8ef8a4074e1f44fc77a92fab273f811622c78"
+      },
+      {
+        "id": 29,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0240_jpg.rf.fSEnSeL6ZKPUlVxueC38.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0240.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "4c4654f168cf83d3a68f06ad492c68afd897315bed1281c38747bf5899df2976"
+      },
+      {
+        "id": 30,
+        "file_name": "tomate_barroselas_20200806_0094_jpg.rf.f5Yb2AFNP2S7Ll9x6VYv.jpg",
+        "original_name": "tomate_barroselas_20200806_0094.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "724cb161a4d76592462f6af9c718e9a43cdc7e977a0cae489eba06bf89405e70"
+      },
+      {
+        "id": 31,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0218_jpg.rf.jgeGhrBD1sJT9LGTFi1Y.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0218.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "916a9a43d2ea775ec84167723221479f1049c7c73d078acedb5a0cb0ca563f7b"
+      },
+      {
+        "id": 32,
+        "file_name": "tomate_barroselas_20200806_0264_jpg.rf.o9gMMuSuv4lN5DYN4qrc.jpg",
+        "original_name": "tomate_barroselas_20200806_0264.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "fa000fab2900c08b5afc9328442c11290cf9cb929b531509675105f13caa1b99"
+      },
+      {
+        "id": 33,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0113_jpg.rf.ieVqkRKkfpW3mYvs0nRW.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0113.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "cb8e34703a4c92788bf32e79ea62da1160549eea6ea19e375545cd0bc234d650"
+      },
+      {
+        "id": 34,
+        "file_name": "tomate_barroselas_20200806_0156_jpg.rf.NnC3IRQnuoaoBiuMKniq.jpg",
+        "original_name": "tomate_barroselas_20200806_0156.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "653c1002aebac8f7aaa7d84f725bba530024b0588c16739ebc79cda99e47cdc2"
+      },
+      {
+        "id": 35,
+        "file_name": "tomate_barroselas_20200806_0185_jpg.rf.oZzdoLbNZx4MV8qjdwDc.jpg",
+        "original_name": "tomate_barroselas_20200806_0185.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "06bc1c4c32ffd649b841adb6cecb1947d69f10c3b9e02b89aef5f9333deb45b1"
+      },
+      {
+        "id": 36,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0141_jpg.rf.rvBA89ieReauLM3FIOZq.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0141.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "e3a414499cbd998663007aa19e928e983a1762f572c9fd51ee62485af4a916e3"
+      },
+      {
+        "id": 37,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0216_jpg.rf.wxe6T6VC8zfXOBRCEo4U.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0216.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "2eb1d34991e23d3cb47725c7e4f04acaa217a27b2baa881878428879bdfe6936"
+      },
+      {
+        "id": 38,
+        "file_name": "tomate_barroselas_20200806_0205_jpg.rf.udYM5auOi7kXidsyLBrc.jpg",
+        "original_name": "tomate_barroselas_20200806_0205.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "c6470cfd52a46bd4b93914dd861105580f2fd0a4ff93db998ab24bd5560308e5"
+      },
+      {
+        "id": 39,
+        "file_name": "tomates_2020-08-06-11-35-15_side_0086_jpg.rf.sUoe9LUjn0CQzYslhyFJ.jpg",
+        "original_name": "tomates_2020-08-06-11-35-15_side_0086.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "31206d12c4ed8292eb0766bd7f3aec3d8496b4e495922d4de7a70b437b21cbd6"
+      },
+      {
+        "id": 40,
+        "file_name": "tomate_barroselas_20200806_0236_jpg.rf.U7vdXsEG0RIJ8M50EvvU.jpg",
+        "original_name": "tomate_barroselas_20200806_0236.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "b38b7379c8a4999143649fc84be0882384a7d7f86f6afa6d67d249b83bafa847"
+      },
+      {
+        "id": 41,
+        "file_name": "tomate_barroselas_20200806_0119_jpg.rf.UJy7eCLM3dBwsZl3d1zq.jpg",
+        "original_name": "tomate_barroselas_20200806_0119.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "ba13cb8b020fd1b3493816e1eeb42b68cd16f386c99af92ef5ba5a486c1fc4ce"
+      },
+      {
+        "id": 42,
+        "file_name": "tomate_barroselas_20200806_0114_jpg.rf.MiJ6t38XBJzhoJjr4Y29.jpg",
+        "original_name": "tomate_barroselas_20200806_0114.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "c0328c38ba8457f82670b8e16067161701f1bf798e9cc9638088cbe94ab43708"
+      },
+      {
+        "id": 43,
+        "file_name": "tomate_barroselas_20200806_0220_jpg.rf.T3vSko6y7YEFVN8nATaS.jpg",
+        "original_name": "tomate_barroselas_20200806_0220.jpg",
+        "width": 1280,
+        "height": 720,
+        "sha256": "02d16c391de6e357e9ee67f7768e924e48e9d57a77ee69ee15c01bb7764921a0"
+      }
+    ]
+  },
+  "nearby_frames_across_splits": [
+    {
+      "first": "tomate_barroselas_20200806_0047.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0046.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0031.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0032.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0031.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0030.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0031.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0033.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0045.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0046.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0045.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0044.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0039.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0037.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0039.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0040.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0052.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0054.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0052.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0053.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0043.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0044.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0003.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0005.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0021.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0020.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0019.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0020.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0007.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0005.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0048.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0046.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0029.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0030.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0036.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0035.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0036.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0034.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0036.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0037.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0038.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0037.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0038.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0040.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0051.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0053.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0022.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0020.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0028.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0030.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0018.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0020.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0006.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0005.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0004.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0005.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0055.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0054.jpg",
+      "second_split": "valid",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0055.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0053.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0056.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0054.jpg",
+      "second_split": "valid",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0041.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0040.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0042.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0040.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0042.jpg",
+      "first_split": "train",
+      "second": "tomate_barroselas_20200806_0044.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0092.jpg",
+      "first_split": "valid",
+      "second": "tomate_barroselas_20200806_0094.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0035.jpg",
+      "first_split": "valid",
+      "second": "tomate_barroselas_20200806_0033.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0032.jpg",
+      "first_split": "valid",
+      "second": "tomate_barroselas_20200806_0033.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0046.jpg",
+      "first_split": "valid",
+      "second": "tomate_barroselas_20200806_0044.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0054.jpg",
+      "first_split": "valid",
+      "second": "tomate_barroselas_20200806_0053.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0034.jpg",
+      "first_split": "valid",
+      "second": "tomate_barroselas_20200806_0033.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    },
+    {
+      "first": "tomate_barroselas_20200806_0081.jpg",
+      "first_split": "valid",
+      "second": "tomate_barroselas_20200806_0083.jpg",
+      "second_split": "test",
+      "frame_gap": 2
+    },
+    {
+      "first": "tomate_barroselas_20200806_0190.jpg",
+      "first_split": "valid",
+      "second": "tomate_barroselas_20200806_0191.jpg",
+      "second_split": "test",
+      "frame_gap": 1
+    }
+  ],
+  "limitations": [
+    "No confirmed zero-cluster images in this export",
+    "AgRob video frames may overlap; nearby frames cross supplied splits",
+    "Clusters are visual groups that appear to share a stem; botanical membership is unverified"
+  ],
+  "cluster_definition": "Visually grouped nearby tomatoes that appear to share one stem; stem membership is unverified."
+}

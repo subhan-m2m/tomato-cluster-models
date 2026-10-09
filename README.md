@@ -7,6 +7,16 @@ The **original pretrained checkpoint** is not accurate enough for tomato countin
 The RTX 3070 fine-tuning run and its measured results are in [AGROB_FINETUNE_RUN_2026-10-01.md](AGROB_FINETUNE_RUN_2026-10-01.md). The corrected checkpoint reduces annotation-based count MAE on the previously viewed development sequence to **4.375 fruit/image** at a validation-chosen threshold of **0.90**. It used original AgRob labels; a completed review record or corrected XMLs have not been added to this checkout. A fresh final set remains necessary. [AGROB_FINETUNE_GUIDE.md](AGROB_FINETUNE_GUIDE.md) covers label review, rerunning, and final testing. The GPU notebook is [AGROB_GPU_COLAB.ipynb](AGROB_GPU_COLAB.ipynb).
 For a short team handoff, use [AGROB_FINETUNE_STATUS.md](AGROB_FINETUNE_STATUS.md).
 
+## Relabeled visual cluster experiment
+
+The supplied COCO subset has now been tested on branch `experiment/agrob-cluster-count`.
+Read [AGROB_CLUSTER_RUN_2026-10-09.md](AGROB_CLUSTER_RUN_2026-10-09.md) for the full run, reproduction commands, inspected failures, and next steps.
+The cluster model was trained on 54 images, validated on 18, and tested on 44. At the validation-selected confidence threshold of 0.90, test count MAE is **2.341 clusters/image** and mean signed error is **−1.523**. Box precision is **49.68%** and recall is **40.99%** at IoU 0.50.
+
+These are visually grouped tomatoes that appear to share a stem. Botanical truss membership is unverified. Nearby video frames cross the supplied splits, so this is a pilot result. It measures cluster counts; individual-fruit labels are needed to score fruit counts separately.
+
+`prepare_agrob_clusters.py` validates and imports the COCO ZIP. `finetune_agrob_fruit.py --help` supports training and evaluation with `--class-name tomato_cluster`. Use `count_clusters.py` with the saved cluster checkpoint to count detections in new images. Small metrics and reviewed examples are tracked in `results/agrob_clusters_v1/`; images and model weights remain in ignored local folders.
+
 ## Files used by this experiment
 
 | Path | Purpose |

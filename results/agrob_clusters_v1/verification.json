@@ -1,0 +1,14 @@
+{
+  "count_csv_metrics": "passed",
+  "frozen_settings_before_test": "passed",
+  "checkpoint_sha256": "passed",
+  "standalone_inference_count": 11,
+  "cluster_dataset_sizes": [
+    54,
+    18,
+    44
+  ],
+  "existing_fruit_validation_loader": "passed (40 images)",
+  "wrong_checkpoint_class_rejected": "passed",
+  "python_compile": "passed"
+}

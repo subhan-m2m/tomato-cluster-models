@@ -1,4 +1,4 @@
-"""Fine-tune one-class fruit DETR and evaluate saved checkpoints on AgRob."""
+"""Fine-tune one-class DETR for individual tomatoes or annotated visual clusters."""
 
 import argparse
 import csv
@@ -19,13 +19,13 @@ DEFAULT_PREPARED = Path("data/agrob_finetune_v1")
 DEFAULT_IMAGES = DATA_ROOT / "JPEGImages"
 
 
-def load_split(prepared: Path, split: str, images_dir: Path) -> list[dict]:
+def load_split(prepared: Path, split: str, images_dir: Path, class_name: str = "tomato") -> list[dict]:
     path = prepared / "annotations" / f"{split}.json"
     if not path.is_file():
         raise FileNotFoundError(f"Prepared annotations missing: {path}")
     data = json.loads(path.read_text(encoding="utf-8"))
-    if data.get("categories") != [{"id": 0, "name": "tomato"}]:
-        raise ValueError(f"Expected one tomato category with ID 0: {path}")
+    if data.get("categories") != [{"id": 0, "name": class_name}]:
+        raise ValueError(f"Expected one {class_name} category with ID 0: {path}")
     by_image = defaultdict(list)
     ids = set()
     for annotation in data["annotations"]:
@@ -54,6 +54,7 @@ def load_split(prepared: Path, split: str, images_dir: Path) -> list[dict]:
                 raise ValueError(f"Invalid box in {path}: {annotation['id']}")
             truth.append({"box": [x, y, x + width, y + height],
                           "source_ripeness": annotation.get("source_ripeness", "unknown"),
+                          "source_label": annotation.get("source_label", class_name),
                           "occluded": bool(annotation.get("occluded", False))})
         items.append({"id": image["id"], "path": image_path,
                       "size": (image["width"], image["height"]),
@@ -65,12 +66,14 @@ def load_split(prepared: Path, split: str, images_dir: Path) -> list[dict]:
     return sorted(items, key=lambda item: item["path"].name)
 
 
-def load_processor_and_model(checkpoint: str | Path | None, image_size: int | None):
+def load_processor_and_model(checkpoint: str | Path | None, image_size: int | None, class_name: str = "tomato"):
     import torch
-    from transformers import AutoImageProcessor, AutoModelForObjectDetection
+    from transformers import AutoConfig, AutoImageProcessor, AutoModelForObjectDetection
 
     source = checkpoint or MODEL_ID
     options = {} if checkpoint else {"revision": MODEL_REVISION}
+    if checkpoint and AutoConfig.from_pretrained(source).id2label != {0: class_name}:
+        raise ValueError(f"Checkpoint class does not match requested {class_name}: {source}")
     processor = AutoImageProcessor.from_pretrained(source, use_fast=False, **options)
     if image_size is not None:
         processor.size = {"max_height": image_size, "max_width": image_size}
@@ -81,8 +84,8 @@ def load_processor_and_model(checkpoint: str | Path | None, image_size: int | No
         warnings.filterwarnings("ignore", message="for .* copying from a non-meta parameter")
         model = AutoModelForObjectDetection.from_pretrained(
             source,
-            id2label={0: "tomato"},
-            label2id={"tomato": 0},
+            id2label={0: class_name},
+            label2id={class_name: 0},
             ignore_mismatched_sizes=checkpoint is None,
             **options,
         )
@@ -126,7 +129,7 @@ def assert_training_box_geometry(items: list[dict], processor, torch) -> None:
     """Catch a processor pad/resize setting that changes normalized box geometry."""
     reference = next((item for item in items if item["annotations"]), None)
     if reference is None:
-        raise ValueError("Training data has no labeled tomato boxes")
+        raise ValueError("Training data has no labeled boxes")
     _, _, _, labels = process_batch([reference], processor, "cpu", with_labels=True)
     x, y, width, height = map(float, reference["annotations"][0]["bbox"])
     image_width, image_height = reference["size"]
@@ -134,7 +137,7 @@ def assert_training_box_geometry(items: list[dict], processor, torch) -> None:
                              width / image_width, height / image_height])
     actual = labels[0]["boxes"][0].cpu()
     if not torch.allclose(actual, expected, atol=0.002):
-        raise ValueError(f"Image processor shifted tomato boxes: expected {expected.tolist()}, got {actual.tolist()}")
+        raise ValueError(f"Image processor shifted boxes: expected {expected.tolist()}, got {actual.tolist()}")
 
 
 def detections_from_result(result, model) -> list[dict]:
@@ -176,13 +179,13 @@ def train(args) -> None:
         torch.set_num_threads(args.cpu_threads)
     torch.manual_seed(args.seed)
     random.seed(args.seed)
-    train_items = load_split(args.prepared, "train", args.images_dir)
-    valid_items = load_split(args.prepared, "valid", args.images_dir)
+    train_items = load_split(args.prepared, "train", args.images_dir, args.class_name)
+    valid_items = load_split(args.prepared, "valid", args.images_dir, args.class_name)
     if args.max_train_images:
         train_items = train_items[:args.max_train_images]
     if args.max_valid_images:
         valid_items = valid_items[:args.max_valid_images]
-    torch, processor, model = load_processor_and_model(None, args.image_size)
+    torch, processor, model = load_processor_and_model(None, args.image_size, args.class_name)
     assert_training_box_geometry(train_items, processor, torch)
     model = model.to(device)
     backbone = list(model.model.backbone.parameters())
@@ -194,6 +197,7 @@ def train(args) -> None:
     args.output.mkdir(parents=True)
     run_info = {
         "source_model": MODEL_ID, "source_revision": MODEL_REVISION,
+        "class_name": args.class_name,
         "prepared_summary": json.loads((args.prepared / "summary.json").read_text(encoding="utf-8")),
         "device": device, "torch_version": torch.__version__, "transformers_version": transformers.__version__,
         "seed": args.seed, "epochs": args.epochs, "batch_size": args.batch_size,
@@ -268,10 +272,10 @@ def evaluate(args) -> None:
         device = "cpu"
     if device == "cuda" and not torch.cuda.is_available():
         raise SystemExit("CUDA requested but unavailable")
-    items = load_split(args.prepared, args.split, args.images_dir)
+    items = load_split(args.prepared, args.split, args.images_dir, args.class_name)
     if args.limit:
         items = items[:args.limit]
-    torch, processor, model = load_processor_and_model(args.checkpoint, None)
+    torch, processor, model = load_processor_and_model(args.checkpoint, None, args.class_name)
     if processor.pad_size is not None:
         raise ValueError("Checkpoint uses fixed image padding, which shifts box coordinates; retrain with dynamic padding")
     model = model.to(device).eval()
@@ -284,6 +288,9 @@ def evaluate(args) -> None:
             results = processor.post_process_object_detection(output, threshold=0.0, target_sizes=sizes)
             raw.extend(detections_from_result(result, model) for result in results)
             print(f"evaluated {min(index * args.batch_size, len(items))}/{len(items)}", flush=True)
+    is_cluster = args.class_name == "tomato_cluster"
+    metric_unit = "cluster" if is_cluster else "fruit"
+    source_field = "source_label" if is_cluster else "source_ripeness"
     metrics = []
     all_rows = {}
     all_missed = {}
@@ -295,26 +302,26 @@ def evaluate(args) -> None:
             selected = [d for d in detections if d["score"] >= threshold]
             matches, missed, extra = match_boxes(item["truth"], selected)
             for fruit in item["truth"]:
-                total_by_ripeness[fruit["source_ripeness"]] += 1
+                total_by_ripeness[fruit[source_field]] += 1
             for index in missed:
-                missed_by_ripeness[item["truth"][index]["source_ripeness"]] += 1
+                missed_by_ripeness[item["truth"][index][source_field]] += 1
             signed = len(selected) - len(item["truth"])
-            rows.append({"file_name": item["path"].name, "ground_truth_fruit_count": len(item["truth"]),
-                         "predicted_fruit_count": len(selected), "signed_count_error": signed,
-                         "absolute_count_error": abs(signed), "matched_fruit_iou_50": len(matches),
-                         "missed_fruit_iou_50": len(missed), "extra_boxes_iou_50": len(extra)})
-        matched = sum(row["matched_fruit_iou_50"] for row in rows)
-        missed_count = sum(row["missed_fruit_iou_50"] for row in rows)
+            rows.append({"file_name": item["path"].name, f"ground_truth_{metric_unit}_count": len(item["truth"]),
+                         f"predicted_{metric_unit}_count": len(selected), "signed_count_error": signed,
+                         "absolute_count_error": abs(signed), f"matched_{metric_unit}_iou_50": len(matches),
+                         f"missed_{metric_unit}_iou_50": len(missed), "extra_boxes_iou_50": len(extra)})
+        matched = sum(row[f"matched_{metric_unit}_iou_50"] for row in rows)
+        missed_count = sum(row[f"missed_{metric_unit}_iou_50"] for row in rows)
         extra_count = sum(row["extra_boxes_iou_50"] for row in rows)
         precision = matched / (matched + extra_count) if matched + extra_count else 0.0
         recall = matched / (matched + missed_count) if matched + missed_count else 0.0
         summary = {"threshold": threshold, "images": len(items),
-                   "ground_truth_fruit": sum(row["ground_truth_fruit_count"] for row in rows),
-                   "predicted_fruit": sum(row["predicted_fruit_count"] for row in rows),
+                   f"ground_truth_{metric_unit}": sum(row[f"ground_truth_{metric_unit}_count"] for row in rows),
+                   f"predicted_{metric_unit}": sum(row[f"predicted_{metric_unit}_count"] for row in rows),
                    "mean_absolute_count_error": round(statistics.mean(row["absolute_count_error"] for row in rows), 3),
                    "mean_signed_count_error": round(statistics.mean(row["signed_count_error"] for row in rows), 3),
                    "exact_count_images": sum(row["absolute_count_error"] == 0 for row in rows),
-                   "matched_fruit_iou_50": matched, "missed_fruit_iou_50": missed_count,
+                   f"matched_{metric_unit}_iou_50": matched, f"missed_{metric_unit}_iou_50": missed_count,
                    "extra_boxes_iou_50": extra_count, "box_precision_iou_50": round(precision, 4),
                    "box_recall_iou_50": round(recall, 4),
                    "box_f1_iou_50": round(2 * precision * recall / (precision + recall), 4) if precision + recall else 0.0}
@@ -344,11 +351,13 @@ def evaluate(args) -> None:
             destination.write(json.dumps({"file_name": item["path"].name,
                                           "ground_truth": item["truth"], "detections": selected}) + "\n")
     report = {"checkpoint": str(Path(args.checkpoint).resolve()), "split": args.split,
+              "class_name": args.class_name,
               "run_utc": datetime.now(timezone.utc).isoformat(), "device": device,
               "limited_run": bool(args.limit), "chosen_by": "lowest validation count MAE, then highest box F1"
               if args.split == "valid" else "fixed threshold supplied before scoring",
-              "chosen_metrics": chosen, "missed_by_ripeness": all_missed[threshold],
-              "note": "The development split was inspected during the original baseline and is not a fresh final test."}
+              "chosen_metrics": chosen, ("missed_by_source_label" if is_cluster else "missed_by_ripeness"): all_missed[threshold],
+              "note": ("Supplied cluster splits may share overlapping AgRob scenes; counts refer to annotated visual clusters."
+                       if is_cluster else "The development split was inspected during the original baseline and is not a fresh final test.")}
     (args.output / "summary.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report["chosen_metrics"], indent=2), flush=True)
     print(f"Saved evaluation in {args.output.resolve()}", flush=True)
@@ -359,6 +368,7 @@ def main() -> None:
     subcommands = parser.add_subparsers(dest="command", required=True)
     train_parser = subcommands.add_parser("train", help="Fine-tune the one-class tomato detector")
     train_parser.add_argument("--prepared", type=Path, default=DEFAULT_PREPARED)
+    train_parser.add_argument("--class-name", choices=("tomato", "tomato_cluster"), default="tomato")
     train_parser.add_argument("--images-dir", type=Path, default=DEFAULT_IMAGES)
     train_parser.add_argument("--output", type=Path, required=True)
     train_parser.add_argument("--epochs", type=int, default=15)
@@ -375,6 +385,7 @@ def main() -> None:
     train_parser.set_defaults(func=train)
     eval_parser = subcommands.add_parser("evaluate", help="Score a saved checkpoint")
     eval_parser.add_argument("--prepared", type=Path, default=DEFAULT_PREPARED)
+    eval_parser.add_argument("--class-name", choices=("tomato", "tomato_cluster"), default="tomato")
     eval_parser.add_argument("--images-dir", type=Path, default=DEFAULT_IMAGES)
     eval_parser.add_argument("--checkpoint", type=Path, required=True)
     eval_parser.add_argument("--split", default="valid", help="Prepared split name; development is a viewed benchmark")

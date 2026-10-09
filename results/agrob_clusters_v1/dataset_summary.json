@@ -1,0 +1,24 @@
+{
+  "source_archive_sha256": "87a789733ea150f50f7d9151312396bdbd4d865269f97ddce9d65afd754c0e06",
+  "class_name": "tomato_cluster",
+  "split_manifest": "agrob_cluster_manifest.json",
+  "nearby_frame_pairs_across_splits": 42,
+  "splits": {
+    "train": {
+      "images": 54,
+      "clusters": 551,
+      "zero_cluster_images": 0
+    },
+    "valid": {
+      "images": 18,
+      "clusters": 197,
+      "zero_cluster_images": 0
+    },
+    "test": {
+      "images": 44,
+      "clusters": 383,
+      "zero_cluster_images": 0
+    }
+  },
+  "cluster_definition": "Visually grouped nearby tomatoes that appear to share one stem; stem membership is unverified."
+}
