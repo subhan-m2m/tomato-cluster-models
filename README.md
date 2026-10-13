@@ -46,9 +46,9 @@ Images, model caches, and full output folders are ignored by Git.
 
 ## Present the findings to the team
 
-Open [the standalone HTML dashboard](presentation/tomato_findings_dashboard.html) in Chrome or Edge. It explains the intended **truss-versus-visual-cluster comparison for fruit/flower thinning**, shows the current fruit and cluster baselines, and identifies what is needed to choose between the approaches. Both V1 and V2 are cluster versions; a comparable verified-truss run is still pending. Twenty sample photos are embedded (4 original, 4 trained fruit, 4 V1 groups, 8 V2 groups), including comparisons of the same photos. Share just the HTML file to view it offline. Click **Present** for six sequential sections and **Speaker notes** for short prompts. Detailed results are optional in the last section.
+Open [the standalone HTML dashboard](presentation/tomato_findings_dashboard.html) in Chrome or Edge. It explains **visible compact fruit clusters as inferred truss proxies** when leaves hide stems, shows the fruit and cluster baselines, and outlines evaluation of their usefulness for thinning. Stem-confirmed truss performance remains unmeasured. Twenty sample photos are embedded (4 original, 4 trained fruit, 4 V1 groups, 8 V2 groups), including comparisons of the same photos. Share just the HTML file to view it offline. Click **Present** for six sequential sections and **Speaker notes** for short prompts. Detailed results are optional in the last section.
 
-Use [the five-minute presentation walkthrough](presentation/PRESENTATION_WALKTHROUGH.md) for simple speaking bullets and [the proposed comparison plan](presentation/TRUSS_CLUSTER_COMPARISON.md) for the next experiment. [Project context](presentation/PROJECT_CONTEXT.md) records the current thinning use case and earlier background. `build_team_dashboard.py` rebuilds the file from the saved results and local evaluation previews. The browser verification is recorded in `presentation/dashboard_verification.json`.
+Use [the five-minute presentation walkthrough](presentation/PRESENTATION_WALKTHROUGH.md) for simple speaking bullets and [the proxy-labeling and evaluation plan](presentation/TRUSS_CLUSTER_COMPARISON.md) for the next steps. [Project context](presentation/PROJECT_CONTEXT.md) records the hidden-stem constraint, intended thinning use, and earlier background. `build_team_dashboard.py` rebuilds the file from saved results and local evaluation previews. The browser verification is recorded in `presentation/dashboard_verification.json`.
 
 ## Set up on Windows
 
@@ -87,4 +87,4 @@ Choose a **new output folder** for each run; the script refuses to overwrite exi
 
 The `pilot` split has 297 `tomate_barroselas_*` images; `test` has 152 `tomates_*` images. The groups come from filename patterns and are not a verified independent scene split. Nearby source video frames may overlap. No training is performed here.
 
-AgRob has individual-fruit boxes and ripeness labels, but no truss boxes or same-stem grouping. Truss counting needs its own annotations and evaluation.
+The original AgRob labels have individual-fruit boxes and ripeness labels, but no truss membership. Our added compact-cluster labels provide an observable detection target and an inferred truss proxy. Measuring actual biological truss accuracy would require evidence of connections from better views or field observations.

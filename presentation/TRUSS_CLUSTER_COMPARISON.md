@@ -1,48 +1,56 @@
-# Trusses versus visual clusters: the next experiment
+# Visible clusters as truss proxies: labeling and evaluation plan
+
+Updated October 13 following the user's clarification about hidden stems. This replaces the earlier plan requiring two fully labeled versions of the same obstructed images.
 
 ## Team explanation
 
-“We want to choose what the camera should recognize to support fruit or flower thinning. A visible cluster is a group that looks close together; a verified truss is a group confirmed to belong to one fruiting stem. We will test which approach is detected reliably and keeps the correct fruit or flowers together for a grower to review.”
+“Stems are usually hidden by leaves, so we annotate compact fruit groups that appear to grow from the same place. We use these visible clusters as inferred truss proxies. We can test how well the model finds those groups, then check whether their visible fruit information helps a grower review thinning.”
 
-## Current evidence
+## What the labels mean
 
-| Approach | Current status | What we can conclude |
-| --- | --- | --- |
-| Individual tomatoes | Original and trained models evaluated | Training helped; some misses and extra boxes remain. |
-| Visual clusters | V1 subset and V2 full-label models evaluated | Full labels improved the cluster baseline. |
-| Verified trusses | No comparable run or verified membership labels in this checkout | Truss-versus-cluster winner is undetermined. |
+- **Detection target:** a compact visible fruit group whose arrangement suggests a shared fruiting origin.
+- **Model class:** keep `tomato_cluster` for consistency with existing data and checkpoints.
+- **Intended interpretation:** an inferred truss proxy, with unconfirmed biological membership.
+- **Measured result:** visible cluster counts and detections compared with the supplied visual labels.
 
-Both current group versions use visual-cluster labels. Renaming the category to “truss” would not establish biological membership or create a meaningful comparison.
+Seeing the entire plant or its main stem is not required. Existing valid boxes can remain. If label boundaries are unchanged, this clarification does not change the trained model or its recorded scores.
 
-## Sequential comparison
+## Practical labeling rules
 
-1. **Choose the operating situation with a grower.** Use photos from the actual fruit/flower thinning stage. Record the crop variety and the information needed to review thinning. Include examples with neighboring trusses and obscured stems, as well as clear views. The current fruit-heavy photos do not establish flower-stage performance.
+1. **Box the compact fruit group.** Keep a reasonably tight rectangle around its visible fruit. Stems do not have to be visible or included.
+2. **Use apparent shared origin as a visual cue.** Consider the arrangement and spacing together. Avoid joining clearly separate groups merely because their fruit overlap in the image.
+3. **Keep group boundaries consistent.** Do not enclose the entire plant or require vertical boxes. Review possible merges or splits using the same visual rule.
+4. **Record genuine visual ambiguity.** Flag cases where one versus two groups cannot be decided consistently. Hidden stems alone do not make an otherwise clear visual cluster unsuitable for this detection target.
+5. **Keep edge and singleton treatment explicit.** Preserve the current dataset's treatment for the baseline. Agree and document any changes before creating a new label version. Box only visible content; do not invent hidden fruit extent or count.
+6. **Keep uncertainty separate from the object name.** Use review notes for ambiguous grouping and partial visibility. A class rename to “truss” cannot establish stem connections.
 
-2. **Write a one-page labeling rule.** Agree what the box covers in each approach. A cluster version surrounds the visible group by appearance. A truss version identifies a confirmed fruiting unit; specify whether its box includes the supporting stem. Use stable IDs to associate each visible fruit/flower with its verified truss. Mark hidden or unclear connections as uncertain. Box containment alone cannot prove membership when trusses overlap.
+## Sequential next steps
 
-3. **Label the same images twice.** Keep the existing cluster labels intact. Create a separate verified-truss version on a common set, including individual fruit/flower members where visible. Have a grower or knowledgeable annotator check those relationships. If multiple camera views are needed to confirm a stem, record that confirmation separately from what is visible in the evaluation image.
+1. **Check label consistency on a varied sample.** Review roughly 20–30 photos with another annotator or grower. Include crowded scenes, partial groups, and apparent shared origins. Check whether reviewers agree on the visible group boundaries; this is not confirmation of invisible stems. A sample audit identifies problems but does not prove every annotation is correct.
 
-4. **Keep the comparison fair.** Use the same image identities, training/validation/test assignments, starting model, and comparable training effort. Keep related views of the same plants together. Select settings using validation images and freeze them before scoring genuinely new test scenes. Record labeling effort as another practical consideration.
+2. **Keep the existing baseline.** Correct only demonstrated labeling inconsistencies in a new dataset version. Retrain when labels or another experimental setting change, while preserving the current recorded results. There is no need to reconstruct every box simply because the stems are hidden.
 
-5. **Score recognition and the intended grouping.** For each representation, record missed objects, extra predictions, and count error against its own labels. Separately compare both approaches against the verified truss-member reference: does a predicted unit mix members from different trusses, split one truss, or omit visible members? Raw count errors across different definitions cannot by themselves select the useful representation. Do not treat total-count agreement as proof of correct membership.
+3. **Evaluate detection on new scenes.** Keep views of the same plants together when splitting data. Freeze settings before the test. Record missed and extra groups, count error, and manually reviewed merge/split examples against the visual-label policy. These scores measure agreement with visual groups rather than actual trusses.
 
-6. **Review usefulness for thinning.** Show the same scenes with each output to a grower. Ask whether they can identify the intended truss, review its visible fruit/flowers, and distinguish neighboring trusses. Record unreviewable cases. Counts alone do not determine removal: member condition and grower-agreed rules are further inputs.
+4. **Add visible fruit per group.** Combine individual-fruit and cluster detections. Record or flag ambiguous associations where groups overlap; box containment alone can be insufficient. Evaluate associations against human-visible-group assignments. Hidden fruit remain outside the measured visible count.
 
-7. **Choose using the evidence.** Favor the approach that achieves reliable recognition and preserves the grouping required by the thinning task. A visual cluster can be a useful candidate region if it maps to the correct truss. If it repeatedly merges different trusses, a better-looking detection score is insufficient. If neither approach supports a reliable review, document that outcome and improve images or labels before choosing.
+5. **Review the thinning use case.** Use photos from the stage when thinning is considered. Ask a grower whether the displayed group, visible members, and their condition are useful for review. Flower-stage use needs flower/young-fruit examples and evaluation; the current fruit-only cluster run does not demonstrate it. Establish the grower's rules before evaluating a recommendation.
 
-## Simple scorecard for the team
+6. **Validate biological correspondence if better evidence becomes available.** Additional views, video revealing connections, or observations made at the plant can confirm actual truss membership on a separate reference sample. Record the evidence source. Only then measure how often a visual proxy corresponds to one biological truss. This is additional evidence rather than a label requirement that the current images cannot satisfy.
 
-| Question | Visual-cluster approach | Verified-truss approach |
-| --- | --- | --- |
-| How often is the intended object missed? | Pending fair comparison | Pending fair comparison |
-| How often are different trusses mixed together? | Pending membership review | Pending membership review |
-| How often is one truss split into several groups? | Pending membership review | Pending membership review |
-| Can visible fruit/flowers be assigned correctly? | Pending | Pending |
-| Can a grower review thinning from the evidence? | Pending | Pending |
-| How much labeling effort is needed? | To record | To record |
+## What we can compare now
 
-No pruning recommendation or automated cut point is produced by the current experiment.
+| Question | Evidence |
+| --- | --- |
+| Did full annotations improve cluster detection? | V1/V2 results on the same 44 review photos. |
+| Does the model agree with visible group labels on new scenes? | Next independent detection evaluation. |
+| Do annotators agree on the visual grouping? | Label-consistency audit. |
+| Can fruit be assigned to the visible groups reliably? | Planned fruit-to-group evaluation. |
+| Does the output help a grower review thinning? | Planned review on appropriate crop-stage photos. |
+| Does every proxy correspond to one true truss? | Unmeasured; requires evidence of actual connections. |
+
+Fruit counts and cluster counts use different units; their average errors cannot directly rank the approaches. The former describes visible members and the latter identifies candidate group regions. No automated thinning recommendation or cut point is produced by the current experiment.
 
 ## Background
 
-The [UF/IFAS greenhouse tomato handbook](https://ask.ifas.ufl.edu/publication/CV266) describes overlapping truss/cluster terminology and discusses fruit thinning within the group, with choices affected by cultivar and fruit characteristics. This motivates checking actual membership and defining the task with a grower; it does not establish which model representation will perform best.
+The [UF/IFAS greenhouse tomato handbook](https://ask.ifas.ufl.edu/publication/CV266) discusses truss/cluster terminology and fruit thinning in relation to fruit characteristics and cultivar. This supports defining the intended grower decision, but does not establish that our visual groups correspond to true trusses or that their detections are suitable for thinning.

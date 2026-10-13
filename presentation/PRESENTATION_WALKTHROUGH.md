@@ -4,10 +4,10 @@ Open `tomato_findings_dashboard.html` in Chrome or Edge and click **Present**. U
 
 ## Walk through these six points
 
-1. **The decision we want to make — 45 seconds**
-   - “We want to compare visual clusters with verified trusses, then choose what the model can recognize reliably.”
-   - “The purpose is to help a grower review fruit or flower thinning within a truss.”
-   - “Nearby fruit can belong to different trusses. The grouping must preserve which fruit or flowers belong together.”
+1. **Why we use visible clusters — 45 seconds**
+   - “Leaves usually hide the stems, so the images cannot reliably show actual truss connections.”
+   - “We label compact fruit groups that appear to grow from one place and use them as inferred truss proxies.”
+   - “The intended use is useful visible group information for a grower reviewing fruit or flower thinning.”
 
 2. **The original fruit model — 30 seconds**
    - “The starting fruit model missed the tomatoes in our tested images.”
@@ -17,35 +17,36 @@ Open `tomato_findings_dashboard.html` in Chrome or Edge and click **Present**. U
 3. **After teaching it tomatoes — 45 seconds**
    - “The model now finds tomatoes. On the same review images, average count error fell from about 12 to about 4 per photo.”
    - Show a closer count and the crowded example with extra boxes.
-   - “This could later help count fruit within a truss, once membership is established.”
+   - “This could later help count the visible fruit within each cluster.”
 
 4. **The cluster baseline improved — 60 seconds**
    - “Completing the cluster annotations grew the dataset from 116 to 449 photos.”
    - Switch through the four before-and-after comparison photos.
-   - “Both sides are cluster models. These results show improvement from more labeled data; they do not yet compare clusters against verified trusses.”
+   - “Both sides detect the same kind of visible group. More labeled data improved agreement with our visual annotations.”
 
 5. **What still needs checking — 45 seconds**
    - Show correct groups, missed groups, extra groups, and an empty scene.
    - “The newer cluster count is off by about 2 groups per photo on the supplied test set.”
-   - “For thinning, we must also check whether a group mixes separate trusses or splits one truss into several groups.”
-   - “The current labels do not confirm stem membership or cover flowers.”
+   - “We also need to check whether the model merges visually separate groups or splits one labeled group.”
+   - “These are visible cluster results. Stem membership, hidden fruit, and flower-stage performance are not measured.”
 
-6. **How we choose between the approaches — 75 seconds**
-   - “Use the same new photos from the actual thinning stage, with flowers and young fruit.”
-   - “Label visual groups and confirmed trusses separately, and record which fruit or flowers belong to each truss.”
-   - “Compare recognition errors and whether the grouping is useful to a grower reviewing thinning.”
-   - Close: “We have a cluster baseline. The next step is the truss comparison, so the final choice supports the intended pruning task.”
+6. **How we make the proxy useful — 75 seconds**
+   - “Keep consistent visible-group labels and test detection on new greenhouse scenes.”
+   - “Connect individual fruit detections to groups, and flag assignments that are unclear.”
+   - “Review the output with a grower using photos from the actual thinning stage.”
+   - Close: “We have an improved visible-cluster baseline. Next we check whether group-level observations support thinning review.”
 
 ## If someone asks for more detail
 
-- **Have we proven clusters are better than trusses?** No. We have compared two cluster versions. Verified truss labels and a comparable model run are still needed.
-- **What is the distinction?** For this experiment, visual clusters group objects by appearance; trusses require confirmed shared fruiting-stem membership. Growers sometimes use the terms interchangeably, so we must agree on the label rules.
+- **Have we proven the clusters are actual trusses?** No. They are inferred truss proxies. Hidden connections cannot be established reliably from the current images.
+- **Do we need a separate truss annotation pass on these photos?** We can continue with the visible-group target. Better views or field observations would be needed for reliable biological-membership labels.
+- **What exactly is a cluster here?** A compact fruit group that appears to grow from one place. The model class stays `tomato_cluster`.
 - **What does count error mean?** How far the model’s count is from the manually marked count, averaged across photos. Smaller is better.
-- **Why is count accuracy insufficient?** Two neighboring trusses could be merged, or one truss split into two groups. A correct overall count can also hide a miss and an extra detection.
-- **Which should we choose for thinning?** Choose the approach that reliably preserves the intended truss and its members. A cluster box may serve as a candidate region, but it must be checked against confirmed membership.
-- **Can it tell us what to remove now?** Current outputs are fruit/group boxes and counts. Flower detection, membership, condition, and grower-agreed thinning rules are additional work.
+- **Why is count accuracy insufficient?** Visually separate groups could be merged or one group split into several detections. A correct total can hide a miss and an extra detection.
+- **Does a grower review verify the hidden stems?** It can assess usefulness and plausibility. Actual connection evidence still requires another view or an observation at the plant.
+- **Can it tell us what to remove now?** Current outputs are fruit/group boxes and counts. Fruit-to-group association, flower-stage detection, condition, and grower-agreed rules are additional work.
 
-Exact results and report links are under **Optional: supporting reports and exact results** in the final section. You do not need to show them in the main walkthrough. The proposed experiment is in `TRUSS_CLUSTER_COMPARISON.md`.
+Exact results and report links are under **Optional: supporting reports and exact results** in the final section. You do not need to show them in the main walkthrough. The updated proxy-labeling and evaluation plan is in `TRUSS_CLUSTER_COMPARISON.md`.
 
 ## Share and rebuild
 

@@ -1,38 +1,39 @@
-# How this comparison supports AgriTwin
+# How visible clusters support AgriTwin
 
-## Current purpose, clarified by the user
+## Current purpose and image constraint
 
-Compare visual clusters with verified trusses and decide which representation the models identify more reliably. The final choice should support **fruit/flower thinning within a truss**.
+The user wants a useful representation for **fruit/flower thinning within a truss**. They clarified on October 13 that stems are almost never visible because leaves block them. Their cluster annotations enclose tightly packed fruit that appear to originate from one place; they do not enclose all fruit on a plant.
 
-The earlier project chats described broader row-level harvest planning. That remains background; the current presentation follows the user's more specific pruning use case.
+Given that constraint, the practical detection target is a **visible fruit cluster used as an inferred truss proxy**. Hidden stem connections remain unconfirmed. A separate verified-truss dataset cannot be reliably created from these same obstructed images alone, so making it a prerequisite for continuing the cluster baseline is inappropriate.
 
-## Intended workflow for this experiment
+The broader earlier project chats described row-level harvest planning. The presentation now follows this specific thinning use case and the available image evidence.
 
-Camera photo → identify a visual group or confirmed truss → establish which fruit/flowers belong to it → show counts and condition → grower reviews thinning using agreed rules.
+## Intended workflow
 
-Only the fruit and visual-cluster detection baselines have been run in this checkout. Fruit-to-truss membership, flower detection, a verified-truss model comparison, and thinning recommendations remain future work.
+Photo → detect compact fruit groups → associate visible individual fruit with each group → show visible counts and photo evidence → grower reviews whether that information supports thinning.
 
-## Proposed definitions
+The fruit and visual-cluster detection baselines have been run. Fruit-to-group association, flower detection, and validated thinning support remain future work. Hidden fruit and actual truss membership are not measured by the current boxes.
 
-- **Visual cluster:** tomatoes grouped by their nearby appearance, as in the supplied annotations; the user said they appear to share a stem, but membership is unverified.
-- **Verified truss:** fruit or flowers confirmed to belong to the same fruiting stem/structure. Unclear connections should remain uncertain rather than guessed.
+## Working label definition
 
-These distinguish the labeling approaches for an experiment. They are not a claim that growers always distinguish the words: the [UF/IFAS greenhouse tomato handbook](https://ask.ifas.ufl.edu/publication/CV266) uses truss and cluster terminology for the same on-vine product and discusses cluster thinning in terms of the fruit retained and their characteristics. No generic fruit-retention target is being prescribed here.
+**One compact visible fruit group whose arrangement suggests a shared fruiting origin.** Stem visibility is not required. Keep the model class `tomato_cluster`; describe its intended application as an inferred truss proxy.
+
+Detection agreement with visual labels and correspondence to biological trusses are separate questions. Extra camera views or field observations could establish the latter later. A grower reviewing the same obstructed photo can assess usefulness or plausibility, but cannot supply reliable hidden-connection ground truth solely from that photo.
 
 ## What current results establish
 
 - Tomato-specific training improved the individual-fruit baseline on the reviewed development sequence.
-- Completing cluster annotations improved the V2 cluster baseline compared with V1 on the same 44 review photos.
-- Those findings do not establish whether clusters or trusses are easier to identify, or which supports thinning better.
+- Full cluster annotations improved V2 compared with V1 on the same 44 review photos.
+- Those are improvements in visual detection and count agreement. They do not establish true truss-count accuracy, full fruit load, flower-stage performance, or a benefit from thinning recommendations.
 
-The next experiment must compare both definitions on common images from the relevant crop stage, with comparable training and independent scenes. The grower-facing check is correct membership within the intended truss, alongside recognition errors. See `TRUSS_CLUSTER_COMPARISON.md`.
+The next steps are a label-consistency review, new-scene detection evaluation, visible fruit-per-group association, and a grower review using images from the intended crop stage. See `TRUSS_CLUSTER_COMPARISON.md` for the updated plan.
 
 ## Context reviewed
 
-- **Current “Cluster Testing” chat:** the user clarified the comparison purpose and selected fruit/flower thinning within a truss. This directs the presentation.
-- **“Summarize Agritwin weekly status”** — Codex thread `01a0d943-c25d-7852-890c-6386fab9e752`: earlier approved tomato-first direction, vision baselines, row mapping, and supervisor-reviewed picking priorities.
-- **“Set up RT-DETR tomato counting”** — Codex thread `01a0eefd-f700-79b3-b66f-425f78909163`: preference for a brief presentation covering original results, training, improvements, and next steps.
-- **“Find tomato datasets (3)”** — Codex thread `01a0eed1-2bae-70c1-bcca-1b97f8bbdce0`: public image datasets and missing row metadata.
-- Older local documents under `../OLD/drive/Project Docs/` and `../OLD/deliverables/` were reviewed as background.
+- **Current “Cluster Testing” chat:** fruit/flower thinning is the intended use case; stems are obscured and compact fruit groups are the proposed substitute. This latest clarification directs the presentation.
+- **“Summarize Agritwin weekly status”** — Codex thread `01a0d943-c25d-7852-890c-6386fab9e752`: earlier tomato-first vision baselines, row mapping, and supervisor-reviewed picking priorities.
+- **“Set up RT-DETR tomato counting”** — Codex thread `01a0eefd-f700-79b3-b66f-425f78909163`: preference for a brief presentation of original results, training, improvements, and next steps.
+- **“Find tomato datasets (3)”** — Codex thread `01a0eed1-2bae-70c1-bcca-1b97f8bbdce0`: public datasets and missing row metadata.
+- Older documents under `../OLD/drive/Project Docs/` and `../OLD/deliverables/` were reviewed as background.
 
-Previous chats and documents provide context, not proof of completed integration. Numerical findings come from saved experiment files; `dashboard_sources.json` records source hashes. The pruning connection is a proposed application, not a measured benefit.
+The [UF/IFAS greenhouse tomato handbook](https://ask.ifas.ufl.edu/publication/CV266) discusses truss/cluster terminology and fruit thinning. It does not validate our visual proxy or model performance. Numerical results come from saved experiment files; `dashboard_sources.json` records source hashes. The thinning connection remains a proposed application.

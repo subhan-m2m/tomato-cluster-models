@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AgriTwin · Trusses or clusters for pruning?</title>
+<title>AgriTwin · Visible clusters as truss proxies</title>
 <style>
 :root{--ink:#183b30;--muted:#5b6c63;--paper:#f2f4ee;--green:#247453;--line:#dae2d8;--soft:#e8f1e7;--orange:#ac4c2c}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:17px/1.5 "Segoe UI",Arial,sans-serif;background:var(--paper);color:var(--ink)}button{font:inherit;cursor:pointer;border:1px solid var(--line);border-radius:9px;padding:8px 14px;background:white;color:var(--ink)}button:hover{background:var(--soft)}button:disabled{opacity:.4;cursor:default}a{color:var(--green)}:focus-visible{outline:3px solid #df922c;outline-offset:3px}.primary{background:var(--green);color:white}.primary:hover{background:var(--ink)}
@@ -17,24 +17,24 @@ header{position:sticky;top:0;z-index:4;background:#f2f4eef5;backdrop-filter:blur
 <body>
 <header>
 <a class="skip" href="#why">Skip to findings</a>
-<div class="topbar"><div class="brand">AgriTwin <span>Tomato counting · Team update · 9 October 2026</span></div><div class="tools"><button id="notes-toggle" aria-pressed="false">Speaker notes</button><button class="primary" id="present-toggle" aria-pressed="false">Present</button></div></div>
+<div class="topbar"><div class="brand">AgriTwin <span>Tomato counting · Team update · 13 October 2026</span></div><div class="tools"><button id="notes-toggle" aria-pressed="false">Speaker notes</button><button class="primary" id="present-toggle" aria-pressed="false">Present</button></div></div>
 <nav id="section-nav" aria-label="Presentation sections"></nav>
 </header>
 <main>
 <section id="why" class="section hero" data-title="Why this matters">
 <p class="eyebrow">1 · The decision this experiment supports</p>
-<h1>Trusses or visual clusters?<br>Choose what helps pruning.</h1>
-<p class="lead">We want to compare two ways of describing tomato groups: <strong>which can the model identify reliably, and which helps a grower review fruit/flower thinning within a truss?</strong></p>
-<p class="lead"><strong>Visual cluster:</strong> nearby tomatoes grouped by appearance. <strong>Truss:</strong> a fruit or flower group with a confirmed shared fruiting stem. These are our proposed experiment definitions; growers may use the names interchangeably.</p>
+<h1>Visible fruit clusters.<br>A practical proxy for trusses.</h1>
+<p class="lead">Leaves usually hide the stems in these photos. We therefore label <strong>compact fruit groups that appear to grow from one place</strong> and test how reliably the model finds them.</p>
+<p class="lead">These groups are our <strong>inferred truss proxies</strong>. A box represents a compact fruit group; actual stem membership remains unconfirmed.</p>
 <div class="route">
-<article><span class="status">Tested baseline</span><h3>Visual clusters</h3><p>Recognize the groups in your completed annotations.</p></article>
-<article><span class="status">Comparison pending</span><h3>Verified trusses</h3><p>Label confirmed stem connections and test that alternative.</p></article>
-<article><span class="status">Next experiment</span><h3>Compare both</h3><p>Check missed, split, and merged groups on the same new photos.</p></article>
-<article><span class="status">Future use</span><h3>Support thinning</h3><p>Show which fruit or flowers belong to the target truss.</p></article>
+<article><span class="status">Available evidence</span><h3>Compact groups</h3><p>Label the fruit groups visible in the photo.</p></article>
+<article><span class="status">Tested baseline</span><h3>Find the groups</h3><p>Measure missed, extra, and split detections.</p></article>
+<article><span class="status">Next experiment</span><h3>Count visible fruit</h3><p>Combine fruit and group detections, checking ambiguous assignments.</p></article>
+<article><span class="status">Future use</span><h3>Review thinning</h3><p>Let a grower assess the visible group and its evidence.</p></article>
 </div>
-<p class="lead">Today’s results establish the fruit and visual-cluster baselines. <strong>We have not yet chosen a winner between clusters and verified trusses.</strong></p>
-<p class="small">Current labels cover visible fruit groups. Verified truss membership and flower labels are still needed to evaluate the thinning use case.</p>
-<aside class="notes"><strong>Say:</strong> “For thinning, the grower needs to know which fruit or flowers belong together. We want to choose the representation the camera can recognize reliably while preserving that relationship. The cluster results are one side of the comparison.”</aside>
+<p class="lead">Today’s results show progress in finding visible fruit and groups. <strong>The usefulness of this proxy for thinning still needs a grower review.</strong></p>
+<p class="small">Reported group errors measure agreement with visual labels. They do not establish true truss counts or account for hidden fruit. Flower-stage performance is still untested.</p>
+<aside class="notes"><strong>Say:</strong> “The stems are hidden, so we use compact fruit groups as inferred truss proxies. We can measure how well the model finds those visible groups. Then we need to check whether that information is useful to a grower reviewing thinning.”</aside>
 </section>
 
 <section id="original" class="section" data-title="The first try">
@@ -54,7 +54,7 @@ header{position:sticky;top:0;z-index:4;background:#f2f4eef5;backdrop-filter:blur
 <div class="statement">On the same 152 images, the average count error fell from <strong><span data-value="original.mean_absolute_count_error" data-digits="1"></span> to <span data-value="fruitDevelopment.mean_absolute_count_error" data-digits="1"></span> tomatoes per photo.</strong></div>
 <div class="legend"><span>Green = manually marked</span><span>Red = model found</span></div>
 <div class="photos" id="fruit-photos"></div>
-<p class="small" style="margin-top:16px">Individual-fruit detection could later help count fruit within each confirmed group. We have not made that connection yet. A correct total can still hide a miss and an extra box.</p>
+<p class="small" style="margin-top:16px">Individual-fruit detection could later help count visible fruit within each cluster. We have not made that connection yet. A correct total can still hide a miss and an extra box.</p>
 <aside class="notes"><strong>Say:</strong> “Average count error means how far the model’s number is from the marked number. Smaller is better. This is a useful starting point, with visible remaining errors.” Show the crowded example so the team sees both progress and limitations.</aside>
 </section>
 
@@ -68,8 +68,8 @@ header{position:sticky;top:0;z-index:4;background:#f2f4eef5;backdrop-filter:blur
 <div class="legend"><span>Green = manually marked</span><span>Red = model found</span></div>
 <div class="photos pair" id="group-pair"></div>
 <p id="pair-note" class="small" style="margin-top:16px"></p>
-<p class="small">Both V1 and V2 use visual-cluster labels. These groups appear to share a stem, but that connection is unverified. This compares cluster-model versions; the truss-versus-cluster test is still pending.</p>
-<aside class="notes"><strong>Say:</strong> “These are two cluster versions, not two different definitions. Completing the labels improved the cluster baseline. Next we compare this approach with verified trusses.” Switch through the four examples; a correct total can hide errors.</aside>
+<p class="small">Both V1 and V2 use compact fruit groups as truss proxies. Their actual stem connections are unconfirmed. These results compare cluster-model versions and their agreement with the visual labels.</p>
+<aside class="notes"><strong>Say:</strong> “Both versions detect our visible groups. Completing the annotations improved the baseline. The biological connection is inferred; the measured improvement is in finding the labeled groups.” Switch through the four examples; a correct total can hide errors.</aside>
 </section>
 
 <section id="latest" class="section" data-title="What works and misses">
@@ -83,24 +83,24 @@ header{position:sticky;top:0;z-index:4;background:#f2f4eef5;backdrop-filter:blur
 </section>
 
 <section id="next" class="section" data-title="The next step">
-<p class="eyebrow">6 · Choose the useful unit for AgriTwin</p>
-<h2>Compare recognition and usefulness for thinning.</h2>
-<p class="lead">The winner must identify the correct fruiting unit and help a grower review fruit/flower thinning. Count accuracy is only one part of that choice.</p>
+<p class="eyebrow">6 · Make the visible groups useful for AgriTwin</p>
+<h2>Check the proxy’s usefulness for thinning.</h2>
+<p class="lead">Our practical target is a consistently labeled compact group. Next we check detection on new scenes and whether its visible fruit information helps a grower review thinning.</p>
 <ol class="steps">
-<li><div><h3>Use photos from the thinning stage</h3><p>Include flowers and young fruit. Agree with a grower what information is needed to review thinning within a truss.</p></div></li>
-<li><div><h3>Label both on the same photos</h3><p>Keep visual groups and verified trusses as separate label versions. Record fruit/flower membership; mark unclear connections as uncertain.</p></div></li>
-<li><div><h3>Make a fair comparison</h3><p>Train each approach with comparable settings. Test on the same new scenes; check missed groups, wrong merges, splits, and counts.</p></div></li>
-<li><div><h3>Review usefulness with a grower</h3><p>Does the group contain fruit/flowers from one truss? Can its members be counted and reviewed without mixing neighboring trusses?</p></div></li>
+<li><div><h3>Agree on the visible-group rule</h3><p>Keep compact groups that appear to originate together. Review unclear boundaries, overlapping groups, and image-edge cases.</p></div></li>
+<li><div><h3>Test new scenes</h3><p>Measure missed, extra, merged, and split groups against consistent visual labels. Keep related views together when splitting the data.</p></div></li>
+<li><div><h3>Add visible fruit per group</h3><p>Link fruit detections to clusters and flag ambiguous assignments. Collect flower/young-fruit examples for the actual thinning stage.</p></div></li>
+<li><div><h3>Review usefulness with a grower</h3><p>Can the grower inspect the visible group and assess its crop load? Record cases where hidden structure or fruit prevents a useful review.</p></div></li>
 </ol>
-<div class="statement"><strong>Team takeaway:</strong> the cluster baseline improved with the full annotations. Next we compare it with verified trusses and choose the representation that preserves the grouping needed for fruit/flower thinning.</div>
-<p class="small">An easier box to detect is useful only if it represents the intended truss. Current counts do not identify which fruit/flowers to remove; those decisions also need their condition and a grower’s thinning rules.</p>
+<div class="statement"><strong>Team takeaway:</strong> visible clusters are our practical truss proxies when stems are hidden. Detection improved with the full annotations. Next we check new scenes and whether group-level observations support thinning review.</div>
+<p class="small">A grower review can assess usefulness; it cannot confirm hidden stem connections from the same unclear photo. Current counts alone do not identify what to remove. Extra views or field observations could later establish actual truss membership.</p>
 <details><summary>Optional: supporting reports and exact results</summary>
 <p>The main presentation rounds count errors for readability. Exact recorded results: original fruit <span data-value="original.mean_absolute_count_error" data-digits="3"></span>; trained fruit <span data-value="fruitDevelopment.mean_absolute_count_error" data-digits="3"></span>; group V1 → V2 on the same 44 photos <span data-value="clusterComparison.v1.mean_absolute_count_error" data-digits="3"></span> → <span data-value="clusterComparison.v2.mean_absolute_count_error" data-digits="3"></span>; V2 across all 45 supplied test photos <span data-value="clusterTest.mean_absolute_count_error" data-digits="3"></span>. Units are tomatoes or groups per photo, respectively.</p>
 <div class="report-links"><a href="https://github.com/subhan-m2m/tomato-cluster-models/blob/experiment/agrob-cluster-count/AGROB_CLUSTER_V2_RUN_2026-10-09.md">Full group-model report</a><a href="https://github.com/subhan-m2m/tomato-cluster-models/tree/experiment/agrob-cluster-count/results/agrob_finetune_v1_480">Individual-fruit results</a><a href="https://github.com/subhan-m2m/tomato-cluster-models/blob/experiment/agrob-cluster-count/presentation/PROJECT_CONTEXT.md">Project context</a></div>
 <p>Report links require internet and repository access. Photos and recorded counts are embedded and work offline.</p>
-<p>Background: <a href="https://ask.ifas.ufl.edu/publication/CV266">UF/IFAS greenhouse tomato handbook</a> discusses the overlapping truss/cluster terminology and fruit thinning. This supports the use-case distinction; it is not evidence of model performance. <a href="https://github.com/subhan-m2m/tomato-cluster-models/blob/experiment/agrob-cluster-count/presentation/TRUSS_CLUSTER_COMPARISON.md">Read the proposed comparison plan.</a></p>
+<p>Background: <a href="https://ask.ifas.ufl.edu/publication/CV266">UF/IFAS greenhouse tomato handbook</a> discusses truss/cluster terminology and fruit thinning. It does not establish that our visual groups match true trusses. <a href="https://github.com/subhan-m2m/tomato-cluster-models/blob/experiment/agrob-cluster-count/presentation/TRUSS_CLUSTER_COMPARISON.md">Read the proxy-labeling and evaluation plan.</a></p>
 </details>
-<aside class="notes"><strong>Close:</strong> “We want reliable recognition of the correct group for fruit/flower thinning. Clusters are a tested baseline; verified trusses are the next comparison. We will choose using both recognition errors and a grower’s review of the grouping.”</aside>
+<aside class="notes"><strong>Close:</strong> “We use what the camera can show: compact fruit groups as inferred truss proxies. Our next step is reliable group detection and useful visible fruit information for a grower. Stem-confirmed truss performance remains unmeasured.”</aside>
 </section>
 <p class="footer">20 embedded sample photos · Public AgRobTomato images · Click a photo to enlarge · Share this HTML file for offline viewing</p>
 </main>
