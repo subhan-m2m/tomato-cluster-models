@@ -1,5 +1,7 @@
 # AgRob tomato counting baseline
 
+For the short results summary, branch purposes, and next application, read [FINDINGS.md](FINDINGS.md). Continue model work on `experiment/agrob-cluster-count`; earlier experiment branches preserve the baseline and fine-tuning stages.
+
 This repository evaluates the pretrained [Fruit Detector DETR-50](https://huggingface.co/MohamedKhayat/fruit-detector-detr-50) checkpoint on the [AgRobTomato dataset](https://zenodo.org/records/5596799). It counts visible fruit boxes in each image and compares them with AgRob's annotations. The checkpoint is a standard DETR model, separate from the RT-DETR project.
 
 The **original pretrained checkpoint** is not accurate enough for tomato counting on AgRob. Read [AGROB_FRUIT_BASELINE.md](AGROB_FRUIT_BASELINE.md) for its fixed experiment, test results, and representative misses. Small shareable summaries and per-image counts are in `results/agrob/`.

@@ -14,6 +14,6 @@
 
 1. **Subhan and Andrei:** provide the completed review CSV and any corrected Pascal VOC XML files. The local queue still has blank reviewer/correction columns, so this run used the original labels. If labels changed, prepare v2 and retrain.
 2. **For a final performance claim:** collect a new capture session or row, label each visible fruit including confirmed zero-fruit scenes, and run one fixed-threshold evaluation. The old 152-image sequence is a development comparison because it was previously viewed.
-3. **For truss counting:** collect truss-specific labels. AgRob fruit boxes do not identify trusses.
+3. **For grouping and thinning review:** the later cluster experiment now has full visual-cluster annotations and V2 results; see [the current findings](FINDINGS.md). These groups are inferred truss proxies, not verified stem-connected trusses. Fruit-to-group association and its evaluation still need reference memberships; original AgRob fruit boxes alone do not provide them.
 
 The honest current result is an **improved annotation-based development baseline**, with substantial box errors and no fresh final test. See [AGROB_FINETUNE_GUIDE.md](AGROB_FINETUNE_GUIDE.md) for manual steps.
