@@ -1,0 +1,244 @@
+{
+  "association_version": "visible-association-v1",
+  "settings": {
+    "margin": 0.0,
+    "min_coverage": 0.5,
+    "separation": 0.15,
+    "fruit_duplicate_iou": 0.95,
+    "cluster_overlap_iou": 0.55
+  },
+  "models": {
+    "tomatoes": {
+      "checkpoint": "best_model",
+      "run": "agrob-gpu-full-unpadded-v1-480",
+      "sha256": "d7a997e0d17ae2e4b05f9ae9b2c19346a23ea7f9e7c89916916dad3943b26582",
+      "threshold": 0.9
+    },
+    "clusters": {
+      "checkpoint": "best_model",
+      "run": "agrob-cluster-detr-v2-480",
+      "sha256": "e919e0256988359b0a50a79ba7430b2618ec073adef181507d034b91d7eb53fb",
+      "threshold": 0.9
+    }
+  },
+  "created_at": "2026-10-21T03:06:40.405251+00:00",
+  "review_status": "unreviewed",
+  "samples": [
+    {
+      "file_name": "tomate_barroselas_20200806_0005_jpg.rf.f1c9172e58bb0a0436e5c83905200b6a.jpg",
+      "sha256": "bce45be8ce73778cade4c740aa92d693a53b55bc19af656e7022a9aa3f029727",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.323,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0030_jpg.rf.c272d31dd962abfaa758b2a015a934c1.jpg",
+      "sha256": "e48f77bfc5bbae681bf0922a557b3504d1c3ce4ecd53aad417c392d0eaa1866d",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.047,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0035_jpg.rf.22ee029dad8858c2d2a3201f4c2dba63.jpg",
+      "sha256": "fb2c06e452d1a5bb088a0a9a43cf8f9242b81e169d89fd5e98a662056c912f6c",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.046,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0046_jpg.rf.d119905cb94ee2ef472dda4bf6d350b9.jpg",
+      "sha256": "a011eb72b532715e7e25ec5c7b7403f8aecd11109d58ea5677ceb352df1a0b56",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.045,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0081_jpg.rf.264c156f719cf2fa6c2cb4e8879d266d.jpg",
+      "sha256": "8d67e6b2255c9430ff1f07d10034bdaaffcdd938b52f20c3db2d3ec96a561204",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.045,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0122_jpg.rf.be3f213ddee1efa2499bcc4c7679ab8d.jpg",
+      "sha256": "2b43fd61e15c6d9b602fa273c2a125619160321639e45413c9a7f7bf41d150fc",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.045,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0137_jpg.rf.13aaa668c973e0ee910ab12d52100ab2.jpg",
+      "sha256": "815678b80c26bf06803f86dd4ed75f1c5245658a1784386cd5eb4e693d3b46e7",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.045,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0148_jpg.rf.92f02d7be486622fcaca3decceb42364.jpg",
+      "sha256": "8e55e86252628af9293a5efc10a3dfe63edaf0d62ba2059d7f4e6a2cdc24322a",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.041,
+      "peak_gpu_bytes": 384993280
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0157_jpg.rf.ee4f46df52d203774a2a6404cafad028.jpg",
+      "sha256": "f58954cb6b6c256b993d1ea69f1ee28a7574889bb83db145cd74dfe2e2832837",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.044,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0190_jpg.rf.18e2c3f3e7d2947140cee26d3d940233.jpg",
+      "sha256": "90bc7b58757d18df8035bff1cc2245461677f8e7e1ae8db5299a96a49764bd6d",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.044,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0237_jpg.rf.feb58ad223537824d765c59e0895f369.jpg",
+      "sha256": "6f804d5751a7bc9a441b28a2fdc2728c59058f445744a2b0047b7171276cdacd",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.043,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomate_barroselas_20200806_0260_jpg.rf.6d2aee2adb5a1f4411386a1acf5bbc9a.jpg",
+      "sha256": "183fc9a96c944edbab737680201a1498eeb5ea662d9e78ae8529d3d051e7e6a1",
+      "scene": "barroselas",
+      "partition": "development",
+      "reviewed": false,
+      "inference_seconds": 0.043,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0069_jpg.rf.9837314a034c42cfd0c8712677a9762d.jpg",
+      "sha256": "29d81a7c35c0cd89be95ded6ccf73dd4cf177d3e0bd229654d5a264261f4c057",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.044,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0071_jpg.rf.d4681c6e1c439e2ee30504ccee68de0d.jpg",
+      "sha256": "be0d2f93367008e17e2b068deaef9a1d25339bceb58d289327f12b7dddcd6996",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.044,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0075_jpg.rf.414413b3bb1397cd4e46452b62f9f9fb.jpg",
+      "sha256": "6e40c81f641440a742535765414462a744b8003446330ef50c3ede927eb037e0",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.045,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0082_jpg.rf.59c5b72c603d2ab671caebedb18a0b00.jpg",
+      "sha256": "a2f0f51cbbea417e2be9e2d4e0ed982fa9838b62efc9db27338e6abfa0d34413",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.044,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0093_jpg.rf.85716fda3d02aa008e988cc0942dbc00.jpg",
+      "sha256": "c97dd5b93dc7c8ec4d54c1784a9233209dacd33c16828678ca6a9ff62c10c53a",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.045,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0094_jpg.rf.acef4736e1c7d7aeac92c72525734ca9.jpg",
+      "sha256": "59476b6fd5afebfdca1fc776c74432baa5c5df4c5abe20dea0e287de7e24c06c",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.045,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0121_jpg.rf.f59046499e9dcb1e79b26bd7bd0cc9a5.jpg",
+      "sha256": "f4180a4e4d7145236d34295b03c45958e6c69a1ec5dc811943eb48c7b677f2ec",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.044,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0123_jpg.rf.26329928d809bad87e71b51e7fe3ef28.jpg",
+      "sha256": "6609a4badccd77afe93f7c5875a0ddd5b1f54cf32810537cc3264bfe44e66604",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.046,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0142_jpg.rf.aae0e953ab46b15bce85df75889f211a.jpg",
+      "sha256": "86544eac9b5e997f139fba63b7fcfcd20443def9c724e80160ad6ca34d1b4528",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.044,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0143_jpg.rf.721f7fc524b9e9c3f38632491d020950.jpg",
+      "sha256": "9353f006ffb13477694b8b7c57485d2949b17bfd7005e44941b343dd78e391ad",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.043,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0170_jpg.rf.b178b9c312028ffd24eb5eb138a5f4f1.jpg",
+      "sha256": "19ee11b61f032b3624b8103b834a3e396b22c5e563d804ca4a96b082c594c2bd",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.043,
+      "peak_gpu_bytes": 384994816
+    },
+    {
+      "file_name": "tomates_2020-08-06-11-35-15_side_0226_jpg.rf.f0fc9251d6a11f15c4941ede9795ec0e.jpg",
+      "sha256": "36fafbc9e4dd59cbb53cc6056d79f88adae4d2a253dd1eeda74f708fd1dc7357",
+      "scene": "side-camera",
+      "partition": "reserved_evaluation",
+      "reviewed": false,
+      "inference_seconds": 0.048,
+      "peak_gpu_bytes": 384994816
+    }
+  ]
+}

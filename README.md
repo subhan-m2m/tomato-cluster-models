@@ -1,5 +1,7 @@
 # AgRob tomato counting baseline
 
+The count-based pruning prototype is on `feature/pruning-association-prototype`. Read [PRUNING_ASSOCIATION.md](PRUNING_ASSOCIATION.md) for the shared association module, 24-image review pack, verification and pending reference labels. Pair it with frontend branch `feature/pruning-review-prototype`; model weights and training datasets are unchanged.
+
 For the short results summary, branch purposes, and next application, read [FINDINGS.md](FINDINGS.md). Continue model work on `experiment/agrob-cluster-count`; earlier experiment branches preserve the baseline and fine-tuning stages.
 
 This repository evaluates the pretrained [Fruit Detector DETR-50](https://huggingface.co/MohamedKhayat/fruit-detector-detr-50) checkpoint on the [AgRobTomato dataset](https://zenodo.org/records/5596799). It counts visible fruit boxes in each image and compares them with AgRob's annotations. The checkpoint is a standard DETR model, separate from the RT-DETR project.

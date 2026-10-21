@@ -1,0 +1,26 @@
+{
+  "note": "Coverage diagnostics on 12 unreviewed development images; not assignment accuracy. Reserved scene excluded. Retain zero expansion until manual labels support a change.",
+  "comparisons": [
+    {
+      "margin": 0,
+      "assigned": 188,
+      "ambiguous": 11,
+      "unassigned": 13,
+      "groups_with_quality_flags": 20
+    },
+    {
+      "margin": 0.03,
+      "assigned": 189,
+      "ambiguous": 11,
+      "unassigned": 12,
+      "groups_with_quality_flags": 20
+    },
+    {
+      "margin": 0.05,
+      "assigned": 189,
+      "ambiguous": 11,
+      "unassigned": 12,
+      "groups_with_quality_flags": 20
+    }
+  ]
+}
