@@ -2,6 +2,8 @@
 
 This guide is included in both repositories. You need both feature branches, a Python environment, Node.js, and the **separately shared trained checkpoint bundle**. A Git clone alone does not include trained weights, photos, datasets, or saved observations. There is no automatic download of a replacement detector.
 
+**Intel Mac compatibility:** the Python inference recipe below supports Windows/Linux and provides Apple Silicon macOS paths. It does **not** install as written on an Intel Mac, including a 2018 MacBook Pro. [PyTorch's official announcement](https://pytorch.org/blog/pytorch2-2/) identifies 2.2.x as the last official macOS x86 release; this prototype requires `torch>=2.4`. Copying trained weights or choosing `--device cpu` does not resolve that package conflict. Intel Macs can use the dashboard in a browser with inference on a supported machine. That remote arrangement still needs deliberate connection configuration: the current API and development proxy target this machine's loopback address. Standalone Intel macOS inference needs a separately tested compatibility path; do not simply downgrade dependencies and assume the result is validated.
+
 ## 1. Prerequisites and repository access
 
 - Git and permission to clone both repositories below. HTTPS cloning may prompt you to sign in to GitHub. If access is denied, request repository access from the maintainer.
@@ -76,7 +78,7 @@ py -3.12 -m venv .\tomato-cluster-models\.venv
 & .\tomato-cluster-models\.venv\Scripts\python.exe -m pip install -r .\frontend\agritwin-harvest-dashboard-oct-2026\inference\requirements.txt
 ```
 
-macOS/Linux, CPU setup:
+Apple Silicon macOS/Linux, CPU setup (see the Intel Mac limitation above):
 
 ```sh
 python3.12 -m venv tomato-cluster-models/.venv
@@ -192,6 +194,7 @@ The importer expects a new destination; do not overwrite an existing prepared da
 | Frontend says to start the counting service | Check the API terminal, health endpoint, port 8001, and that Vite is running. |
 | Port 8001 is already in use | Stop an earlier counting/ripeness service in its own terminal. Both cannot use the same port. |
 | Node/Vite engine or startup error | Check `node --version`, use a supported Node version, and run `npm ci` in the frontend directory. |
+| Intel Mac cannot install the required torch version | Official macOS x86 wheels stop at 2.2.x; this prototype requires 2.4 or newer. Use inference on a supported machine, or develop and test a separate Intel-compatible runtime. `--device cpu` alone does not fix this. |
 | No pruning flags after upload | Configure a crop maximum first. Empty cluster results or a failed model remain not evaluated; unknown is not zero risk. |
 | CUDA is unavailable or memory is insufficient | Use the CPU environment and start with `--device cpu`; CPU inference can take longer. |
 | `index.html` for the review pack is absent | Obtain the separate review pack or regenerate it with the V2 labeled dataset; it is not included in Git. |
