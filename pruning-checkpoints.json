@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "description": "Exact trained fruit and V2 cluster checkpoint files for the pruning prototype; distributed separately from Git.",
+  "files": [
+    {
+      "path": "outputs/agrob-gpu-full-unpadded-v1-480/best_model/config.json",
+      "bytes": 1371,
+      "sha256": "4847af0307c2e01d803c1acffca99582f6fe251e615cd7b97713c4e47d165927"
+    },
+    {
+      "path": "outputs/agrob-gpu-full-unpadded-v1-480/best_model/preprocessor_config.json",
+      "bytes": 760,
+      "sha256": "f14c5c2b165fda030f4677865547bbbd56c10158cd0feea6d3177dc62cf936c1"
+    },
+    {
+      "path": "outputs/agrob-gpu-full-unpadded-v1-480/best_model/model.safetensors",
+      "bytes": 166494824,
+      "sha256": "d7a997e0d17ae2e4b05f9ae9b2c19346a23ea7f9e7c89916916dad3943b26582"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480/best_model/config.json",
+      "bytes": 1387,
+      "sha256": "f8401416f5e633e9cfc5f673e917006c447dae124d58fd7b59cdca0444612e00"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480/best_model/preprocessor_config.json",
+      "bytes": 760,
+      "sha256": "f14c5c2b165fda030f4677865547bbbd56c10158cd0feea6d3177dc62cf936c1"
+    },
+    {
+      "path": "outputs/agrob-cluster-detr-v2-480/best_model/model.safetensors",
+      "bytes": 166494824,
+      "sha256": "e919e0256988359b0a50a79ba7430b2618ec073adef181507d034b91d7eb53fb"
+    }
+  ]
+}
